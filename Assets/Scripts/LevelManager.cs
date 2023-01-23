@@ -4,11 +4,12 @@ using UnityEngine;
 
 public enum LevelState
 {
+    FirstDebate,
     FirstMeet,
     FirstIns,
     SecondMeet,
     SecondIns,
-    FakeSelfHurt,
+    FakeSelfAbuse,
     End
 }
 
@@ -23,7 +24,8 @@ public class LevelManager : MonoBehaviour
 
     public void Init()
     {
-
+        currentLevelState = LevelState.FirstMeet;
+        LoadLevel();
     }
     
     public void LoadLevel()
@@ -32,7 +34,10 @@ public class LevelManager : MonoBehaviour
         PublicTool.ClearChildItem(tfContentImage);
         PublicTool.ClearChildItem(tfContentSprite);
 
-        //GameObject objLevel = 
+        Object objLevel = Resources.Load("LevelPrefabs/LevelFirstMeet");
+        GameObject gobjLevel = Instantiate(objLevel,tfContentImage)as GameObject;
+        LevelBasic itemLevel = gobjLevel.GetComponent<LevelBasic>();
+        itemLevel.Init(this);
     }
 
     public void NextLevel()
