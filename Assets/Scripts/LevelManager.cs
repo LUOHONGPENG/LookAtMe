@@ -7,9 +7,12 @@ public enum LevelState
     FirstDebate,
     FirstMeet,
     FirstIns,
+    SecondDebate,
     SecondMeet,
     SecondIns,
     FakeSelfAbuse,
+    Mirror,
+    Hospital,
     End
 }
 
@@ -24,7 +27,7 @@ public class LevelManager : MonoBehaviour
 
     public void Init()
     {
-        currentLevelState = LevelState.FirstMeet;
+        currentLevelState = LevelState.FirstDebate;
         LoadLevel();
     }
     
@@ -34,15 +37,30 @@ public class LevelManager : MonoBehaviour
         PublicTool.ClearChildItem(tfContentImage);
         PublicTool.ClearChildItem(tfContentSprite);
 
-        Object objLevel = Resources.Load("LevelPrefabs/LevelFirstMeet");
-        GameObject gobjLevel = Instantiate(objLevel,tfContentImage)as GameObject;
-        LevelBasic itemLevel = gobjLevel.GetComponent<LevelBasic>();
-        itemLevel.Init(this);
+        string strLevelName = "";
+
+        if(currentLevelState!= LevelState.End)
+        {
+            strLevelName = currentLevelState.ToString();
+        }
+
+        if (strLevelName.Length > 0)
+        {
+            Object objLevel = Resources.Load("LevelPrefabs/Level" + strLevelName);
+
+            //CheckError
+            if (objLevel != null)
+            {
+                GameObject gobjLevel = Instantiate(objLevel, tfContentImage) as GameObject;
+                LevelBasic itemLevel = gobjLevel.GetComponent<LevelBasic>();
+                itemLevel.Init(this);
+            }
+        }
     }
 
     public void NextLevel()
     {
-        if(currentLevelState != LevelState.End)
+        if(currentLevelState == LevelState.End)
         {
             //The final End
         }

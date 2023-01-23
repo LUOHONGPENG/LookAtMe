@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelFirstMeet : LevelBasic
+public class LevelSecondDebate : LevelBasic
 {
+
+
 
 
 }

@@ -11,7 +11,15 @@ public class LevelBasic : MonoBehaviour
     public virtual void Init(LevelManager parent)
     {
         this.parent = parent;
-        Debug.Log(11);
+
+        if (btnCommonFullClick != null)
+        {
+            btnCommonFullClick.onClick.RemoveAllListeners();
+            btnCommonFullClick.onClick.AddListener(delegate ()
+            {
+                NextLevel();
+            });
+        }
 
 
     }
