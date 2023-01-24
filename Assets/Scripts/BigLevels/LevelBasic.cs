@@ -20,8 +20,6 @@ public class LevelBasic : MonoBehaviour
                 NextLevel();
             });
         }
-
-
     }
 
     public virtual void NextLevel()

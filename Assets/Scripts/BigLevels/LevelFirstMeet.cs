@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class LevelFirstMeet : LevelBasic
 {
+    //A list that contains 4 partypeople prefabs
     public List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
-    Coroutine coNextLevel = null;
+    //When 4 people look the character, it become true
+
+    //A coroutine that call 
+    private Coroutine coNextLevel = null;
 
     public override void Init(LevelManager parent)
     {
@@ -31,15 +35,17 @@ public class LevelFirstMeet : LevelBasic
         //check whether 4 
         if (numPeopleFlip >= 4)
         {
+
             if (coNextLevel == null)
             {
-                coNextLevel = StartCoroutine(IE_NextLevel());
+                coNextLevel = StartCoroutine(IE_LevelComplete());
             }
         }
     }
 
-    public IEnumerator IE_NextLevel()
+    public IEnumerator IE_LevelComplete()
     {
+        //Change to next level after 2 seconds
         yield return new WaitForSeconds(2f);
         NextLevel();
     }

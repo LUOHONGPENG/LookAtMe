@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class ItemPartyPeople : MonoBehaviour
 {
+    //View
     public List<Sprite> listSpPeople = new List<Sprite>();
     public Image imgPartyPeople;
     public Button btnPartyPeople;
+    //Data
     public bool isFlip = false;
     private float timerFlip = 0f;
 

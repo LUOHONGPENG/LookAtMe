@@ -8,6 +8,7 @@ public enum LevelState
     FirstMeet,
     FirstIns,
     SecondDebate,
+    DressUp,
     SecondMeet,
     SecondIns,
     FakeSelfAbuse,
