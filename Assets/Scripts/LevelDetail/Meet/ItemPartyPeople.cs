@@ -12,9 +12,11 @@ public class ItemPartyPeople : MonoBehaviour
     //Data
     public bool isFlip = false;
     private float timerFlip = 0f;
+    private LevelFirstMeet parent;
 
     public void Init(LevelFirstMeet parent)
     {
+        this.parent = parent;
         isFlip = false;
         imgPartyPeople.sprite = listSpPeople[0];
         btnPartyPeople.onClick.RemoveAllListeners();
@@ -31,7 +33,7 @@ public class ItemPartyPeople : MonoBehaviour
 
     private void Update()
     {
-        if (isFlip)
+        if (isFlip && parent!=null && !parent.isLookDone)
         {
             timerFlip -= Time.deltaTime;
             if (timerFlip <= 0)

@@ -7,7 +7,7 @@ public class LevelFirstMeet : LevelBasic
     //A list that contains 4 partypeople prefabs
     public List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
     //When 4 people look the character, it become true
-
+    public bool isLookDone = false;
     //A coroutine that call 
     private Coroutine coNextLevel = null;
 
@@ -15,7 +15,9 @@ public class LevelFirstMeet : LevelBasic
     {
         base.Init(parent);
 
-        foreach(ItemPartyPeople people in listPartyPeople)
+        isLookDone = false;
+
+        foreach (ItemPartyPeople people in listPartyPeople)
         {
             people.Init(this);
         }
@@ -35,7 +37,7 @@ public class LevelFirstMeet : LevelBasic
         //check whether 4 
         if (numPeopleFlip >= 4)
         {
-
+            isLookDone = true;
             if (coNextLevel == null)
             {
                 coNextLevel = StartCoroutine(IE_LevelComplete());
