@@ -24,14 +24,18 @@ public class DataManager
 
 }
 
+
+
 public struct LevelInfo
 {
     public LevelState levelState;
     public bool isImage;
+    public string Url;
 
     public LevelInfo(LevelState levelState, bool isImage)
     {
         this.levelState = levelState;
-        this.isImage = true;
+        this.isImage = isImage;
+        this.Url = "LevelPrefabs/Level" + levelState.ToString();
     }
 }

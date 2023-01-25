@@ -20,10 +20,12 @@ public enum LevelState
 
 public class LevelManager : MonoBehaviour
 {
+    //Data
     public LevelState currentLevelState;
-
+    //View container
     public Transform tfContentSprite;
     public Transform tfContentImage;
+
 
 
     public void Init()
@@ -34,20 +36,30 @@ public class LevelManager : MonoBehaviour
     
     public void LoadLevel()
     {
-        //Clear
+        //Clear the level
         PublicTool.ClearChildItem(tfContentImage);
         PublicTool.ClearChildItem(tfContentSprite);
 
-        string strLevelName = "";
+        string levelUrl = "";
 
-        if(currentLevelState!= LevelState.End)
+        DataManager data = GameManager.Instance.dataManager;
+        LevelInfo levelInfo;
+
+        if (data.dicLevelInfo.ContainsKey(currentLevelState))
         {
-            strLevelName = currentLevelState.ToString();
+            levelInfo = data.dicLevelInfo[currentLevelState];
+            levelUrl = levelInfo.Url;
+        }
+        else
+        {
+            //Stop Loading
+            return;
         }
 
-        if (strLevelName.Length > 0)
+        //Check
+        if (levelUrl.Length > 0)
         {
-            Object objLevel = Resources.Load("LevelPrefabs/Level" + strLevelName);
+            Object objLevel = Resources.Load(levelUrl);
 
             //CheckError
             if (objLevel != null)
