@@ -64,7 +64,15 @@ public class LevelManager : MonoBehaviour
             //CheckError
             if (objLevel != null)
             {
-                GameObject gobjLevel = Instantiate(objLevel, tfContentImage) as GameObject;
+                GameObject gobjLevel;
+                if (levelInfo.isImage)
+                {
+                    gobjLevel = Instantiate(objLevel, tfContentImage) as GameObject;
+                }
+                else
+                {
+                    gobjLevel = Instantiate(objLevel, tfContentSprite) as GameObject;
+                }
                 LevelBasic itemLevel = gobjLevel.GetComponent<LevelBasic>();
                 itemLevel.Init(this);
             }
