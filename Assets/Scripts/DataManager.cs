@@ -12,14 +12,13 @@ public class DataManager
         dicLevelInfo.Add(LevelState.FirstDebate, new LevelInfo(LevelState.FirstDebate, true));
         dicLevelInfo.Add(LevelState.FirstMeet, new LevelInfo(LevelState.FirstMeet, true));
         dicLevelInfo.Add(LevelState.FirstIns, new LevelInfo(LevelState.FirstIns, true));
+        dicLevelInfo.Add(LevelState.DressUp, new LevelInfo(LevelState.DressUp, true));
         dicLevelInfo.Add(LevelState.SecondDebate, new LevelInfo(LevelState.SecondDebate, true));
         dicLevelInfo.Add(LevelState.SecondMeet, new LevelInfo(LevelState.SecondMeet, true));
         dicLevelInfo.Add(LevelState.SecondIns, new LevelInfo(LevelState.SecondIns, true));
         dicLevelInfo.Add(LevelState.FakeSelfAbuse, new LevelInfo(LevelState.FakeSelfAbuse, true));
         dicLevelInfo.Add(LevelState.Mirror, new LevelInfo(LevelState.Mirror, true));
         dicLevelInfo.Add(LevelState.Hospital, new LevelInfo(LevelState.Hospital, true));
-
-
     }
 
 }
