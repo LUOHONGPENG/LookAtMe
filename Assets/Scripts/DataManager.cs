@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DataManager
 {
+    //This Dictionary contains the Level Information.
     public Dictionary<LevelState, LevelInfo> dicLevelInfo = new Dictionary<LevelState, LevelInfo>();
 
     public void Init()
