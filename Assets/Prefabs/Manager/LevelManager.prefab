@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8167532685720303712}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: contentSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 152088553212606143}
   - component: {fileID: 7653394308243834948}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
