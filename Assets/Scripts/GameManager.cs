@@ -8,6 +8,8 @@ public class GameManager : MonoSingleton<GameManager>
     public LevelManager levelManager;
     public DataManager dataManager;
 
+
+
     public void Start()
     {
         dataManager = new DataManager();

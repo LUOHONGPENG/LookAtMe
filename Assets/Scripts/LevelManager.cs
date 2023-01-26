@@ -26,11 +26,20 @@ public class LevelManager : MonoBehaviour
     public Transform tfContentSprite;
     public Transform tfContentImage;
 
-
+    [Header("Test")]
+    public bool isTestMode = false;
+    public LevelState testState = LevelState.FirstDebate;
 
     public void Init()
     {
-        currentLevelState = LevelState.FirstDebate;
+        if (isTestMode)
+        {
+            currentLevelState = testState;
+        }
+        else
+        {
+            currentLevelState = LevelState.FirstDebate;
+        }
         LoadLevel();
     }
     

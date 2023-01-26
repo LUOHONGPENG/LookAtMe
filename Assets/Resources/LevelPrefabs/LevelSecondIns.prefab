@@ -338,4 +338,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46182c7b5d29255449cf145731d72495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnCommonFullClick: {fileID: 0}
+  btnCommonFullClick: {fileID: 5042484854689315168}

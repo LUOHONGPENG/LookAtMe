@@ -222,3 +222,5 @@ MonoBehaviour:
   currentLevelState: 0
   tfContentSprite: {fileID: 8167532685720303712}
   tfContentImage: {fileID: 8140261380541772036}
+  isTestMode: 0
+  testState: 0
