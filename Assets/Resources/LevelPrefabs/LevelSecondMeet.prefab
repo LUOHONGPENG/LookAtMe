@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3412877938449009069}
   - component: {fileID: 4092819149679920035}
   - component: {fileID: 6864011752543345327}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: btnFullScreenClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 8094208712137228754}
   - component: {fileID: 4834536687138010439}
   - component: {fileID: 222639603772833589}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: imgBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 4171726665968268330}
   - component: {fileID: 5306547388636475032}
   - component: {fileID: 7806383527517691669}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: LevelSecondMeet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 327124219314207097}
   - component: {fileID: 6328325888182133878}
   - component: {fileID: 7739738330762806522}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: txLevelTestTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}

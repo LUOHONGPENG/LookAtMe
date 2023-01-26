@@ -17,7 +17,7 @@ public class DataManager
         dicLevelInfo.Add(LevelState.SecondDebate, new LevelInfo(LevelState.SecondDebate, true));
         dicLevelInfo.Add(LevelState.SecondMeet, new LevelInfo(LevelState.SecondMeet, true));
         dicLevelInfo.Add(LevelState.SecondIns, new LevelInfo(LevelState.SecondIns, true));
-        dicLevelInfo.Add(LevelState.FakeSelfAbuse, new LevelInfo(LevelState.FakeSelfAbuse, true));
+        dicLevelInfo.Add(LevelState.FakeSelfAbuse, new LevelInfo(LevelState.FakeSelfAbuse, false));
         dicLevelInfo.Add(LevelState.Mirror, new LevelInfo(LevelState.Mirror, true));
         dicLevelInfo.Add(LevelState.Hospital, new LevelInfo(LevelState.Hospital, true));
     }

@@ -8,6 +8,7 @@ public class GameManager : MonoSingleton<GameManager>
     public LevelManager levelManager;
     public DataManager dataManager;
 
+    public Camera cameraMask;
 
 
     public void Start()

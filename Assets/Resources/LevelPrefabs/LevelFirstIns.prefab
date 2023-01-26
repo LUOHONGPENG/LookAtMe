@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9182454003157340705}
   - component: {fileID: 7565702608453457967}
   - component: {fileID: 1113380277360001315}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: btnFullScreenClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 2334620341009390174}
   - component: {fileID: 1379758056438476491}
   - component: {fileID: 5991092275744859321}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: imgBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 7626468184544767910}
   - component: {fileID: 1843942129731106068}
   - component: {fileID: 5028009875617086770}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: LevelFirstIns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 6104759700680450805}
   - component: {fileID: 567702013476536314}
   - component: {fileID: 4277091598025383798}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: txLevelTestTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}

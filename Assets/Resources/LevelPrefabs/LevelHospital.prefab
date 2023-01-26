@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3615751087052821557}
   - component: {fileID: 2719573047040794171}
   - component: {fileID: 4769486010070501175}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: btnFullScreenClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 2636210378338560434}
   - component: {fileID: 6113043513395737344}
   - component: {fileID: 7788181158076242711}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: LevelHospital
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 1872210661822899425}
   - component: {fileID: 5378418143603489262}
   - component: {fileID: 8509642835787962722}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: txLevelTestTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 7864736183065943114}
   - component: {fileID: 6802398698446072031}
   - component: {fileID: 2190923813822227117}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: imgBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
