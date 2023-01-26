@@ -7,6 +7,6 @@ public class SpriteImport : AssetPostprocessor
     void OnPreprocessTexture()
     {
         TextureImporter textureImporter = (TextureImporter)assetImporter;
-        textureImporter.spritePixelsPerUnit = 1;
+        textureImporter.spritePixelsPerUnit = 100;
     }
 }
