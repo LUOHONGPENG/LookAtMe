@@ -22,7 +22,7 @@ public class DragDress : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
     public void OnDrag(PointerEventData eventData)
     {
         //Debug.Log("onDrag");
-        rectTransform.anchoredPosition += eventData.delta *2.2f;
+        rectTransform.anchoredPosition += eventData.delta;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
