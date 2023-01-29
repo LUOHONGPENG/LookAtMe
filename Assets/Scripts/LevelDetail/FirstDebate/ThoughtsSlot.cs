@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class ThoughtsSlot : MonoBehaviour, IDropHandler
 {
-    public bool isThought = false;
+    public bool isDressed = false;
 
     //character wares the dress
     public void OnDrop(PointerEventData eventData)
@@ -14,7 +14,7 @@ public class ThoughtsSlot : MonoBehaviour, IDropHandler
         if (eventData.pointerDrag != null)
         {
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-            isThought = true;
+            isDressed = true;
         }
         Debug.Log("OnDrop");
     }

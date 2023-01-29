@@ -13,7 +13,7 @@ public class DragThoughts : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
         canvasgroup = GetComponent<CanvasGroup>();
 
     }
-    //drag the thoughts
+    //drag the dresses
     public void OnBeginDrag(PointerEventData eventData)
     {
         canvasgroup.blocksRaycasts = false;
@@ -23,7 +23,7 @@ public class DragThoughts : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     public void OnDrag(PointerEventData eventData)
     {
         //Debug.Log("onDrag");
-        rectTransform.anchoredPosition += eventData.delta * 2.2f;
+        rectTransform.anchoredPosition += eventData.delta;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
@@ -37,6 +37,10 @@ public class DragThoughts : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     }
     public void OnDrop(PointerEventData eventData)
     {
-        throw new System.NotImplementedException(); //put thoughts in slot
+        throw new System.NotImplementedException(); //put dress on character
     }
+
+
+
+
 }

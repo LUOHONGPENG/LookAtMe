@@ -151,16 +151,16 @@ RectTransform:
   m_GameObject: {fileID: 7121285981704027733}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 14.9223, y: 14.9223, z: 14.9223}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7089891147441030716}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -195, y: 130}
-  m_SizeDelta: {x: 10.8, y: 10.8}
+  m_AnchoredPosition: {x: -406, y: 130}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &3374979724499982580
 SpriteRenderer:
@@ -305,16 +305,16 @@ RectTransform:
   m_GameObject: {fileID: 7305442286677256245}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 19.475586, y: 19.475586, z: 19.475586}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7089891147441030716}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 57, y: -104}
-  m_SizeDelta: {x: 10.8, y: 10.8}
+  m_AnchoredPosition: {x: 4, y: -305}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &7616050954103958206
 SpriteRenderer:
@@ -418,6 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5914b58f6c41b264c8270325cded9104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDressed: 0
 --- !u!1 &7918390438815128036
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,9 +429,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9001967724083502119}
   - component: {fileID: 2200451628176165588}
+  - component: {fileID: 7925791820581654379}
   - component: {fileID: 2603482674370602195}
   - component: {fileID: 1737170007376880591}
-  - component: {fileID: 7925791820581654379}
   - component: {fileID: 155182469324654434}
   m_Layer: 0
   m_Name: dress1
@@ -448,8 +449,8 @@ RectTransform:
   m_GameObject: {fileID: 7918390438815128036}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 14.922375, y: 14.922375, z: 14.922375}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7089891147441030716}
   m_RootOrder: 2
@@ -457,7 +458,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 297, y: 142}
-  m_SizeDelta: {x: 10.8, y: 10.8}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2200451628176165588
 SpriteRenderer:
@@ -511,6 +512,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7925791820581654379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7918390438815128036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0fecd9d5ffe4e4b93a3d623cc5837d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &2603482674370602195
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -549,18 +562,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7925791820581654379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7918390438815128036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e0fecd9d5ffe4e4b93a3d623cc5837d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!225 &155182469324654434
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -572,7 +573,7 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8127304603157612886
 GameObject:
   m_ObjectHideFlags: 0
