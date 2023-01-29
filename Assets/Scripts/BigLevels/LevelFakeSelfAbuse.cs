@@ -111,12 +111,16 @@ public class LevelFakeSelfAbuse : LevelBasic
         return isAllTouched;
     }
 
+    //Call when level is completed
     public IEnumerator IE_LevelComplete()
     {
         //Change to next level after 2 seconds
         yield return new WaitForSeconds(2f);
         NextLevel();
     }
+
+
+
     /*    public void AssignScreenAsMask()
         {
             int height = Screen.height;
