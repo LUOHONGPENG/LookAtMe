@@ -51,8 +51,7 @@ public class LevelSecondDebate : LevelBasic
                 StartCoroutine(IE_Round2());
                 break;
             case InnerLevelState.BattleStart:
-                StartCoroutine(IE_Round2());
-
+                StartCoroutine(IE_Battle());
                 break;
         }
     }
@@ -156,6 +155,8 @@ public class LevelSecondDebate : LevelBasic
     {
         objRound.SetActive(false);
         objBattle.SetActive(true);
+        NextLevel();
+
         yield break;
     }
     #endregion
