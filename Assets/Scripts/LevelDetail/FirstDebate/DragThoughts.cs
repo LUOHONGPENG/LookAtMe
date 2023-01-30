@@ -12,6 +12,9 @@ public class DragThoughts : CommonImageDrag
     [HideInInspector]
     public ThoughtType thoughtType;
     public List<Sprite> listSpThought;
+
+
+    private Vector2 posStart;
     private LevelFirstDebate parent;
 
     private CanvasGroup canvasgroup;
@@ -24,6 +27,8 @@ public class DragThoughts : CommonImageDrag
     {
         this.parent = parent;
         this.thoughtType = type;
+        this.posStart = this.transform.position;
+
         switch (type)
         {
             case ThoughtType.Square:
@@ -62,6 +67,12 @@ public class DragThoughts : CommonImageDrag
 
         parent.ReleaseDragging();
     }
+
+    public override void DropDeal(PointerEventData eventData)
+    {
+        
+    }
+
 
     #endregion
 

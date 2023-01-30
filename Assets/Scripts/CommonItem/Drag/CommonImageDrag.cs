@@ -18,7 +18,7 @@ public class CommonImageDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHan
 
     public void OnDrop(PointerEventData eventData)
     {
-
+        DropDeal(eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -47,6 +47,11 @@ public class CommonImageDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHan
 
     //Will Invoke when the player end dragging
     public virtual void EndDragDeal(PointerEventData eventData)
+    {
+
+    }
+
+    public virtual void DropDeal(PointerEventData eventData)
     {
 
     }

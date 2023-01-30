@@ -31,6 +31,8 @@ public class LevelFirstDebate : LevelBasic
 
     //你现在拖得形状是啥
     private ThoughtType currentType = ThoughtType.None;
+    
+
 
     //Initialize
     public override void Init(LevelManager parent)
@@ -42,8 +44,8 @@ public class LevelFirstDebate : LevelBasic
         other2.Init();
 
         dragItem0.Init(ThoughtType.Square,this);
-        dragItem0.Init(ThoughtType.Circle,this);
-        dragItem0.Init(ThoughtType.Triangle,this);
+        dragItem1.Init(ThoughtType.Circle,this);
+        dragItem2.Init(ThoughtType.Triangle,this);
 
         dragSlot.Init(this);
 
