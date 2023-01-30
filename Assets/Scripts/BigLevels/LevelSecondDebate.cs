@@ -27,17 +27,32 @@ public class LevelSecondDebate : LevelBasic
 
     [Header("Battle")]
     public GameObject objBattle;
+    public Transform tfLine;
     public SpriteRenderer srMe;
     public SpriteRenderer srEnemy;
+    public Collider2D colHitBox;
     public ItemWeaponBubble itemWeaponBubble;
+    private float timerCheckHit = 0;
+    private int vHealthPoint = 10;
 
     //Initialize
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
 
+        itemWeaponBubble.Init(this);
+
         currentState = InnerLevelState.Round1;
         ReadState();
+    }
+
+    private void Update()
+    {
+        timerCheckHit -= Time.deltaTime;
+        if (timerCheckHit < 0)
+        {
+            CheckHit();
+        }
     }
 
     public void ReadState()
@@ -52,6 +67,9 @@ public class LevelSecondDebate : LevelBasic
                 break;
             case InnerLevelState.BattleStart:
                 StartCoroutine(IE_Battle());
+                break;
+            case InnerLevelState.YouWin:
+                NextLevel();
                 break;
         }
     }
@@ -151,13 +169,60 @@ public class LevelSecondDebate : LevelBasic
 
 
     #region Battle
+    //Process of Battle Start
     public IEnumerator IE_Battle()
     {
         objRound.SetActive(false);
         objBattle.SetActive(true);
-        NextLevel();
 
+        vHealthPoint = 10;
+        
         yield break;
     }
+
+    //The bubble hit the line
+    public void GetBattleHit()
+    {
+        vHealthPoint--;
+        timerCheckHit = 0.5f;
+        UpdateBattleStatus();
+        if (vHealthPoint <= 0 && currentState == InnerLevelState.BattleStart)
+        {
+            NextState();
+        }
+    }
+
+    public void CheckHit()
+    {
+        ContactFilter2D filter = new ContactFilter2D().NoFilter();
+        List<Collider2D> results = new List<Collider2D>();
+        colHitBox.OverlapCollider(filter, results);
+        foreach (Collider2D col in results)
+        {
+            if (col.tag == "ColDetect")
+            {
+                if (itemWeaponBubble.CalculateSpeed() > 2.5f)
+                {
+                    GetBattleHit();
+                }
+            }
+        }
+    }
+
+
+    public void UpdateBattleStatus()
+    {
+        float scaleEnemy = 0.2f + vHealthPoint * 0.08f;
+        float posLine = (vHealthPoint - 10) * 0.6f;
+        float scaleMe = 1f + (10 - vHealthPoint) * 0.08f;
+
+        srEnemy.transform.DOScale(scaleEnemy, 0.2f);
+        srMe.transform.DOScale(scaleMe, 0.2f);
+        tfLine.DOMoveX(posLine, 0.2f);
+
+    }
+
+    //
+
     #endregion
 }
