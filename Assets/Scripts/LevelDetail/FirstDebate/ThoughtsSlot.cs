@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ThoughtsSlot : MonoBehaviour, IDropHandler
+public class ThoughtsSlot : CommonImageDragSlot
 {
-    public bool isDressed = false;
+    private LevelFirstDebate parent;
+
+    public void Init(LevelFirstDebate parent)
+    {
+        this.parent = parent;
+    }
 
     //character wares the dress
-    public void OnDrop(PointerEventData eventData)
-
+    public override void DropDeal(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null)
         {
+            //
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-            isDressed = true;
+
+            parent.DragGoalFinish();
         }
         Debug.Log("OnDrop");
     }

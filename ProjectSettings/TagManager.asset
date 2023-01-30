@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ColMask
+  - ColDetect
   layers:
   - Default
   - TransparentFX

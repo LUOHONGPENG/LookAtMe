@@ -2,44 +2,68 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class DragThoughts : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+public class DragThoughts : CommonImageDrag
 {
-    private RectTransform rectTransform;
+    public RectTransform rectTransform;
+    public Image imgContent;
+    //数据：记住这是个什么图形
+    [HideInInspector]
+    public ThoughtType thoughtType;
+    public List<Sprite> listSpThought;
+    private LevelFirstDebate parent;
+
     private CanvasGroup canvasgroup;
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
         canvasgroup = GetComponent<CanvasGroup>();
-
     }
+
+    public void Init(ThoughtType type, LevelFirstDebate parent)
+    {
+        this.parent = parent;
+        this.thoughtType = type;
+        switch (type)
+        {
+            case ThoughtType.Square:
+                imgContent.sprite = listSpThought[0];
+                break;
+            case ThoughtType.Circle:
+                imgContent.sprite = listSpThought[1];
+                break;
+            case ThoughtType.Triangle:
+                imgContent.sprite = listSpThought[2];
+                break;
+        }
+    }
+
+
+    #region Drag
     //drag the dresses
-    public void OnBeginDrag(PointerEventData eventData)
+    public override void BeginDragDeal(PointerEventData eventData)
     {
         canvasgroup.blocksRaycasts = false;
         canvasgroup.alpha = 0.2f;
         //Debug.Log("onBeginDrag");
+
+        parent.SetCurrentDragging(thoughtType);
     }
-    public void OnDrag(PointerEventData eventData)
+
+    public override void DragDeal(PointerEventData eventData)
     {
-        //Debug.Log("onDrag");
         rectTransform.anchoredPosition += eventData.delta;
     }
-    public void OnEndDrag(PointerEventData eventData)
+
+    public override void EndDragDeal(PointerEventData eventData)
     {
         canvasgroup.blocksRaycasts = true;
         canvasgroup.alpha = 1f;
-        //Debug.Log("onEndDrag");
-    }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        //Debug.Log("onPointerDone");
-    }
-    public void OnDrop(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException(); //put dress on character
+
+        parent.ReleaseDragging();
     }
 
+    #endregion
 
 
 
