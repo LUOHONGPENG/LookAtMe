@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ThoughtContent : MonoBehaviour
 {
@@ -11,10 +12,10 @@ public class ThoughtContent : MonoBehaviour
 
     public void Init()
     {
-        imgContent.gameObject.SetActive(false);
+        imgContent.DOFade(0, 0);
     }
 
-    public void ShowContent(ThoughtType type)
+    public void ShowContent(ThoughtType type,float delayTime)
     {
         //imgContent.sprite = listSpShape[(int)type]; also work
         switch (type)
@@ -29,6 +30,14 @@ public class ThoughtContent : MonoBehaviour
                 imgContent.sprite = listSpShape[2];
                 break;
         }
-        imgContent.gameObject.SetActive(true);
+
+        StartCoroutine(IE_delayShow(delayTime));
+    }
+
+    private IEnumerator IE_delayShow(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        imgContent.DOFade(1f, 0);
+
     }
 }

@@ -56,15 +56,16 @@ public class LevelFirstDebate : LevelBasic
     #region FlowControl
     public void DragGoalFinish()
     {
-        myThought.ShowContent(currentType);
+        myThought.ShowContent(currentType,0.1f);
         foreach (ThoughtContent other in listOtherThought)
         {
             int ranType = Random.Range(0, 3);
+            float timeDelay = Random.Range(1f, 3f);
             while(ranType == (int)currentType)
             {
                 ranType = Random.Range(0, 3);
             }
-            other.ShowContent((ThoughtType)ranType);
+            other.ShowContent((ThoughtType)ranType,timeDelay);
         }
 
         //Can't interact with thing any more
@@ -77,7 +78,7 @@ public class LevelFirstDebate : LevelBasic
     public IEnumerator IE_EndLevel()
     {
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         NextLevel();
     }
     #endregion
