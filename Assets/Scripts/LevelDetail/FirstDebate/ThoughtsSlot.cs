@@ -7,6 +7,7 @@ public class ThoughtsSlot : CommonImageDragSlot
 {
     private LevelFirstDebate parent;
 
+
     public void Init(LevelFirstDebate parent)
     {
         this.parent = parent;
@@ -15,13 +16,7 @@ public class ThoughtsSlot : CommonImageDragSlot
     //character wares the dress
     public override void DropDeal(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null)
-        {
-            //
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+        parent.DragGoalFinish();
 
-            parent.DragGoalFinish();
-        }
-        Debug.Log("OnDrop");
     }
 }

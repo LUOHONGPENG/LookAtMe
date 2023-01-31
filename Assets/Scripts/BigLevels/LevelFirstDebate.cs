@@ -19,9 +19,8 @@ public class LevelFirstDebate : LevelBasic
         Cheers
     }
 
-    public OtherThoughtDebate other0;
-    public OtherThoughtDebate other1;
-    public OtherThoughtDebate other2;
+    public List<ThoughtContent> listOtherThought;
+    public ThoughtContent myThought;
 
     public DragThoughts dragItem0;
     public DragThoughts dragItem1;
@@ -29,19 +28,21 @@ public class LevelFirstDebate : LevelBasic
 
     public ThoughtsSlot dragSlot;
 
+    public CanvasGroup canvasGroup;
+
     //你现在拖得形状是啥
     private ThoughtType currentType = ThoughtType.None;
     
-
-
     //Initialize
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
 
-        other0.Init();
-        other1.Init();
-        other2.Init();
+        foreach(ThoughtContent other in listOtherThought)
+        {
+            other.Init();
+        }
+        myThought.Init();
 
         dragItem0.Init(ThoughtType.Square,this);
         dragItem1.Init(ThoughtType.Circle,this);
@@ -52,12 +53,36 @@ public class LevelFirstDebate : LevelBasic
         currentType = ThoughtType.None;
     }
 
+    #region FlowControl
     public void DragGoalFinish()
     {
-        //省略号变成各个图形
+        myThought.ShowContent(currentType);
+        foreach (ThoughtContent other in listOtherThought)
+        {
+            int ranType = Random.Range(0, 3);
+            while(ranType == (int)currentType)
+            {
+                ranType = Random.Range(0, 3);
+            }
+            other.ShowContent((ThoughtType)ranType);
+        }
+
+        //Can't interact with thing any more
+        canvasGroup.blocksRaycasts = false;
+
+        StartCoroutine(IE_EndLevel());
+
     }
 
+    public IEnumerator IE_EndLevel()
+    {
+        
+        yield return new WaitForSeconds(2f);
+        NextLevel();
+    }
+    #endregion
 
+    #region AboutDrag
     //设置你现在拖得是哪种形状
     public void SetCurrentDragging(ThoughtType type)
     {
@@ -69,4 +94,5 @@ public class LevelFirstDebate : LevelBasic
     {
         currentType = ThoughtType.None;
     }
+    #endregion
 }

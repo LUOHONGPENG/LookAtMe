@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class DragThoughts : CommonImageDrag
 {
@@ -13,15 +14,9 @@ public class DragThoughts : CommonImageDrag
     public ThoughtType thoughtType;
     public List<Sprite> listSpThought;
 
-
     private Vector2 posStart;
     private LevelFirstDebate parent;
 
-    private CanvasGroup canvasgroup;
-    private void Awake()
-    {
-        canvasgroup = GetComponent<CanvasGroup>();
-    }
 
     public void Init(ThoughtType type, LevelFirstDebate parent)
     {
@@ -48,9 +43,10 @@ public class DragThoughts : CommonImageDrag
     //drag the dresses
     public override void BeginDragDeal(PointerEventData eventData)
     {
-        canvasgroup.blocksRaycasts = false;
-        canvasgroup.alpha = 0.2f;
-        //Debug.Log("onBeginDrag");
+        imgContent.raycastTarget = false;
+        imgContent.DOFade(0.2f, 0);
+        //Remember the start position
+        this.posStart = this.transform.position;
 
         parent.SetCurrentDragging(thoughtType);
     }
@@ -62,17 +58,12 @@ public class DragThoughts : CommonImageDrag
 
     public override void EndDragDeal(PointerEventData eventData)
     {
-        canvasgroup.blocksRaycasts = true;
-        canvasgroup.alpha = 1f;
+        imgContent.raycastTarget = true;
+        imgContent.DOFade(1f, 0);
+        this.transform.DOMove(posStart, 0.5f);
 
         parent.ReleaseDragging();
     }
-
-    public override void DropDeal(PointerEventData eventData)
-    {
-        
-    }
-
 
     #endregion
 

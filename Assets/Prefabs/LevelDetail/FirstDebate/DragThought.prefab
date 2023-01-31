@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8809235117215870406}
   - component: {fileID: 8423388823718656198}
   - component: {fileID: 3951119906385364294}
-  - component: {fileID: 7987870218376822998}
   m_Layer: 0
   m_Name: DragThought
   m_TagString: Untagged
@@ -97,15 +96,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!225 &7987870218376822998
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2399345516277067108}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
