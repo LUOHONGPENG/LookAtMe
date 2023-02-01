@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemWeaponBubble : MonoBehaviour
+public class AItemWeaponBubble : MonoBehaviour
 {
     public SpriteRenderer srWeaponBubble;
     public BoxCollider2D colBubble;
@@ -11,11 +11,11 @@ public class ItemWeaponBubble : MonoBehaviour
 
     public float speedBubble = 5f;
 
-    private LevelSecondDebate parent; 
+    private ALevelSecondDebate parent; 
     private float dragStartPosX;
     private float dragStartPosY;
 
-    public void Init(LevelSecondDebate parent)
+    public void Init(ALevelSecondDebate parent)
     {
         this.parent = parent;
     }

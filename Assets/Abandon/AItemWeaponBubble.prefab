@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 905413390383122032}
   - component: {fileID: 3892179668185386175}
   m_Layer: 6
-  m_Name: ItemWeaponBubble
+  m_Name: AItemWeaponBubble
   m_TagString: ColDetect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
