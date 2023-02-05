@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffde50e237b6b24b897ac59d037b90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelState: 0
+  currentLevelState: 1
   tfContentSprite: {fileID: 5561957713991265299}
   tfContentImage: {fileID: 8140261380541772036}
   isTestMode: 0

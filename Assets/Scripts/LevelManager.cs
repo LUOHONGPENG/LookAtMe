@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Test")]
     public bool isTestMode = false;
-    public LevelState testState = LevelState.FirstDebate;
+    public LevelState testState = LevelState.DressUp;
 
     public void Init()
     {

@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ThoughtsSlot : CommonImageDragSlot
+public class ThoughtSlotSecond : CommonImageDragSlot
 {
-    
-    private LevelFirstDebate parent;
+    private LevelSecondDebate parent;
 
 
-    public void Init(LevelFirstDebate parent)
+    public void Init(LevelSecondDebate parent)
     {
-        this.parent = parent;
+        this.parent = parent;   
     }
 
-    //character wares the dress
     public override void DropDeal(PointerEventData eventData)
     {
         parent.DragGoalFinish();

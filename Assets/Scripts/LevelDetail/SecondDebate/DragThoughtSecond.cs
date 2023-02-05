@@ -4,21 +4,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
-
-public class DragThoughts : CommonImageDrag
+public class DragThoughtSecond : CommonImageDrag
 {
+    
     public RectTransform rectTransform;
     public Image imgContent;
-   
+
     [HideInInspector]
     public ThoughtType thoughtType;
     public List<Sprite> listSpThought;
 
     private Vector2 posStart;
-    private LevelFirstDebate parent;
+    private LevelSecondDebate parent;
 
 
-    public void Init(ThoughtType type, LevelFirstDebate parent)
+    public void Init(ThoughtType type, LevelSecondDebate parent)
     {
         this.parent = parent;
         this.thoughtType = type;
@@ -44,16 +44,17 @@ public class DragThoughts : CommonImageDrag
     public override void BeginDragDeal(PointerEventData eventData)
     {
         imgContent.raycastTarget = false;
-        imgContent.DOFade(0.2f, 0);
+        imgContent.DOFade(0.5f, 0);
         //Remember the start position
         this.posStart = this.transform.position;
-
         parent.SetCurrentDragging(thoughtType);
+        Debug.Log("beginDrag");
     }
 
     public override void DragDeal(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta;
+        Debug.Log("duringDrag");
     }
 
     public override void EndDragDeal(PointerEventData eventData)
@@ -61,12 +62,10 @@ public class DragThoughts : CommonImageDrag
         imgContent.raycastTarget = true;
         imgContent.DOFade(1f, 0);
         this.transform.DOMove(posStart, 0.5f);
-
+        Debug.Log("EndDrag");
         parent.ReleaseDragging();
     }
 
     #endregion
-
-
 
 }
