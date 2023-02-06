@@ -92,31 +92,6 @@ public class LevelFirstDebate : LevelBasic
         currentType = ThoughtType.None;
     }
 
-    public void Changeround()
-    {
-        ThoughtType curchosen;
-        curchosen = currentType;
-        //currentType = ThoughtType.None;
-        if (currentRound == LevelState.Round1)
-        {
-            // DragGoalFinish();
-        }
-        else if (currentRound == LevelState.Round2)
-        {
-            //  myThought.ShowContent(ThoughtType.None,0f);
-            // dragItem0.Init(currentType,this);
-            // dragItem1.Init(ThoughtType.None, this);
-            // dragItem2.Init(ThoughtType.None, this);
-            Debug.Log("changetoround2");
-            //yield return new WaitForSeconds(5f);
-            //DragGoalFinish();
-        }
-        else if (currentRound == LevelState.Round3)
-        {
-            Debug.Log("changetoround3");
-        }
-    }
-
 
     #region FlowControl
     public void DragGoalFinish()
