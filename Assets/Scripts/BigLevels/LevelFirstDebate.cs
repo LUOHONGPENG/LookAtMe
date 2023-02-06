@@ -19,7 +19,7 @@ public class LevelFirstDebate : LevelBasic
         Cheers
     }
 
-    public LevelState currentround = LevelState.Round1;
+    public LevelState currentRound = LevelState.Round1;
 
     [Header("DynamicPrefabForThoughtContent")]
     public GameObject pfThoughts;
@@ -55,7 +55,7 @@ public class LevelFirstDebate : LevelBasic
 
         //Initial other thoughts
         listOtherThought.Clear();
-        for (int i =0;i<3;i++)
+        for (int i = 0;i < 3;i++)
         {
             PublicTool.ClearChildItem(listTfContentOtherThought[i]);
             GameObject objThought = GameObject.Instantiate(pfThoughts,listTfContentOtherThought[i]);
@@ -68,6 +68,7 @@ public class LevelFirstDebate : LevelBasic
         GameObject objMyThought = GameObject.Instantiate(pfThoughts, tfContentMyThought);
         myThought = objMyThought.GetComponent<ThoughtContent>();
         myThought.Init();
+
 
         //Initial Drag thing
         PublicTool.ClearChildItem(tfContentDrag);
@@ -96,11 +97,11 @@ public class LevelFirstDebate : LevelBasic
         ThoughtType curchosen;
         curchosen = currentType;
         //currentType = ThoughtType.None;
-        if (currentround == LevelState.Round1)
+        if (currentRound == LevelState.Round1)
         {
             // DragGoalFinish();
         }
-        else if (currentround == LevelState.Round2)
+        else if (currentRound == LevelState.Round2)
         {
             //  myThought.ShowContent(ThoughtType.None,0f);
             // dragItem0.Init(currentType,this);
@@ -110,7 +111,7 @@ public class LevelFirstDebate : LevelBasic
             //yield return new WaitForSeconds(5f);
             //DragGoalFinish();
         }
-        else if (currentround == LevelState.Round3)
+        else if (currentRound == LevelState.Round3)
         {
             Debug.Log("changetoround3");
         }
@@ -122,44 +123,66 @@ public class LevelFirstDebate : LevelBasic
     {
         //
         myThought.ShowContent(currentType,0.1f);
-        foreach (ThoughtContent other in listOtherThought)
+
+        if(currentRound == LevelState.Round1)
         {
+            firstRoundType = currentType;
+        }
+
+        //If only one agree in turn two
+        int ranAgreeID = Random.Range(0, 3);
+
+        for (int i = 0;i < 3;i++)
+        {
+            ThoughtContent other = listOtherThought[i];
+
             //Random generate the type of each teammates
             int ranType = Random.Range(0, 3);
             //Random generate the delay time 
             float timeDelay = Random.Range(1f, 2f);
 
 
-            if ((int)currentround == 2)
+            if (currentRound == LevelState.Round3)
             {
                 ranType = (int)currentType;
-                Debug.Log("round3+" + (int)currentround);
+                Debug.Log("round3+" + (int)currentRound);
             }//round3
-
-            else if ((int)currentround == 1)
+            else if (currentRound == LevelState.Round2)
             {
-                int agreethought = 1;
-                while (agreethought == 1)
+                if(ranAgreeID == i)
                 {
                     ranType = (int)currentType;
-                    agreethought--;
-                    Debug.Log("round2+" + (int)currentround);
-                    if (agreethought != 1 && ranType == (int)currentType)
+                }
+                else
+                {
+                    while (ranType == (int)currentType)
                     {
                         ranType = Random.Range(0, 3);
                     }
                 }
+
+/*                int agreethought = 1;
+                while (agreethought == 1)
+                {
+                    ranType = (int)currentType;
+                    agreethought--;
+                    Debug.Log("round2+" + (int)currentRound);
+                    if (agreethought != 1 && ranType == (int)currentType)
+                    {
+                        ranType = Random.Range(0, 3);
+                    }
+                }*/
             }//round2
 
-            else if ((int)currentround == 0)
+            else if (currentRound == LevelState.Round1)
             {
-                Debug.Log("round1+" + (int)currentround);
+                Debug.Log("round1+" + (int)currentRound);
                 while (ranType == (int)currentType)
                 {
                     ranType = Random.Range(0, 3);
                 }
             }//round1
-            else if ((int)currentround == 3)
+            else if ((int)currentRound == 3)
             {
                 //cheers
             }
@@ -176,23 +199,43 @@ public class LevelFirstDebate : LevelBasic
 
         //Can't interact with thing any more
         // canvasGroup.blocksRaycasts = false;
-        currentround++;
-        StartCoroutine(IE_EndLevel());
-
+        StartCoroutine(IE_EndState());
     }
+
+    public IEnumerator IE_EndState()
+    {
+        if (currentRound == LevelState.Cheers)
+        {
+            StartCoroutine(IE_EndLevel());
+        }
+        else if(currentRound == LevelState.Round1|| currentRound == LevelState.Round2)
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                if ((int)firstRoundType != i)
+                {
+                    listDragItem[i].gameObject.SetActive(false);
+                }
+            }
+        }
+        currentRound++;
+        yield break;
+    }
+
 
     public IEnumerator IE_EndLevel()
     {
         
         yield return new WaitForSeconds(3f);
-        if ((int)currentround <= 2) {
+        NextLevel();
+/*        if ((int)currentRound <= 2) {
             //other.ShowContent(ThoughtType.None);
             Changeround();
            // DragGoalFinish();
         }
         else
-        { NextLevel();}
-        }
+        { }*/
+    }
     #endregion
 
     #region AboutDrag
