@@ -204,19 +204,29 @@ public class LevelFirstDebate : LevelBasic
 
     public IEnumerator IE_EndState()
     {
-        if (currentRound == LevelState.Cheers)
+        yield return new WaitForSeconds(3f);
+
+        switch (currentRound)
         {
-            StartCoroutine(IE_EndLevel());
-        }
-        else if(currentRound == LevelState.Round1|| currentRound == LevelState.Round2)
-        {
-            for(int i = 0; i < 3; i++)
-            {
-                if ((int)firstRoundType != i)
+            case LevelState.Round1:
+            case LevelState.Round2:
+                for (int i = 0; i < 3; i++)
                 {
-                    listDragItem[i].gameObject.SetActive(false);
+                    if ((int)firstRoundType != i)
+                    {
+                        listDragItem[i].gameObject.SetActive(false);
+                    }
                 }
-            }
+                for(int i = 0; i < 3; i++)
+                {
+                    listOtherThought[i].ShowThinking();
+                }
+
+
+                break;
+            case LevelState.Cheers:
+                StartCoroutine(IE_EndLevel());
+                break;
         }
         currentRound++;
         yield break;
@@ -228,13 +238,6 @@ public class LevelFirstDebate : LevelBasic
         
         yield return new WaitForSeconds(3f);
         NextLevel();
-/*        if ((int)currentRound <= 2) {
-            //other.ShowContent(ThoughtType.None);
-            Changeround();
-           // DragGoalFinish();
-        }
-        else
-        { }*/
     }
     #endregion
 

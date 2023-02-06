@@ -8,6 +8,7 @@ public class ThoughtContent : MonoBehaviour
 {
     //0=square 1= circle 2=traingle
     public List<Sprite> listSpShape;
+    public Sprite spEllipsis;
     public Image imgContent;
 
     public void Init()
@@ -32,6 +33,12 @@ public class ThoughtContent : MonoBehaviour
         }
 
         StartCoroutine(IE_delayShow(delayTime));
+    }
+
+    public void ShowThinking()
+    {
+        imgContent.sprite = spEllipsis;
+
     }
 
     private IEnumerator IE_delayShow(float delayTime)
