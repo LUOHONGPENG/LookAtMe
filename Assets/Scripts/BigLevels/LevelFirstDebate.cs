@@ -21,12 +21,22 @@ public class LevelFirstDebate : LevelBasic
 
     public LevelState currentround = LevelState.Round1;
 
+    [Header("DynamicPrefabForThoughtContent")]
+    public GameObject pfThoughts;
+    public List<Transform> listTfContentOtherThought;
+    public Transform tfContentMyThought;
+
     public List<ThoughtContent> listOtherThought;
     public ThoughtContent myThought;
 
-    public DragThoughts dragItem0;
-    public DragThoughts dragItem1;
-    public DragThoughts dragItem2;
+
+
+    [Header("DynamicPrefabForDrag")]
+    public GameObject pfDrag;
+    public Transform tfContentDrag;
+    public List<Vector2> listDragPos;
+    public List<DragThoughts> listDragItem = new List<DragThoughts>();
+
 
     public ThoughtsSlot dragSlot;
 
@@ -34,22 +44,66 @@ public class LevelFirstDebate : LevelBasic
 
     //你现在拖得形状是啥
     private ThoughtType currentType = ThoughtType.None;
+    private ThoughtType firstRoundType = ThoughtType.None;
 
-    
+    //Initialize
+    public override void Init(LevelManager parent)
+    {
+        base.Init(parent);
+
+        //Initial other thoughts
+        listOtherThought.Clear();
+        for (int i =0;i<3;i++)
+        {
+            PublicTool.ClearChildItem(listTfContentOtherThought[i]);
+            GameObject objThought = GameObject.Instantiate(pfThoughts,listTfContentOtherThought[i]);
+            ThoughtContent itemThought = objThought.GetComponent<ThoughtContent>();
+            itemThought.Init();
+            listOtherThought.Add(itemThought);
+        }
+
+        //Initial my thought
+        GameObject objMyThought = GameObject.Instantiate(pfThoughts, tfContentMyThought);
+        myThought = objMyThought.GetComponent<ThoughtContent>();
+        myThought.Init();
+
+        //Initial Drag thing
+        PublicTool.ClearChildItem(tfContentDrag);
+        listDragItem.Clear();
+        //GameObject objDrag = GameObject.Instantiate(pfDrag, listDragPos[i],Quaternion.Euler(Vector2.zero), tfContentDrag);
+        for (int i = 0; i < 3; i++)
+        {
+            //Important code for automatically generating prefab
+            GameObject objDrag = GameObject.Instantiate(pfDrag, tfContentDrag);
+            objDrag.transform.localPosition = listDragPos[i];
+            //Important code for automatically generating prefab
+            DragThoughts itemDrag = objDrag.GetComponent<DragThoughts>();
+            listDragItem.Add(itemDrag);
+        }
+        listDragItem[0].Init(ThoughtType.Square, this);
+        listDragItem[1].Init(ThoughtType.Circle, this);
+        listDragItem[2].Init(ThoughtType.Triangle, this);
+
+        dragSlot.Init(this);
+
+        currentType = ThoughtType.None;
+    }
+
     public void Changeround()
     {
         ThoughtType curchosen;
         curchosen = currentType;
         //currentType = ThoughtType.None;
-        if (currentround == LevelState.Round1) {
-           // DragGoalFinish();
+        if (currentround == LevelState.Round1)
+        {
+            // DragGoalFinish();
         }
         else if (currentround == LevelState.Round2)
         {
-          //  myThought.ShowContent(ThoughtType.None,0f);
-           // dragItem0.Init(currentType,this);
-           // dragItem1.Init(ThoughtType.None, this);
-           // dragItem2.Init(ThoughtType.None, this);
+            //  myThought.ShowContent(ThoughtType.None,0f);
+            // dragItem0.Init(currentType,this);
+            // dragItem1.Init(ThoughtType.None, this);
+            // dragItem2.Init(ThoughtType.None, this);
             Debug.Log("changetoround2");
             //yield return new WaitForSeconds(5f);
             //DragGoalFinish();
@@ -57,43 +111,22 @@ public class LevelFirstDebate : LevelBasic
         else if (currentround == LevelState.Round3)
         {
             Debug.Log("changetoround3");
-
-
         }
-    }
-    
-
-
-
-    //Initialize
-    public override void Init(LevelManager parent)
-    {
-        base.Init(parent);
-
-        foreach (ThoughtContent other in listOtherThought)
-        {
-            other.Init();
-        }
-        myThought.Init();
-
-        dragItem0.Init(ThoughtType.Square, this);
-        dragItem1.Init(ThoughtType.Circle, this);
-        dragItem2.Init(ThoughtType.Triangle, this);
-
-        dragSlot.Init(this);
-
-        currentType = ThoughtType.None;
     }
 
 
     #region FlowControl
     public void DragGoalFinish()
     {
+        //
         myThought.ShowContent(currentType,0.1f);
         foreach (ThoughtContent other in listOtherThought)
         {
+            //Random generate the type of each teammates
             int ranType = Random.Range(0, 3);
+            //Random generate the delay time 
             float timeDelay = Random.Range(1f, 2f);
+
 
             if ((int)currentround == 2)
             {

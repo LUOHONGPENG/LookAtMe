@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -616.5614, y: 204.99323}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1246510199517539408
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listSpShape:
-  - {fileID: 21300000, guid: 1e3239b33de17714394bb9a6fa089f6d, type: 3}
+  - {fileID: 21300000, guid: e549dcde509055d44802947f7c60cb74, type: 3}
   - {fileID: 21300000, guid: 8a77d8a036a4e4d438f27f56497770dc, type: 3}
   - {fileID: 21300000, guid: c4abeafd15496c749a9260c285c9bf03, type: 3}
   imgContent: {fileID: 5131100340057483422}
