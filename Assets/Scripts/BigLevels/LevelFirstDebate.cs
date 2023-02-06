@@ -26,7 +26,9 @@ public class LevelFirstDebate : LevelBasic
     public List<Transform> listTfContentOtherThought;
     public Transform tfContentMyThought;
 
+    [HideInInspector]
     public List<ThoughtContent> listOtherThought;
+    [HideInInspector]
     public ThoughtContent myThought;
 
 
