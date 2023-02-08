@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 6832057778530570730}
   - component: {fileID: 1479777147348062220}
   m_Layer: 6
-  m_Name: mask
+  m_Name: scroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
