@@ -337,6 +337,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnCommonFullClick: {fileID: 0}
+  imgLike: {fileID: 6269180431384532531}
+  btnLike: {fileID: 1612042759287011186}
+  codeLike: {fileID: 1711709651676598434}
+  imgPicB: {fileID: 7630760255339043682}
+  currentRound: 0
 --- !u!1 &5522821895553430845
 GameObject:
   m_ObjectHideFlags: 0

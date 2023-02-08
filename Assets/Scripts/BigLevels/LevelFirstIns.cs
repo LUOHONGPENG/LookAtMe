@@ -6,6 +6,7 @@ using DG.Tweening;
 
 public class LevelFirstIns : LevelBasic
 {
+    public ScrollRect scroll;
     public Image imgLike;
     public Button btnLike;
     public Text codeLike;
@@ -26,6 +27,7 @@ public class LevelFirstIns : LevelBasic
         imgLike.DOFade(0.01f, 0);
         codeLike.text = 0.ToString();
         numLike = 0;
+        scroll.vertical = false;
 
         btnLike.onClick.RemoveAllListeners();
         btnLike.onClick.AddListener(delegate ()
