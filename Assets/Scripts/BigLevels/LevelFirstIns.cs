@@ -56,29 +56,24 @@ public class LevelFirstIns : LevelBasic
         yield return new WaitForSeconds(4f);
         NextLevel();
     }
+
     public IEnumerator IE_FirstLikeNum()
     {
-        for(int i = 0; i < 10; i++)
-        {
-            numLike++;
-            codeLike.text = numLike.ToString();
-            yield return new WaitForSeconds(0.1f);
-        }
+        yield return StartCoroutine(IE_LikeLoop(10, 0.1F));
+        yield return StartCoroutine(IE_LikeLoop(50, 0.04F));
+        yield return StartCoroutine(IE_LikeLoop(10, 0.1F));
+    }
 
-        for (int i = 0; i < 50; i++)
+    public IEnumerator IE_LikeLoop(int num,float time)
+    {
+        for (int i = 0; i < num; i++)
         {
             numLike++;
             codeLike.text = numLike.ToString();
-            yield return new WaitForSeconds(0.04f);
-        }
-
-        for (int i = 0; i < 10; i++)
-        {
-            numLike++;
-            codeLike.text = numLike.ToString();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(time);
         }
     }
+
 
     public void GenerateComment()
     {
