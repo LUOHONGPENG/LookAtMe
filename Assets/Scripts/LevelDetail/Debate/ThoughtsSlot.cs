@@ -5,9 +5,7 @@ using UnityEngine.EventSystems;
 
 public class ThoughtsSlot : CommonImageDragSlot
 {
-    
     private LevelFirstDebate parent;
-
 
     public void Init(LevelFirstDebate parent)
     {
@@ -17,7 +15,9 @@ public class ThoughtsSlot : CommonImageDragSlot
     //character wares the dress
     public override void DropDeal(PointerEventData eventData)
     {
-        parent.DragGoalFinish();
-
+        if (parent.currentRound != LevelFirstDebate.LevelRound.Cheers)
+        {
+            StartCoroutine(parent.IE_DragGoalFinish());
+        }
     }
 }

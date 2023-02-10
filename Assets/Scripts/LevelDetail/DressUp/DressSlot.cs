@@ -4,32 +4,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class DressSlot : MonoBehaviour,IDropHandler
+public class DressSlot : CommonImageDragSlot
 {
-    public bool isDressed = false;
-    
+    private LevelDressUp parent;
+
+    public void Init(LevelDressUp parent)
+    {
+        this.parent = parent;
+    }
+
     //character wares the dress
-    public void OnDrop(PointerEventData eventData)
-
+    public override void DropDeal(PointerEventData eventData)
     {
-        if(eventData.pointerDrag != null)
-        {
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-            isDressed = true;
-        }
-        Debug.Log("OnDrop");
+        StartCoroutine(parent.IE_DragGoalFinish());
     }
-
-    
-    public void LoadNextLevel()
-    {
-        if (isDressed == true)
-        {
-            Debug.Log("is Dressed");
-           // nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        }
-    }
-    
-
-
 }

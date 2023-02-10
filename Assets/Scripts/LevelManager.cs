@@ -58,6 +58,11 @@ public class LevelManager : MonoBehaviour
         {
             levelInfo = data.dicLevelInfo[currentLevelState];
             levelUrl = levelInfo.Url;
+            if (!levelInfo.isDone)
+            {
+                NextLevel();
+                return;
+            }
         }
         else
         {

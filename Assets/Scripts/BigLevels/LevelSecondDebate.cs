@@ -59,9 +59,9 @@ public class LevelSecondDebate : LevelBasic
 
         foreach (ThoughtContent other in listOtherThought)
         {
-            other.Init();
+            other.Init(true);
         }
-        myThought.Init();
+        myThought.Init(false);
 
         dragItem0.Init(ThoughtType.Square, this) ;
         dragItem1.Init(ThoughtType.Circle, this);

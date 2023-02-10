@@ -2,33 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class DragDress : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler,IDropHandler
 {
-    private RectTransform rectTransform;
-    private CanvasGroup canvasgroup;
-    private void Awake()
-    {
-        rectTransform = GetComponent<RectTransform>();
-        canvasgroup = GetComponent<CanvasGroup>();
-
-    }
+    public Image imgDress;
+    public RectTransform rtDress;
     //drag the dresses
     public void OnBeginDrag(PointerEventData eventData) {
-        canvasgroup.blocksRaycasts = false;
-        canvasgroup.alpha = 0.2f;
-        //Debug.Log("onBeginDrag");
+        imgDress.raycastTarget = false;
+        imgDress.DOFade(0.2f, 0);
     }
     public void OnDrag(PointerEventData eventData)
     {
         //Debug.Log("onDrag");
-        rectTransform.anchoredPosition += eventData.delta;
+        rtDress.anchoredPosition += eventData.delta;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        canvasgroup.blocksRaycasts = true;
-        canvasgroup.alpha = 1f;
-        //Debug.Log("onEndDrag");
+        imgDress.raycastTarget = true;
+        imgDress.DOFade(1f, 0);
     }
     public void OnPointerDown(PointerEventData eventData)
     {

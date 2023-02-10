@@ -10,16 +10,16 @@ public class DataManager
     public void Init()
     {
         dicLevelInfo.Clear();
-        dicLevelInfo.Add(LevelState.FirstDebate, new LevelInfo(LevelState.FirstDebate, true));
-        dicLevelInfo.Add(LevelState.FirstMeet, new LevelInfo(LevelState.FirstMeet, true));
-        dicLevelInfo.Add(LevelState.FirstIns, new LevelInfo(LevelState.FirstIns, true));
-        dicLevelInfo.Add(LevelState.DressUp, new LevelInfo(LevelState.DressUp, true));
-        dicLevelInfo.Add(LevelState.SecondDebate, new LevelInfo(LevelState.SecondDebate, true));
-        dicLevelInfo.Add(LevelState.SecondMeet, new LevelInfo(LevelState.SecondMeet, true));
-        dicLevelInfo.Add(LevelState.SecondIns, new LevelInfo(LevelState.SecondIns, true));
-        dicLevelInfo.Add(LevelState.FakeSelfAbuse, new LevelInfo(LevelState.FakeSelfAbuse, false));
-        dicLevelInfo.Add(LevelState.Mirror, new LevelInfo(LevelState.Mirror, true));
-        dicLevelInfo.Add(LevelState.Hospital, new LevelInfo(LevelState.Hospital, true));
+        dicLevelInfo.Add(LevelState.FirstDebate, new LevelInfo(LevelState.FirstDebate, true,true));
+        dicLevelInfo.Add(LevelState.FirstMeet, new LevelInfo(LevelState.FirstMeet, true,true));
+        dicLevelInfo.Add(LevelState.FirstIns, new LevelInfo(LevelState.FirstIns, true,true));
+        dicLevelInfo.Add(LevelState.DressUp, new LevelInfo(LevelState.DressUp, true,true));
+        dicLevelInfo.Add(LevelState.SecondDebate, new LevelInfo(LevelState.SecondDebate, true,false));
+        dicLevelInfo.Add(LevelState.SecondMeet, new LevelInfo(LevelState.SecondMeet, true,true));
+        dicLevelInfo.Add(LevelState.SecondIns, new LevelInfo(LevelState.SecondIns, true,false));
+        dicLevelInfo.Add(LevelState.FakeSelfAbuse, new LevelInfo(LevelState.FakeSelfAbuse, false,true));
+        dicLevelInfo.Add(LevelState.Mirror, new LevelInfo(LevelState.Mirror, true,true));
+        dicLevelInfo.Add(LevelState.Hospital, new LevelInfo(LevelState.Hospital, true,true));
     }
 
 }
@@ -30,12 +30,14 @@ public struct LevelInfo
 {
     public LevelState levelState;
     public bool isImage;
+    public bool isDone;
     public string Url;
 
-    public LevelInfo(LevelState levelState, bool isImage)
+    public LevelInfo(LevelState levelState, bool isImage,bool isDone)
     {
         this.levelState = levelState;
         this.isImage = isImage;
+        this.isDone = isDone;
         this.Url = "LevelPrefabs/Level" + levelState.ToString();
     }
 }
