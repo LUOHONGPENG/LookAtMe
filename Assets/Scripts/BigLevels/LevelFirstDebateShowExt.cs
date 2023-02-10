@@ -51,7 +51,7 @@ public partial class LevelFirstDebate
     {
         for (int i = 0; i < 3; i++)
         {
-            listDragItem[i].transform.DOScale(0, GameGlobal.timeFDB_commonAni);
+            listDragItem[i].transform.DOScale(0, GameGlobal.timeFD_commonAni);
         }
     }
 

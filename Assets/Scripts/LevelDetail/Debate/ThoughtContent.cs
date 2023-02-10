@@ -52,8 +52,8 @@ public class ThoughtContent : MonoBehaviour
 
     public void HideAni()
     {
-        imgContent.DOFade(0, GameGlobal.timeFDB_commonAni);
-        imgContent.transform.DOScale(0, GameGlobal.timeFDB_commonAni);
+        imgContent.DOFade(0, GameGlobal.timeFD_commonAni);
+        imgContent.transform.DOScale(0, GameGlobal.timeFD_commonAni);
     }
 
 
@@ -71,8 +71,8 @@ public class ThoughtContent : MonoBehaviour
                 imgContent.sprite = listSpShape[2];
                 break;
         }
-        imgContent.DOFade(1f,GameGlobal.timeFDB_commonAni);
-        imgContent.transform.DOScale(1f,GameGlobal.timeFDB_commonAni);
+        imgContent.DOFade(1f,GameGlobal.timeFD_commonAni);
+        imgContent.transform.DOScale(1f,GameGlobal.timeFD_commonAni);
         yield break;
     }
 

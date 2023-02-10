@@ -51,7 +51,7 @@ public class ItemPartyPeople : MonoBehaviour
 
     public void Flip()
     {
-        timerFlip = 2f;
+        timerFlip = GameGlobal.timerFP_notice;
         imgPartyPeople.sprite = listSpPeople[1];
         isFlip = true;
     }

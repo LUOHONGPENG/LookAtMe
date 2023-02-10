@@ -150,13 +150,13 @@ public partial class LevelFirstDebate : LevelBasic
                     listDragItem[i].transform.DOScale(0, 0);
                 }
                 yield return new WaitForSeconds(1f);
-                tfGroupSlot.DOScale(1f, GameGlobal.timeFDB_commonAni);
+                tfGroupSlot.DOScale(1f, GameGlobal.timeFD_commonAni);
                 for (int i = 0; i < 3; i++)
                 {
-                    listGroupFrame[i].DOScale(1f, GameGlobal.timeFDB_commonAni);
-                    listDragItem[i].transform.DOScale(1f, GameGlobal.timeFDB_commonAni);
+                    listGroupFrame[i].DOScale(1f, GameGlobal.timeFD_commonAni);
+                    listDragItem[i].transform.DOScale(1f, GameGlobal.timeFD_commonAni);
                 }
-                yield return new WaitForSeconds(GameGlobal.timeFDB_commonAni);
+                yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
                 break;
             case LevelRound.Round2:
                 for (int i = 0; i < 3; i++)
@@ -167,7 +167,7 @@ public partial class LevelFirstDebate : LevelBasic
                     }
                     else
                     {
-                        listDragItem[i].transform.DOScale(1f, GameGlobal.timeFDB_commonAni);
+                        listDragItem[i].transform.DOScale(1f, GameGlobal.timeFD_commonAni);
                     }
                 }
                 for (int i = 0; i < 3; i++)
@@ -175,7 +175,7 @@ public partial class LevelFirstDebate : LevelBasic
                     listOtherThought[i].RoundInit();
                 }
                 myThought.RoundInit();
-                yield return new WaitForSeconds(GameGlobal.timeFDB_commonAni);
+                yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
                 break;
             case LevelRound.Round3:
                 for (int i = 0; i < 3; i++)
@@ -186,7 +186,7 @@ public partial class LevelFirstDebate : LevelBasic
                     }
                     else
                     {
-                        listDragItem[i].transform.DOScale(1f, GameGlobal.timeFDB_commonAni);
+                        listDragItem[i].transform.DOScale(1f, GameGlobal.timeFD_commonAni);
                     }
                 }
                 for (int i = 0; i < 3; i++)
@@ -194,7 +194,7 @@ public partial class LevelFirstDebate : LevelBasic
                     listOtherThought[i].RoundInit();
                 }
                 myThought.RoundInit();
-                yield return new WaitForSeconds(GameGlobal.timeFDB_commonAni);
+                yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
                 break;
             case LevelRound.Cheers:
                 for (int i = 0; i < 3; i++)
@@ -202,7 +202,7 @@ public partial class LevelFirstDebate : LevelBasic
                     listOtherThought[i].HideAni();
                 }
                 myThought.HideAni();
-                yield return new WaitForSeconds(GameGlobal.timeFDB_commonAni);
+                yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
                 //Clear
                 PublicTool.ClearChildItem(tfContentMyThought);
                 //Init Cheer Prefab
@@ -234,7 +234,7 @@ public partial class LevelFirstDebate : LevelBasic
         }
         GoalFinishGenerateOtherThought();
         GoalFinishZeroScaleAllDragOption();
-        yield return new WaitForSeconds(GameGlobal.timeFDB_commonAni);
+        yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
         yield return new WaitForSeconds(2f);
         GoalFinishSurprisePeople();
         yield return StartCoroutine(IE_EndRound());
@@ -253,7 +253,7 @@ public partial class LevelFirstDebate : LevelBasic
 
     public IEnumerator IE_EndRound()
     {
-        yield return new WaitForSeconds(GameGlobal.timeFDB_roundInterval);
+        yield return new WaitForSeconds(GameGlobal.timeFD_roundInterval);
         if(currentRound == LevelRound.Cheers)
         {
             NextLevel();
