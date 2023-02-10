@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ItemDebatePeople : MonoBehaviour
 {
@@ -26,13 +27,16 @@ public class ItemDebatePeople : MonoBehaviour
         this.peopleType = peopleType;
         NormalPeople();
         SetPosition();
+        InitSurprise();
+        imgSurprise.gameObject.SetActive(true);
+        imgSurprise.transform.localScale = new Vector3(0,0,1f);
     }
 
     public void NormalPeople()
     {
         imgPeople.sprite = listSpPeople[(int)peopleType * 2];
         imgPeople.SetNativeSize();
-        imgSurprise.gameObject.SetActive(false);
+        imgSurprise.transform.DOScale(0, 0.5F);
     }
 
     public void SurprisePeople()
@@ -41,7 +45,7 @@ public class ItemDebatePeople : MonoBehaviour
         imgPeople.SetNativeSize();
         if (peopleType != PeopleType.Me)
         {
-            imgSurprise.gameObject.SetActive(true);
+            imgSurprise.transform.DOScale(1F, 0.5F);
         }
     }
 

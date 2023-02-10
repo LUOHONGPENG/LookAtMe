@@ -424,7 +424,7 @@ RectTransform:
   m_GameObject: {fileID: 2130410857268962921}
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -0.5, y: -0.5, z: -0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8838221269566308359}
@@ -433,7 +433,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 400}
+  m_SizeDelta: {x: 747, y: 868}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1056213919064901348
 SpriteRenderer:
@@ -554,7 +554,7 @@ RectTransform:
   m_GameObject: {fileID: 2932466940540024821}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -0.5, y: -0.5, z: -0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4817099447802194865}
@@ -563,7 +563,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 400}
+  m_SizeDelta: {x: 747, y: 868}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1281190571452084379
 SpriteRenderer:
@@ -745,17 +745,12 @@ MonoBehaviour:
   - {fileID: 5088319571123497230}
   - {fileID: 1862552919788646235}
   tfContentMyThought: {fileID: 3999528158343930137}
-  listOtherThought:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  myThought: {fileID: 0}
   pfDrag: {fileID: 2399345516277067108, guid: ff0c028b513503247ad056de93f7762d, type: 3}
   tfContentDrag: {fileID: 9141956391194742382}
   listDragPos:
-  - {x: -150, y: -400}
-  - {x: 0, y: -400}
-  - {x: 150, y: -400}
+  - {x: -150, y: 20}
+  - {x: 0, y: 20}
+  - {x: 150, y: 20}
   listDragItem: []
   dragSlot: {fileID: 3201916146818934095}
   pfCheer: {fileID: 1592113188136139594, guid: a9ff613208b6b5a45916e51ded36e657, type: 3}
@@ -763,6 +758,7 @@ MonoBehaviour:
   groupCol: {fileID: 792059447731812318}
   triggerCheer: {fileID: 2858052559080823171}
   canvasGroup: {fileID: 6851154495776569052}
+  isCheer: 0
 --- !u!225 &6851154495776569052
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -803,7 +799,7 @@ RectTransform:
   m_GameObject: {fileID: 4367669645857199761}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -0.5, y: -0.5, z: -0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2945995094693324982}
@@ -812,7 +808,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.000030517578}
-  m_SizeDelta: {x: 400, y: 400}
+  m_SizeDelta: {x: 747, y: 868}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2742566830208529358
 SpriteRenderer:
@@ -1171,7 +1167,7 @@ RectTransform:
   m_GameObject: {fileID: 6930374972870184483}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -0.5, y: -0.5, z: -0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7709005592917691888}
@@ -1180,7 +1176,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 400}
+  m_SizeDelta: {x: 747, y: 868}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &7818959601156785073
 SpriteRenderer:

@@ -38,6 +38,12 @@ public class DragThoughts : CommonImageDrag
         }
     }
 
+    public void SetPosition(Vector2 pos)
+    {
+        rectTransform.anchoredPosition = pos;
+    }
+
+
 
     #region Drag
     //drag the dresses

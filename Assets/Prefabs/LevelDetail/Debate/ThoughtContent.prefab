@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1246510199517539408
 CanvasRenderer:
@@ -65,6 +65,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c4abeafd15496c749a9260c285c9bf03, type: 3}
   spEllipsis: {fileID: 21300000, guid: 91069bc25dee3934fbcd953b903c792f, type: 3}
   imgContent: {fileID: 5131100340057483422}
+  isOther: 0
 --- !u!114 &5131100340057483422
 MonoBehaviour:
   m_ObjectHideFlags: 0

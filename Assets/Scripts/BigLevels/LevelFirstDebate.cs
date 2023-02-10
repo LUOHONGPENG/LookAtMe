@@ -120,9 +120,9 @@ public partial class LevelFirstDebate : LevelBasic
         {
             //Important code for automatically generating prefab
             GameObject objDrag = GameObject.Instantiate(pfDrag, tfContentDrag);
-            objDrag.transform.localPosition = listDragPos[i];
             //Important code for automatically generating prefab
             DragThoughts itemDrag = objDrag.GetComponent<DragThoughts>();
+            itemDrag.SetPosition(listDragPos[i]);
             listDragItem.Add(itemDrag);
         }
         listDragItem[0].Init(ThoughtType.Square, this);
