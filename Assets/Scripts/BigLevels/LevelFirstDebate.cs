@@ -12,7 +12,7 @@ public enum ThoughtType
     None
 }
 
-public class LevelFirstDebate : LevelBasic
+public partial class LevelFirstDebate : LevelBasic
 {
     public enum LevelRound
     {
@@ -24,6 +24,12 @@ public class LevelFirstDebate : LevelBasic
 
     public LevelRound currentRound = LevelRound.Round1;
 
+    [Header("People")]
+    public GameObject pfPeople;
+    public Transform tfContentPeople;
+    private List<ItemDebatePeople> listPeople = new List<ItemDebatePeople>();
+    private ItemDebatePeople itemPeopleMe;
+
     [Header("Frame")]
     public Transform tfGroupSlot;
     public List<Transform> listGroupFrame = new List<Transform>();
@@ -32,11 +38,8 @@ public class LevelFirstDebate : LevelBasic
     public GameObject pfThoughts;
     public List<Transform> listTfContentOtherThought;
     public Transform tfContentMyThought;
-
-    [HideInInspector]
-    public List<ThoughtContent> listOtherThought;
-    [HideInInspector]
-    public ThoughtContent myThought;
+    private List<ThoughtContent> listOtherThought = new List<ThoughtContent>();
+    private ThoughtContent myThought;
 
     [Header("DragThoughtPrefab")]
     public GameObject pfDrag;
@@ -48,6 +51,7 @@ public class LevelFirstDebate : LevelBasic
     [Header("Cheer")]
     public GameObject pfCheer;
     public GameObject pfDragCheer;
+    private List<DebateCheer> listDebateCheer = new List<DebateCheer>();
     private DragCheer itemDragCheer;
     public GameObject groupCol;
     public BoxCollider2D triggerCheer;
@@ -56,7 +60,7 @@ public class LevelFirstDebate : LevelBasic
 
     private ThoughtType currentType = ThoughtType.None;
     private ThoughtType firstRoundType = ThoughtType.None;
-    private bool isCheer = false;
+    public bool isCheer = false;
 
     #region Init
     //Initialize
@@ -75,6 +79,22 @@ public class LevelFirstDebate : LevelBasic
     //Dynamic
     public void InitPrefabs()
     {
+        listDebateCheer.Clear();
+
+        //Initial People
+        listPeople.Clear();
+        PublicTool.ClearChildItem(tfContentPeople);
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject objPeople = GameObject.Instantiate(pfPeople, tfContentPeople);
+            ItemDebatePeople itemPeople = objPeople.GetComponent<ItemDebatePeople>();
+            itemPeople.Init((ItemDebatePeople.PeopleType)i);
+            listPeople.Add(itemPeople);
+        }
+        GameObject objPeopleMe = GameObject.Instantiate(pfPeople, tfContentPeople);
+        itemPeopleMe = objPeopleMe.GetComponent<ItemDebatePeople>();
+        itemPeopleMe.Init(ItemDebatePeople.PeopleType.Me);
+
         //Initial other thoughts
         listOtherThought.Clear();
         for (int i = 0; i < 3; i++)
@@ -111,24 +131,14 @@ public class LevelFirstDebate : LevelBasic
 
         dragSlot.Init(this);
     }
-
     #endregion
-
-    #region Detect
-
-    private void Update()
-    {
-        CheckCheer();
-    }
-
-    #endregion
-
 
     #region FlowControl
 
     public IEnumerator IE_InitRound()
     {
         currentType = ThoughtType.None;
+        InitRoundNormalPeople();
         switch (currentRound)
         {
             case LevelRound.Round1:
@@ -200,10 +210,13 @@ public class LevelFirstDebate : LevelBasic
                 {
                     PublicTool.ClearChildItem(listTfContentOtherThought[i]);
                     GameObject objCheer = GameObject.Instantiate(pfCheer, listTfContentOtherThought[i]);
+                    DebateCheer itemDebateCheer = objCheer.GetComponent<DebateCheer>();
+                    itemDebateCheer.InitAni();
+                    listDebateCheer.Add(itemDebateCheer);
                 }
                 GameObject objDragCheer = GameObject.Instantiate(pfDragCheer, tfContentMyThought);
                 itemDragCheer = objDragCheer.GetComponent<DragCheer>();
-                itemDragCheer.Init();
+                itemDragCheer.Init(this);
                 groupCol.gameObject.SetActive(true);
                 break;
         }
@@ -213,81 +226,26 @@ public class LevelFirstDebate : LevelBasic
 
     public IEnumerator IE_DragGoalFinish()
     {
+        canvasGroup.blocksRaycasts = false;
         myThought.ShowContent(currentType,0);
-
         if(currentRound == LevelRound.Round1)
         {
             firstRoundType = currentType;
         }
-
-        //If only one agree in turn two
-        int ranAgreeID = Random.Range(0, 3);
-
-        for (int i = 0;i < 3;i++)
-        {
-            ThoughtContent other = listOtherThought[i];
-            //Random generate the type of each teammates
-            int ranType = Random.Range(0, 3);
-            //Random generate the delay time 
-            float timeDelay = Random.Range(1f, 2f);
-
-            if (currentRound == LevelRound.Round3)
-            {
-                ranType = (int)currentType;
-            }//round3
-            else if (currentRound == LevelRound.Round2)
-            {
-                if(ranAgreeID == i)
-                {
-                    ranType = (int)currentType;
-                }
-                else
-                {
-                    while (ranType == (int)currentType)
-                    {
-                        ranType = Random.Range(0, 3);
-                    }
-                }
-            }
-            else if (currentRound == LevelRound.Round1)
-            {
-                while (ranType == (int)currentType)
-                {
-                    ranType = Random.Range(0, 3);
-                }
-            }
-            other.ShowContent((ThoughtType)ranType,timeDelay);
-        }
-        canvasGroup.blocksRaycasts = false;
-        for (int i = 0; i < 3; i++)
-        {
-            listDragItem[i].transform.DOScale(0, GameGlobal.timeFDB_commonAni);
-        }
+        GoalFinishGenerateOtherThought();
+        GoalFinishZeroScaleAllDragOption();
         yield return new WaitForSeconds(GameGlobal.timeFDB_commonAni);
+        yield return new WaitForSeconds(2f);
+        GoalFinishSurprisePeople();
         yield return StartCoroutine(IE_EndRound());
     }
 
-    public void CheckCheer()
-    {
-        if(currentRound == LevelRound.Cheers && !isCheer)
-        {
-            ContactFilter2D filter = new ContactFilter2D().NoFilter();
-            List<Collider2D> results = new List<Collider2D>();
-            triggerCheer.OverlapCollider(filter, results);
-            foreach (BoxCollider2D col in results)
-            {
-                if (col.tag == "ColDetect")
-                {
-                    isCheer = true;
-                    StartCoroutine(IE_CheerGoalFinish());
-                }
-            }
-        }
-    }
+
 
     public IEnumerator IE_CheerGoalFinish()
     {
         itemDragCheer.canDrag = false;
+        listDebateCheer[2].AniStop();
         yield return StartCoroutine(IE_EndRound());
         yield break;
     }
