@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 5306547388636475032}
   - component: {fileID: 7806383527517691669}
   m_Layer: 6
-  m_Name: LevelSecondMeet
+  m_Name: LevelSecondParty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

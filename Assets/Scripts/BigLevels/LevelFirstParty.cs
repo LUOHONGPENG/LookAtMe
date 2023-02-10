@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelFirstMeet : LevelBasic
+public class LevelFirstParty : LevelBasic
 {
     //A list that contains 4 partypeople prefabs
     public List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
     //When 4 people look the character, it become true
     public bool isLookDone = false;
-    //A coroutine that call 
-    private Coroutine coNextLevel = null;
 
     public override void Init(LevelManager parent)
     {
@@ -35,13 +33,10 @@ public class LevelFirstMeet : LevelBasic
         }
 
         //check whether 4 
-        if (numPeopleFlip >= 4)
+        if (numPeopleFlip >= 4 && !isLookDone)
         {
             isLookDone = true;
-            if (coNextLevel == null)
-            {
-                coNextLevel = StartCoroutine(IE_LevelComplete());
-            }
+            StartCoroutine(IE_LevelComplete());
         }
     }
 

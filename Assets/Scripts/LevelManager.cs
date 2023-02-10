@@ -5,11 +5,11 @@ using UnityEngine;
 public enum LevelState
 {
     FirstDebate,
-    FirstMeet,
+    FirstParty,
     FirstIns,
     SecondDebate,
     DressUp,
-    SecondMeet,
+    SecondParty,
     SecondIns,
     FakeSelfAbuse,
     Mirror,

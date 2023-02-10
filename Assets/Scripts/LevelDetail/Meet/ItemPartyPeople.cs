@@ -12,9 +12,9 @@ public class ItemPartyPeople : MonoBehaviour
     //Data
     public bool isFlip = false;
     private float timerFlip = 0f;
-    private LevelFirstMeet parent;
+    private LevelFirstParty parent;
 
-    public void Init(LevelFirstMeet parent)
+    public void Init(LevelFirstParty parent)
     {
         this.parent = parent;
         isFlip = false;

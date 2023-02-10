@@ -11,11 +11,11 @@ public class DataManager
     {
         dicLevelInfo.Clear();
         dicLevelInfo.Add(LevelState.FirstDebate, new LevelInfo(LevelState.FirstDebate, true,true));
-        dicLevelInfo.Add(LevelState.FirstMeet, new LevelInfo(LevelState.FirstMeet, true,true));
+        dicLevelInfo.Add(LevelState.FirstParty, new LevelInfo(LevelState.FirstParty, true,true));
         dicLevelInfo.Add(LevelState.FirstIns, new LevelInfo(LevelState.FirstIns, true,true));
         dicLevelInfo.Add(LevelState.DressUp, new LevelInfo(LevelState.DressUp, true,true));
         dicLevelInfo.Add(LevelState.SecondDebate, new LevelInfo(LevelState.SecondDebate, true,false));
-        dicLevelInfo.Add(LevelState.SecondMeet, new LevelInfo(LevelState.SecondMeet, true,true));
+        dicLevelInfo.Add(LevelState.SecondParty, new LevelInfo(LevelState.SecondParty, true,true));
         dicLevelInfo.Add(LevelState.SecondIns, new LevelInfo(LevelState.SecondIns, true,false));
         dicLevelInfo.Add(LevelState.FakeSelfAbuse, new LevelInfo(LevelState.FakeSelfAbuse, false,true));
         dicLevelInfo.Add(LevelState.Mirror, new LevelInfo(LevelState.Mirror, true,true));
