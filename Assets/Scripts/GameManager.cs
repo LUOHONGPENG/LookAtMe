@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    [Header("Camera")]
+    public Camera mainCamera;
+    public Camera uiCamera;
+
+    [Header("Manager")]
     public SoundManager soundManager;
     public LevelManager levelManager;
     public DataManager dataManager;
 
-    public Camera mainCamera;
-    public Camera uiCamera;
+
 
 
     public void Start()
@@ -20,4 +24,6 @@ public class GameManager : MonoSingleton<GameManager>
         soundManager.Init();
         levelManager.Init();
     }
+
+
 }

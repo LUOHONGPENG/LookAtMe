@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class LevelFirstParty : LevelBasic
 {
@@ -8,6 +10,14 @@ public class LevelFirstParty : LevelBasic
     public GameObject pfPartyPeople;
     public Transform tfPartyPeople;
     public List<Vector2> listPosPartyPeople = new List<Vector2>();
+
+    [Header("MainCharacter")]
+    public Image imgLight;
+    public Image imgRibbon;
+
+    [Header("Shooting")]
+    public Transform tfContentShoot;
+
 
     //A list that contains 4 partypeople prefabs
     private List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
@@ -20,7 +30,14 @@ public class LevelFirstParty : LevelBasic
 
         isLookDone = false;
 
+        InitCharacterGroup();
         InitPrefab();
+    }
+
+    public void InitCharacterGroup()
+    {
+        imgLight.DOFade(0, 0);
+        imgRibbon.transform.DOLocalMoveY(900f, 0);
     }
 
     public void InitPrefab()
@@ -52,14 +69,22 @@ public class LevelFirstParty : LevelBasic
         if (numPeopleFlip >= 4 && !isLookDone)
         {
             isLookDone = true;
-            StartCoroutine(IE_LevelComplete());
+            StartCoroutine(IE_ClickGoalDeal());
         }
     }
 
-    public IEnumerator IE_LevelComplete()
+    public IEnumerator IE_ClickGoalDeal()
     {
-        //Change to next level after 2 seconds
+        imgLight.DOFade(1f, GameGlobal.timerFP_light);
+        imgRibbon.transform.DOLocalMoveY(100, GameGlobal.timerFP_light);
+        yield return new WaitForSeconds(GameGlobal.timerFP_light);
+
         yield return new WaitForSeconds(2f);
+
         NextLevel();
+        yield break;
     }
+
+
+
 }

@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour
 {
     //Data
     public LevelState currentLevelState;
+
     //View container
     public Transform tfContentSprite;
     public Transform tfContentImage;

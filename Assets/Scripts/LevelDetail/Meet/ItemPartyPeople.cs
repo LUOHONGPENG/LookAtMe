@@ -46,7 +46,6 @@ public class ItemPartyPeople : MonoBehaviour
 
     public void Shake()
     {
-        //Shake
     }
 
     public void Flip()

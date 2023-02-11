@@ -17,4 +17,8 @@ public class PublicTool : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return new Vector2(mousePosition.x, mousePosition.y);
     }
+
+    public static void ShakeCamera()
+    {
+    }
 }

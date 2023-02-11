@@ -10,4 +10,5 @@ public static class GameGlobal
 
     //FirstParty
     public static float timerFP_notice = 2f;//The time that people lose interested in you
+    public static float timerFP_light = 0.5f;
 }
