@@ -59,7 +59,8 @@ public class DragThoughts : CommonImageDrag
 
     public override void DragDeal(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta;
+        //rectTransform.anchoredPosition += eventData.delta;
+        this.transform.position = PublicTool.GetMousePosition2D();
     }
 
     public override void EndDragDeal(PointerEventData eventData)
