@@ -64,8 +64,13 @@ public class ItemInsPhoto : MonoBehaviour
         canvasGroupPhoto.alpha = 0;
         yield return new WaitForEndOfFrame();
 
-        int ScreenSizeX = Screen.width;
-        int ScreenSizeY = Screen.height;
+/*        int ScreenSizeX = Screen.width;
+        int ScreenSizeY = Screen.height;*/
+
+        int ScreenSizeX = 1920;
+        int ScreenSizeY = 1080;
+
+        //Debug.Log(ScreenSizeX);
 
 
         RenderTexture rt = new RenderTexture(ScreenSizeX, ScreenSizeY, 0);
