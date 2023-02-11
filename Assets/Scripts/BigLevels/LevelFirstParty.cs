@@ -6,6 +6,7 @@ using DG.Tweening;
 
 public class LevelFirstParty : LevelBasic
 {
+    public CanvasGroup canvasGroupParty;
     [Header("PartyPeople")]
     public GameObject pfPartyPeople;
     public Transform tfPartyPeople;
@@ -15,15 +16,16 @@ public class LevelFirstParty : LevelBasic
     public Image imgLight;
     public Image imgRibbon;
 
-    [Header("Shooting")]
-    public GameObject pfShoot;
-    public Transform tfContentShoot;
-    private ItemInsFrame itemShoot;
+    [Header("Photo")]
+    public GameObject pfPhoto;
+    public Transform tfContentPhoto;
+    private ItemInsPhoto itemPhoto;
 
     //A list that contains 4 partypeople prefabs
     private List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
     //When 4 people look the character, it become true
     public bool isLookDone = false;
+    public bool isShootDone = false;
 
     public override void Init(LevelManager parent)
     {
@@ -37,6 +39,7 @@ public class LevelFirstParty : LevelBasic
 
     public void InitCharacterGroup()
     {
+        canvasGroupParty.alpha = 1f;
         imgLight.DOFade(0, 0);
         imgRibbon.transform.DOLocalMoveY(900f, 0);
     }
@@ -54,7 +57,7 @@ public class LevelFirstParty : LevelBasic
             itemPartyPeople.transform.localPosition = listPosPartyPeople[i];
         }
 
-        PublicTool.ClearChildItem(tfContentShoot);
+        PublicTool.ClearChildItem(tfContentPhoto);
 
     }
 
@@ -87,7 +90,7 @@ public class LevelFirstParty : LevelBasic
 
         yield return new WaitForSeconds(2f);
 
-        InitShoot();
+        InitShootPhoto();
         yield break;
     }
 
@@ -95,19 +98,24 @@ public class LevelFirstParty : LevelBasic
 
     #region Shoot
 
-    public void InitShoot()
+    public void InitShootPhoto()
     {
-        GameObject objShoot = GameObject.Instantiate(pfShoot, tfContentShoot);
-        itemShoot = objShoot.GetComponent<ItemInsFrame>();
-        itemShoot.Init();
+        GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
+        itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
+        itemPhoto.Init(this,false);
     }
 
-    public void ShootIns()
+    public override void AfterShoot()
     {
-
+        StartCoroutine(IE_AfterShoot());
     }
 
-
+    public IEnumerator IE_AfterShoot()
+    {
+        canvasGroupParty.DOFade(0, 0.5f);
+        yield return new WaitForSeconds(2f);
+        NextLevel();
+    }
 
     #endregion
 

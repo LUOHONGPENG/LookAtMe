@@ -27,6 +27,9 @@ public class LevelBasic : MonoBehaviour
         parent.NextLevel();
     }
 
+    public virtual void AfterShoot()
+    {
 
+    }
 
 }

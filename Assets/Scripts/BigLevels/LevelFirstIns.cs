@@ -7,13 +7,26 @@ using DG.Tweening;
 public class LevelFirstIns : LevelBasic
 {
     public ScrollRect scroll;
+    public CanvasGroup canvasGroupIns;
+
+    [Header("Photo")]
+    public GameObject pfPhoto;
+    public Transform tfContentPhoto;
+    private ItemInsPhoto itemPhoto;
+
+
+    [Header("Like")]
+    public Transform tfMaskPhoto;
+    public Image imgInsPhoto;
     public Image imgLike;
     public Button btnLike;
     public Text codeLike;
     public ParticleSystem particleLike;
 
+    [Header("Comment")]
     public GameObject pfComment;
-    public List<Transform> listPointComment;
+    public Transform tfContentComment;
+    public List<Vector2> listPosComment = new List<Vector2>();
 
 
     private bool isLike = false;
@@ -23,11 +36,7 @@ public class LevelFirstIns : LevelBasic
     {
         base.Init(parent);
 
-        //Init view
-        imgLike.DOFade(0.01f, 0);
-        codeLike.text = 0.ToString();
-        numLike = 0;
-        scroll.vertical = false;
+        InitView();
 
         btnLike.onClick.RemoveAllListeners();
         btnLike.onClick.AddListener(delegate ()
@@ -41,6 +50,45 @@ public class LevelFirstIns : LevelBasic
         });
     }
 
+    #region Init
+    public void InitView()
+    {
+        canvasGroupIns.alpha = 0;
+        //Init view
+        imgLike.DOFade(0.01f, 0);
+        codeLike.text = 0.ToString();
+        numLike = 0;
+        scroll.vertical = false;
+
+        InitPhoto();
+
+        StartCoroutine(IE_InitAni());
+    }
+
+    public void InitPhoto()
+    {
+        GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
+        itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
+        itemPhoto.Init(this, true);
+
+
+        imgInsPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
+        imgInsPhoto.transform.localPosition = GameManager.Instance.levelManager.posLastShoot;
+        imgInsPhoto.SetNativeSize();
+        imgInsPhoto.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10F));
+    }
+
+    public IEnumerator IE_InitAni()
+    {
+        canvasGroupIns.DOFade(1f, 0.5f);
+        itemPhoto.canvasGroupPhoto.DOFade(0, 0.5f);
+        yield return new WaitForSeconds(1F);
+        PublicTool.ClearChildItem(tfContentPhoto);
+    }
+
+    #endregion
+
+    #region Like
     public IEnumerator IE_FirstLike()
     {
         imgLike.DOFade(1f, 0.5f);
@@ -75,18 +123,20 @@ public class LevelFirstIns : LevelBasic
             yield return new WaitForSeconds(time);
         }
     }
+    #endregion
 
-
+    #region Comment
     public void GenerateComment()
     {
-        for(int i = 0; i < listPointComment.Count; i++)
+        for(int i = 0; i < 5; i++)
         {
             float ranTime = Random.Range(0, 0.5f);
-            GameObject objComment = GameObject.Instantiate(pfComment, listPointComment[i]);
+            GameObject objComment = GameObject.Instantiate(pfComment, tfContentComment);
+            objComment.transform.localPosition = listPosComment[i];
             ItemInsComment itemComment = objComment.GetComponent<ItemInsComment>();
             itemComment.InitImage(i, true);
             itemComment.InitAni(ranTime);
         }
     }
-
+    #endregion
 }

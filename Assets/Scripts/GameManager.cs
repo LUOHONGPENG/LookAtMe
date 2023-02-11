@@ -26,7 +26,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void ShakeCamera()
     {
         cameraShake.Shake();
-        levelManager.canvasShake.Shake();
+        //levelManager.canvasShake.Shake();
     }
 
 }

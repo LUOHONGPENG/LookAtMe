@@ -18,7 +18,7 @@ public enum LevelState
 }
 
 
-public class LevelManager : MonoBehaviour
+public partial class LevelManager : MonoBehaviour
 {
     //Data
     public LevelState currentLevelState;
@@ -26,7 +26,6 @@ public class LevelManager : MonoBehaviour
     //View container
     public Transform tfContentSprite;
     public Transform tfContentImage;
-    public CameraShake canvasShake;
 
     [Header("Test")]
     public bool isTestMode = false;
