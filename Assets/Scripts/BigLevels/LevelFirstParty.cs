@@ -16,8 +16,9 @@ public class LevelFirstParty : LevelBasic
     public Image imgRibbon;
 
     [Header("Shooting")]
+    public GameObject pfShoot;
     public Transform tfContentShoot;
-
+    private ItemInsFrame itemShoot;
 
     //A list that contains 4 partypeople prefabs
     private List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
@@ -52,7 +53,12 @@ public class LevelFirstParty : LevelBasic
             itemPartyPeople.Init(this);
             itemPartyPeople.transform.localPosition = listPosPartyPeople[i];
         }
+
+        PublicTool.ClearChildItem(tfContentShoot);
+
     }
+
+    #region FlipPeople
 
     public void FlipPeople()
     {
@@ -69,11 +75,11 @@ public class LevelFirstParty : LevelBasic
         if (numPeopleFlip >= 4 && !isLookDone)
         {
             isLookDone = true;
-            StartCoroutine(IE_ClickGoalDeal());
+            StartCoroutine(IE_FlipGoalDeal());
         }
     }
 
-    public IEnumerator IE_ClickGoalDeal()
+    public IEnumerator IE_FlipGoalDeal()
     {
         imgLight.DOFade(1f, GameGlobal.timerFP_light);
         imgRibbon.transform.DOLocalMoveY(100, GameGlobal.timerFP_light);
@@ -81,10 +87,28 @@ public class LevelFirstParty : LevelBasic
 
         yield return new WaitForSeconds(2f);
 
-        NextLevel();
+        InitShoot();
         yield break;
     }
 
+    #endregion
 
+    #region Shoot
+
+    public void InitShoot()
+    {
+        GameObject objShoot = GameObject.Instantiate(pfShoot, tfContentShoot);
+        itemShoot = objShoot.GetComponent<ItemInsFrame>();
+        itemShoot.Init();
+    }
+
+    public void ShootIns()
+    {
+
+    }
+
+
+
+    #endregion
 
 }

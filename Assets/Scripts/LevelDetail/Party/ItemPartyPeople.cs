@@ -46,6 +46,7 @@ public class ItemPartyPeople : MonoBehaviour
 
     public void Shake()
     {
+        PublicTool.ShakeCamera();
     }
 
     public void Flip()

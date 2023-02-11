@@ -20,5 +20,6 @@ public class PublicTool : MonoBehaviour
 
     public static void ShakeCamera()
     {
+        GameManager.Instance.ShakeCamera();
     }
 }

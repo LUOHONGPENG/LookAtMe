@@ -7,14 +7,12 @@ public class GameManager : MonoSingleton<GameManager>
     [Header("Camera")]
     public Camera mainCamera;
     public Camera uiCamera;
+    public CameraShake cameraShake;
 
     [Header("Manager")]
     public SoundManager soundManager;
     public LevelManager levelManager;
     public DataManager dataManager;
-
-
-
 
     public void Start()
     {
@@ -25,5 +23,10 @@ public class GameManager : MonoSingleton<GameManager>
         levelManager.Init();
     }
 
+    public void ShakeCamera()
+    {
+        cameraShake.Shake();
+        levelManager.canvasShake.Shake();
+    }
 
 }
