@@ -11,6 +11,8 @@ public class LevelFirstParty : LevelBasic
     public GameObject pfPartyPeople;
     public Transform tfPartyPeople;
     public List<Vector2> listPosPartyPeople = new List<Vector2>();
+    //A list that contains 4 partypeople prefabs
+    private List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
 
     [Header("MainCharacter")]
     public Image imgLight;
@@ -21,16 +23,11 @@ public class LevelFirstParty : LevelBasic
     public Transform tfContentPhoto;
     private ItemInsPhoto itemPhoto;
 
-    //A list that contains 4 partypeople prefabs
-    private List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
-    //When 4 people look the character, it become true
-    public bool isLookDone = false;
-
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
 
-        isLookDone = false;
+        isTaskDoneExtra = false;
 
         InitCharacterGroup();
         InitPrefab();
@@ -52,7 +49,7 @@ public class LevelFirstParty : LevelBasic
             GameObject objPeople = GameObject.Instantiate(pfPartyPeople, tfPartyPeople);
             ItemPartyPeople itemPartyPeople = objPeople.GetComponent<ItemPartyPeople>();
             listPartyPeople.Add(itemPartyPeople);
-            itemPartyPeople.Init(this);
+            itemPartyPeople.Init(i,this);
             itemPartyPeople.transform.localPosition = listPosPartyPeople[i];
         }
 
@@ -62,7 +59,7 @@ public class LevelFirstParty : LevelBasic
 
     #region FlipPeople
 
-    public void FlipPeople()
+    public override void FlipPartyPeople(int ID)
     {
         int numPeopleFlip = 0;
         foreach (ItemPartyPeople people in listPartyPeople)
@@ -74,9 +71,9 @@ public class LevelFirstParty : LevelBasic
         }
 
         //check whether 4 
-        if (numPeopleFlip >= 4 && !isLookDone)
+        if (numPeopleFlip >= 4 && !isTaskDoneExtra)
         {
-            isLookDone = true;
+            isTaskDoneExtra = true;
             StartCoroutine(IE_FlipGoalDeal());
         }
     }

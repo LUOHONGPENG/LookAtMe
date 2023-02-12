@@ -11,11 +11,13 @@ public class ItemPartyPeople : MonoBehaviour
     public Button btnPartyPeople;
     //Data
     public bool isFlip = false;
+    private int peopleID = 0;
     private float timerFlip = 0f;
-    private LevelFirstParty parent;
+    private LevelBasic parent;
 
-    public void Init(LevelFirstParty parent)
+    public void Init(int ID,LevelBasic parent)
     {
+        this.peopleID = ID;
         this.parent = parent;
         isFlip = false;
         imgPartyPeople.sprite = listSpPeople[0];
@@ -24,16 +26,15 @@ public class ItemPartyPeople : MonoBehaviour
         {
             if (!isFlip)
             {
-                Shake();
                 Flip();
-                parent.FlipPeople();
+                parent.FlipPartyPeople(peopleID);
             }
         });
     }
 
     private void Update()
     {
-        if (isFlip && parent!=null && !parent.isLookDone)
+        if (isFlip && parent!=null && !parent.isTaskDoneExtra)
         {
             timerFlip -= Time.deltaTime;
             if (timerFlip <= 0)
@@ -44,11 +45,7 @@ public class ItemPartyPeople : MonoBehaviour
     }
 
 
-    public void Shake()
-    {
-        PublicTool.ShakeCamera();
-    }
-
+    #region FlipFunction
     public void Flip()
     {
         timerFlip = GameGlobal.timerFP_notice;
@@ -57,8 +54,9 @@ public class ItemPartyPeople : MonoBehaviour
     }
     public void FlipBack()
     {
+        timerFlip = 0;
         imgPartyPeople.sprite = listSpPeople[0];
         isFlip = false;
     }
-
+    #endregion
 }

@@ -29,6 +29,7 @@ public class LevelBasic : MonoBehaviour
     }
     #endregion
 
+    public bool isTaskDoneExtra = false;
 
     #region ExtraFunc_Shoot
     public virtual void AfterShoot() { }
@@ -40,5 +41,11 @@ public class LevelBasic : MonoBehaviour
     public virtual void ReleaseDragging() { }
 
     public virtual void DragFinishCheck() { }
+    #endregion
+
+    #region ExtraFunc_Party
+    public virtual void FlipPartyPeople(int ID) { }
+
+
     #endregion
 }
