@@ -4,58 +4,94 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
+public enum PhotoType
+{
+    Manual,
+    Auto,
+    Display
+}
+
+
 public class ItemInsPhoto : MonoBehaviour
 {
     private LevelBasic parent;
+    private PhotoType photoType;
 
     public CanvasGroup canvasGroupPhoto;
     public Button btnShoot;
     public Image imgPhoto;
+    public Image imgBlack;
 
     private bool isInit = false;
     private bool isShoot = false;
 
-    public void Init(LevelBasic parent,bool shootDone)
+    public void Init(LevelBasic parent,PhotoType type)
     {
-        isInit = true;
+        this.photoType = type;
         this.parent = parent;
+        //Hide Black Mask
+        imgBlack.gameObject.SetActive(false);
         btnShoot.onClick.RemoveAllListeners();
         btnShoot.onClick.AddListener(delegate ()
         {
-            if (!isShoot)
-            {
-                StartCoroutine(ShootIns());
-                isShoot = true;
-
-                parent.AfterShoot();
-                MoveToCenter();
-            }
+            ShootExecute();
+            btnShoot.interactable = false;
         });
 
-        if (!shootDone)
+        switch (photoType)
         {
-            isShoot = false;
-            this.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            this.transform.localScale = Vector3.one;
+            case PhotoType.Manual:
+                isShoot = false;
+                btnShoot.interactable = true;
+                this.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                this.transform.localScale = Vector3.one;
+                break;
+            case PhotoType.Display:
+                isShoot = true;
+                btnShoot.interactable = false;
+                imgPhoto.DOFade(1f, 0);
+                this.transform.localPosition = new Vector2(20.2f, 99.4f);
+                this.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10f));
+                this.transform.localScale = new Vector3(GameGlobal.scaleFP_photoToInsX, GameGlobal.scaleFP_photoToInsY, 1);
+                imgPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
+                imgPhoto.SetNativeSize();
+                imgPhoto.transform.localPosition = GameManager.Instance.levelManager.posLastShoot;
+                break;
+            case PhotoType.Auto:
+                isShoot = false;
+                btnShoot.interactable = false;
+                this.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                this.transform.localScale = Vector3.one;
+                break;
         }
-        else
-        {
-            isShoot = true;
-            imgPhoto.DOFade(1f, 0);
-            this.transform.localPosition = new Vector2(20.2f, 99.4f);
-            this.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10f));
-            this.transform.localScale = new Vector3(GameGlobal.scaleFP_photoToInsX, GameGlobal.scaleFP_photoToInsY, 1);
-            imgPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
-            imgPhoto.SetNativeSize();
-            imgPhoto.transform.localPosition = GameManager.Instance.levelManager.posLastShoot;
-        }
+
+        isInit = true;
     }
 
     void Update()
     {
-        if (isInit && !isShoot)
+        CheckFollowMouse();
+    }
+
+    #region BasicFunction
+
+    private void CheckFollowMouse()
+    {
+        if (isInit && !isShoot && photoType == PhotoType.Manual)
         {
             this.transform.position = PublicTool.GetMousePosition2D();
+        }
+    }
+
+    public void ShootExecute()
+    {
+        if (!isShoot)
+        {
+            isShoot = true;
+            StartCoroutine(ShootIns());
+            parent.AfterShoot();
+            BlackMask();
+            MoveToCenter();
         }
     }
 
@@ -100,6 +136,13 @@ public class ItemInsPhoto : MonoBehaviour
 
     }
 
+    public void BlackMask()
+    {
+        imgBlack.DOFade(1f, 0);
+        imgBlack.gameObject.SetActive(true);
+        imgBlack.DOFade(0, 0.5f);
+    }
+
     public void MoveToCenter()
     {
         this.transform.DOLocalMove(new Vector2(20.2f,99.4F), 0.5f);
@@ -108,8 +151,11 @@ public class ItemInsPhoto : MonoBehaviour
         this.transform.DORotateQuaternion(Quaternion.Euler(new Vector3(0, 0, -10f)), 0.5f);
     }
 
-    public void MoveTo(Vector2 pos)
+    public void MoveTo(Vector2 pos,float time)
     {
-        this.transform.DOLocalMove(pos, 0.5f);
+        this.transform.DOLocalMove(pos, time);
     }
+    #endregion
+
+
 }

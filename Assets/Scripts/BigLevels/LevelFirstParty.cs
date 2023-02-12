@@ -98,7 +98,7 @@ public class LevelFirstParty : LevelBasic
     {
         GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
         itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
-        itemPhoto.Init(this,false);
+        itemPhoto.Init(this,PhotoType.Manual);
     }
 
     public override void AfterShoot()
