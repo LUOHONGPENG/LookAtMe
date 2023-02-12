@@ -14,7 +14,7 @@ public class DataManager
         dicLevelInfo.Add(LevelState.FirstParty, new LevelInfo(LevelState.FirstParty, true,true));
         dicLevelInfo.Add(LevelState.FirstIns, new LevelInfo(LevelState.FirstIns, true,true));
         dicLevelInfo.Add(LevelState.DressUp, new LevelInfo(LevelState.DressUp, true,true));
-        dicLevelInfo.Add(LevelState.SecondDebate, new LevelInfo(LevelState.SecondDebate, true,false));
+        dicLevelInfo.Add(LevelState.SecondDebate, new LevelInfo(LevelState.SecondDebate, true,true));
         dicLevelInfo.Add(LevelState.SecondParty, new LevelInfo(LevelState.SecondParty, true,true));
         dicLevelInfo.Add(LevelState.SecondIns, new LevelInfo(LevelState.SecondIns, true,false));
         dicLevelInfo.Add(LevelState.FakeSelfAbuse, new LevelInfo(LevelState.FakeSelfAbuse, false,true));

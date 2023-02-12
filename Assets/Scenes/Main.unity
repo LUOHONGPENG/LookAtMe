@@ -735,6 +735,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 7653394308243834948, guid: 0593e1c7561468b40aad9bc2fba77d5d, type: 3}
+      propertyPath: testState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653394308243834948, guid: 0593e1c7561468b40aad9bc2fba77d5d, type: 3}
+      propertyPath: isTestMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0593e1c7561468b40aad9bc2fba77d5d, type: 3}
 --- !u!114 &238672939564671970 stripped

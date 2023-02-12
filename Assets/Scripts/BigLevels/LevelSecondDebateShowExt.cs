@@ -3,23 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public partial class LevelFirstDebate
+public partial class LevelSecondDebate : LevelBasic
 {
     private void GoalFinishGenerateOtherThought()
     {
-        //If only one agree in turn two
-        int ranAgreeID = Random.Range(0, 3);
-
         for (int i = 0; i < 3; i++)
         {
             ThoughtContent other = listOtherThought[i];
-            //Random generate the type of each teammates
-            int tempType = Random.Range(0, 3);
+            int tempType = 0;
             //Random generate the delay time 
             float timeDelay = Random.Range(1f, 2f);
-
             if (currentRound == LevelRound.Round1)
             {
+                //Random generate the type of each teammates
+                tempType = Random.Range(0, 3);
                 while (tempType == (int)currentType)
                 {
                     tempType = Random.Range(0, 3);
@@ -27,23 +24,15 @@ public partial class LevelFirstDebate
             }
             else if (currentRound == LevelRound.Round2)
             {
-                if (ranAgreeID == i)
+                if ((int)currentType == 2)
                 {
-                    tempType = (int)currentType;
+                    tempType = 0;
                 }
                 else
                 {
-                    while (tempType == (int)currentType)
-                    {
-                        tempType = Random.Range(0, 3);
-                    }
+                    tempType = (int)(currentType+1);
                 }
             }
-            else if (currentRound == LevelRound.Round3)
-            {
-                tempType = (int)currentType;
-            }//round3
-
             other.ShowContent((ThoughtType)tempType, timeDelay);
         }
     }

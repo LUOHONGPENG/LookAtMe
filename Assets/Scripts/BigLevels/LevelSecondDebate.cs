@@ -1,131 +1,217 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class LevelSecondDebate : LevelBasic
+public partial class LevelSecondDebate : LevelBasic
 {
-    public enum LevelState
+    public enum LevelRound
     {
         Round1,
         Round2,
-        Round3
+        Battle
     }
 
-    public LevelState currentround = LevelState.Round1;
+    public LevelRound currentRound = LevelRound.Round1;
 
-    public List<ThoughtContent> listOtherThought;
-    public ThoughtContent myThought;
+    [Header("People")]
+    public GameObject pfPeople;
+    public Transform tfContentPeople;
+    private List<ItemDebatePeople> listPeople = new List<ItemDebatePeople>();
+    private ItemDebatePeople itemPeopleMe;
 
-    public DragThoughtSecond dragItem0;
-    public DragThoughtSecond dragItem1;
-    public DragThoughtSecond dragItem2;
-    
-    public ThoughtSlotSecond dragSlot;
+    [Header("ThoughtFrame")]
+    public Transform tfGroupMe;
+    public List<Transform> listGroupFrame = new List<Transform>();
 
-    public CanvasGroup canvasGroup;
+    [Header("ThoughtPrefab")]
+    public GameObject pfThoughts;
+    public List<Transform> listTfContentOtherThought;
+    public Transform tfContentMyThought;
+    private List<ThoughtContent> listOtherThought = new List<ThoughtContent>();
+    private ThoughtContent myThought;
 
-    //你现在拖得形状是啥
+    [Header("DragThoughtPrefab")]
+    public GameObject pfDrag;
+    public Transform tfContentDrag;
+    public List<Vector2> listDragPos;
+    private List<DragThoughts> listDragItem = new List<DragThoughts>();
+    public ThoughtsSlot dragSlot;
+
+    public CanvasGroup canvasGroupAll;
+
     private ThoughtType currentType = ThoughtType.None;
+    private ThoughtType firstRoundType = ThoughtType.None;
 
-    /*
-    public void Changeround()
-    {
-        ThoughtType curchosen;
-        curchosen = currentType;
-        //currentType = ThoughtType.None;
-        if (currentround == LevelState.Round1)
-        {
-        }
-        else if (currentround == LevelState.Round2)
-        {
-            Debug.Log("changetoround2");
-        }
-        else if (currentround == LevelState.Round3)
-        {
-            Debug.Log("changetoround3");
+    #region Init
 
-
-        }
-    }
-
-    */
-
-
-    //Initialize
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
 
-        foreach (ThoughtContent other in listOtherThought)
+        InitPrefabs();
+
+        currentRound = LevelRound.Round1;
+        StartCoroutine(IE_InitRound());
+    }
+
+    public void InitPrefabs()
+    {
+        //Initial People
+        listPeople.Clear();
+        PublicTool.ClearChildItem(tfContentPeople);
+        for (int i = 0; i < 3; i++)
         {
-            other.Init(true);
+            GameObject objPeople = GameObject.Instantiate(pfPeople, tfContentPeople);
+            ItemDebatePeople itemPeople = objPeople.GetComponent<ItemDebatePeople>();
+            itemPeople.Init((ItemDebatePeople.PeopleType)i);
+            listPeople.Add(itemPeople);
         }
+        GameObject objPeopleMe = GameObject.Instantiate(pfPeople, tfContentPeople);
+        itemPeopleMe = objPeopleMe.GetComponent<ItemDebatePeople>();
+        itemPeopleMe.Init(ItemDebatePeople.PeopleType.Me);
+
+
+        //Initial other thoughts
+        listOtherThought.Clear();
+        for (int i = 0; i < 3; i++)
+        {
+            PublicTool.ClearChildItem(listTfContentOtherThought[i]);
+            GameObject objThought = GameObject.Instantiate(pfThoughts, listTfContentOtherThought[i]);
+            ThoughtContent itemThought = objThought.GetComponent<ThoughtContent>();
+            itemThought.Init(true);
+            listOtherThought.Add(itemThought);
+        }
+
+        //Initial my thought
+        GameObject objMyThought = GameObject.Instantiate(pfThoughts, tfContentMyThought);
+        myThought = objMyThought.GetComponent<ThoughtContent>();
         myThought.Init(false);
 
-        dragItem0.Init(ThoughtType.Square, this) ;
-        dragItem1.Init(ThoughtType.Circle, this);
-        dragItem2.Init(ThoughtType.Triangle, this);
+        //Initial Drag thing
+        PublicTool.ClearChildItem(tfContentDrag);
+        listDragItem.Clear();
+
+        for (int i = 0; i < 3; i++)
+        {
+            //Important code for automatically generating prefab
+            GameObject objDrag = GameObject.Instantiate(pfDrag, tfContentDrag);
+            //Important code for automatically generating prefab
+            DragThoughts itemDrag = objDrag.GetComponent<DragThoughts>();
+            itemDrag.SetPosition(listDragPos[i]);
+            listDragItem.Add(itemDrag);
+        }
+        listDragItem[0].Init(ThoughtType.Square, this);
+        listDragItem[1].Init(ThoughtType.Circle, this);
+        listDragItem[2].Init(ThoughtType.Triangle, this);
 
         dragSlot.Init(this);
-
-        currentType = ThoughtType.None;
     }
+    #endregion
 
-    
     #region FlowControl
-    public void DragGoalFinish()
+    public IEnumerator IE_InitRound()
     {
-        myThought.ShowContent(currentType, 0.1f);
-        foreach (ThoughtContent other in listOtherThought)
+        currentType = ThoughtType.None;
+        InitRoundNormalPeople();
+        canvasGroupAll.blocksRaycasts = false;
+        switch (currentRound)
         {
-            int ranType = Random.Range(0, 3);
-            float timeDelay = Random.Range(1f, 2f);
+            case LevelRound.Round1:
+                InitRoundNormalPeople();
+                //HideAllComponent
+                tfGroupMe.DOScale(0, 0);
+                for (int i = 0; i < 3; i++)
+                {
+                    listGroupFrame[i].DOScale(0, 0);
+                    listDragItem[i].transform.DOScale(0, 0);
+                }
+                yield return new WaitForSeconds(1f);
+                //ShowUpAnimation
+                tfGroupMe.DOScale(1f, GameGlobal.timeFD_commonAni);
+                for (int i = 0; i < 3; i++)
+                {
+                    listGroupFrame[i].DOScale(1f, GameGlobal.timeFD_commonAni);
+                    listDragItem[i].transform.DOScale(1f, GameGlobal.timeFD_commonAni);
+                }
+                yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
+                break;
+            case LevelRound.Round2:
+                for (int i = 0; i < 3; i++)
+                {
+                    if ((int)firstRoundType != i)
+                    {
+                        listDragItem[i].gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        listDragItem[i].transform.DOScale(1f, GameGlobal.timeFD_commonAni);
+                    }
+                }
+                for (int i = 0; i < 3; i++)
+                {
+                    listOtherThought[i].RoundInit();
+                }
+                myThought.RoundInit();
+                yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
+                break;
+            case LevelRound.Battle:
 
-            while(ranType == (int)currentType)
-            {
-                ranType = Random.Range(0, 3);
-            }//end while
-            
-            other.ShowContent((ThoughtType)ranType, timeDelay);
-
+                break;
         }
 
-        //Can't interact with thing any more
-         canvasGroup.blocksRaycasts = false;
-      //  currentround++;
-        StartCoroutine(IE_EndLevel());
 
+        canvasGroupAll.blocksRaycasts = true;
+        yield break;
     }
 
-    public IEnumerator IE_EndLevel()
+    public IEnumerator IE_DragGoalFinish()
     {
-
-        yield return new WaitForSeconds(3f);
-        if ((int)currentround <= 2)
+        canvasGroupAll.blocksRaycasts = false;
+        myThought.ShowContent(currentType, 0);
+        if (currentRound == LevelRound.Round1)
         {
-            //other.ShowContent(ThoughtType.None);
-            //Changeround();
-            // DragGoalFinish();
+            firstRoundType = currentType;
         }
-        else
-        { NextLevel(); }
+        GoalFinishGenerateOtherThought();
+        GoalFinishZeroScaleAllDragOption();
+        yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
+        yield return new WaitForSeconds(2f);
+        GoalFinishSurprisePeople();
+        yield return StartCoroutine(IE_EndRound());
+        yield break;
+    }
+    public IEnumerator IE_EndRound()
+    {
+        yield return new WaitForSeconds(GameGlobal.timeFD_roundInterval);
+        if (currentRound == LevelRound.Battle)
+        {
+            NextLevel();
+            yield break;//Similar to return in function
+        }
+        currentRound++;
+        yield return StartCoroutine(IE_InitRound());
     }
     #endregion
 
-    #region AboutDrag
-    //设置你现在拖得是哪种形状
-    public void SetCurrentDragging(ThoughtType type)
+    #region AboutDragExtra
+    public override void SetCurrentDragging(int typeID)
     {
-        currentType = type;
+        currentType = (ThoughtType)typeID;
     }
 
-    //你现在没有拖东西了
-    public void ReleaseDragging()
+    public override void ReleaseDragging()
     {
         currentType = ThoughtType.None;
     }
-    #endregion
 
-    
+    public override void DragFinishCheck()
+    {
+        if (currentRound != LevelRound.Battle)
+        {
+            StartCoroutine(IE_DragGoalFinish());
+        }
+    }
+    #endregion
 }

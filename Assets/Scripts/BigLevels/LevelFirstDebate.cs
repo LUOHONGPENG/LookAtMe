@@ -30,8 +30,8 @@ public partial class LevelFirstDebate : LevelBasic
     private List<ItemDebatePeople> listPeople = new List<ItemDebatePeople>();
     private ItemDebatePeople itemPeopleMe;
 
-    [Header("Frame")]
-    public Transform tfGroupSlot;
+    [Header("ThoughtFrame")]
+    public Transform tfGroupMe;
     public List<Transform> listGroupFrame = new List<Transform>();
 
     [Header("ThoughtPrefab")]
@@ -45,7 +45,7 @@ public partial class LevelFirstDebate : LevelBasic
     public GameObject pfDrag;
     public Transform tfContentDrag;
     public List<Vector2> listDragPos;
-    public List<DragThoughts> listDragItem = new List<DragThoughts>();
+    private List<DragThoughts> listDragItem = new List<DragThoughts>();
     public ThoughtsSlot dragSlot;
 
     [Header("Cheer")]
@@ -56,7 +56,7 @@ public partial class LevelFirstDebate : LevelBasic
     public GameObject groupCol;
     public BoxCollider2D triggerCheer;
 
-    public CanvasGroup canvasGroup;
+    public CanvasGroup canvasGroupAll;
 
     private ThoughtType currentType = ThoughtType.None;
     private ThoughtType firstRoundType = ThoughtType.None;
@@ -139,18 +139,20 @@ public partial class LevelFirstDebate : LevelBasic
     {
         currentType = ThoughtType.None;
         InitRoundNormalPeople();
+        canvasGroupAll.blocksRaycasts = false;
         switch (currentRound)
         {
             case LevelRound.Round1:
-                canvasGroup.blocksRaycasts = false;
-                tfGroupSlot.DOScale(0, 0);
+                //HideAllComponent
+                tfGroupMe.DOScale(0, 0);
                 for (int i = 0; i < 3; i++)
                 {
                     listGroupFrame[i].DOScale(0, 0);
                     listDragItem[i].transform.DOScale(0, 0);
                 }
                 yield return new WaitForSeconds(1f);
-                tfGroupSlot.DOScale(1f, GameGlobal.timeFD_commonAni);
+                //ShowUpAnimation
+                tfGroupMe.DOScale(1f, GameGlobal.timeFD_commonAni);
                 for (int i = 0; i < 3; i++)
                 {
                     listGroupFrame[i].DOScale(1f, GameGlobal.timeFD_commonAni);
@@ -159,24 +161,6 @@ public partial class LevelFirstDebate : LevelBasic
                 yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
                 break;
             case LevelRound.Round2:
-                for (int i = 0; i < 3; i++)
-                {
-                    if ((int)firstRoundType != i)
-                    {
-                        listDragItem[i].gameObject.SetActive(false);
-                    }
-                    else
-                    {
-                        listDragItem[i].transform.DOScale(1f, GameGlobal.timeFD_commonAni);
-                    }
-                }
-                for (int i = 0; i < 3; i++)
-                {
-                    listOtherThought[i].RoundInit();
-                }
-                myThought.RoundInit();
-                yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
-                break;
             case LevelRound.Round3:
                 for (int i = 0; i < 3; i++)
                 {
@@ -220,13 +204,13 @@ public partial class LevelFirstDebate : LevelBasic
                 groupCol.gameObject.SetActive(true);
                 break;
         }
-        canvasGroup.blocksRaycasts = true;
+        canvasGroupAll.blocksRaycasts = true;
         yield break;
     }
 
     public IEnumerator IE_DragGoalFinish()
     {
-        canvasGroup.blocksRaycasts = false;
+        canvasGroupAll.blocksRaycasts = false;
         myThought.ShowContent(currentType,0);
         if(currentRound == LevelRound.Round1)
         {
@@ -266,15 +250,23 @@ public partial class LevelFirstDebate : LevelBasic
 
     #endregion
 
-    #region AboutDrag
-    public void SetCurrentDragging(ThoughtType type)
+    #region AboutDragExtra
+    public override void SetCurrentDragging(int typeID)
     {
-        currentType = type;
+        currentType = (ThoughtType)typeID;
     }
 
-    public void ReleaseDragging()
+    public override void ReleaseDragging()
     {
         currentType = ThoughtType.None;
+    }
+
+    public override void DragFinishCheck()
+    {
+        if (currentRound != LevelRound.Cheers)
+        {
+            StartCoroutine(IE_DragGoalFinish());
+        }
     }
     #endregion
 

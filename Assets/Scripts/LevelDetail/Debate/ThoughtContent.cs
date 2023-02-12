@@ -38,6 +38,7 @@ public class ThoughtContent : MonoBehaviour
         }
     }
 
+    //Init the thought content every round starts
     public void RoundInit()
     {
         if (isOther)
@@ -50,13 +51,14 @@ public class ThoughtContent : MonoBehaviour
         }
     }
 
+    //The animation of scaling down to zero 
     public void HideAni()
     {
         imgContent.DOFade(0, GameGlobal.timeFD_commonAni);
         imgContent.transform.DOScale(0, GameGlobal.timeFD_commonAni);
     }
 
-
+    //Show My thought don't need delay
     private IEnumerator IE_ShowMe(ThoughtType type)
     {
         switch (type)
@@ -76,6 +78,7 @@ public class ThoughtContent : MonoBehaviour
         yield break;
     }
 
+    //Other people's thought need delay
     private IEnumerator IE_delayShowOther(ThoughtType type, float delayTime)
     {
         yield return new WaitForSeconds(delayTime);

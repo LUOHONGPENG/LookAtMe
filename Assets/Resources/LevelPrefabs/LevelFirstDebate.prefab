@@ -734,7 +734,7 @@ MonoBehaviour:
   currentRound: 0
   pfPeople: {fileID: 4785879437730050918, guid: f3a8c74ce77c81b4f9a37ab553540e5b, type: 3}
   tfContentPeople: {fileID: 4160003393038550951}
-  tfGroupSlot: {fileID: 4817099447802194865}
+  tfGroupMe: {fileID: 4817099447802194865}
   listGroupFrame:
   - {fileID: 7709005592917691888}
   - {fileID: 2945995094693324982}
@@ -751,13 +751,12 @@ MonoBehaviour:
   - {x: -150, y: 20}
   - {x: 0, y: 20}
   - {x: 150, y: 20}
-  listDragItem: []
   dragSlot: {fileID: 3201916146818934095}
   pfCheer: {fileID: 1592113188136139594, guid: a9ff613208b6b5a45916e51ded36e657, type: 3}
   pfDragCheer: {fileID: 868612695627091005, guid: 8429fc102db915746b8792e8a326e6ec, type: 3}
   groupCol: {fileID: 792059447731812318}
   triggerCheer: {fileID: 2858052559080823171}
-  canvasGroup: {fileID: 6851154495776569052}
+  canvasGroupAll: {fileID: 6851154495776569052}
   isCheer: 0
 --- !u!225 &6851154495776569052
 CanvasGroup:

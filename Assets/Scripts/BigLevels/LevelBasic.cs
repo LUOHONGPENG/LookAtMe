@@ -8,6 +8,7 @@ public class LevelBasic : MonoBehaviour
     private LevelManager parent;
     public Button btnCommonFullClick;
 
+    #region Basic
     public virtual void Init(LevelManager parent)
     {
         this.parent = parent;
@@ -26,10 +27,18 @@ public class LevelBasic : MonoBehaviour
     {
         parent.NextLevel();
     }
+    #endregion
 
-    public virtual void AfterShoot()
-    {
 
-    }
+    #region ExtraFunc_Shoot
+    public virtual void AfterShoot() { }
 
+    #endregion
+
+    #region ExtraFunc_Drag
+    public virtual void SetCurrentDragging(int typeID) { }
+    public virtual void ReleaseDragging() { }
+
+    public virtual void DragFinishCheck() { }
+    #endregion
 }

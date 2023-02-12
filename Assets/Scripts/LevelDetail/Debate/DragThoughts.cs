@@ -15,10 +15,10 @@ public class DragThoughts : CommonImageDrag
     public List<Sprite> listSpThought;
 
     private Vector2 posStart;
-    private LevelFirstDebate parent;
+    private LevelBasic parent;
 
 
-    public void Init(ThoughtType type, LevelFirstDebate parent)
+    public void Init(ThoughtType type, LevelBasic parent)
     {
         this.parent = parent;
         this.thoughtType = type;
@@ -54,7 +54,7 @@ public class DragThoughts : CommonImageDrag
         //Remember the start position
         this.posStart = this.transform.position;
 
-        parent.SetCurrentDragging(thoughtType);
+        parent.SetCurrentDragging((int)thoughtType);
     }
 
     public override void DragDeal(PointerEventData eventData)
