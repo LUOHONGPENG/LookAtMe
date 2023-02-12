@@ -4,6 +4,7 @@ using UnityEngine;
 
 public partial class LevelManager
 {
+    #region ShootPhotoData
     [HideInInspector]
     public Sprite spLastShoot;
     [HideInInspector]
@@ -14,5 +15,12 @@ public partial class LevelManager
         this.spLastShoot = sp;
         this.posLastShoot = pos;
     }
+    #endregion
 
+    #region Dress
+    public DressType savedDressType = DressType.None;
+
+
+
+    #endregion
 }

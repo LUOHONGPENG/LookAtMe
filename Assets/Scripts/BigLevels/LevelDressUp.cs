@@ -69,7 +69,8 @@ public class LevelDressUp : LevelBasic
                 listDragDress[1].SuddenHide();
                 break;
         }
-
+        //Save the type
+        GameManager.Instance.levelManager.savedDressType = currentType;
         //Change to next level after 2 seconds
         yield return new WaitForSeconds(2f);
         InitShootPhoto();
