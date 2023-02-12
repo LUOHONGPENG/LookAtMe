@@ -42,6 +42,13 @@ public class DragDress : CommonImageDrag
         rtDress.anchoredPosition = pos;
     }
 
+    //Will be call after dragged into character
+    public void SuddenHide()
+    {
+        imgDress.gameObject.SetActive(false);
+    }
+
+
     #region Drag
     //drag the dresses
     public override void BeginDragDeal(PointerEventData eventData)

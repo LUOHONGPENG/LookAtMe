@@ -107,4 +107,9 @@ public class ItemInsPhoto : MonoBehaviour
         this.transform.DOScaleY(GameGlobal.scaleFP_photoToInsY, 0.5f);
         this.transform.DORotateQuaternion(Quaternion.Euler(new Vector3(0, 0, -10f)), 0.5f);
     }
+
+    public void MoveTo(Vector2 pos)
+    {
+        this.transform.DOLocalMove(pos, 0.5f);
+    }
 }

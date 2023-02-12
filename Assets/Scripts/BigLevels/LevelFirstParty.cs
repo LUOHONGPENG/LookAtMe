@@ -25,7 +25,6 @@ public class LevelFirstParty : LevelBasic
     private List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
     //When 4 people look the character, it become true
     public bool isLookDone = false;
-    public bool isShootDone = false;
 
     public override void Init(LevelManager parent)
     {
@@ -96,7 +95,7 @@ public class LevelFirstParty : LevelBasic
 
     #endregion
 
-    #region Shoot
+    #region ShootPhoto
 
     public void InitShootPhoto()
     {
