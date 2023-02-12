@@ -8,10 +8,10 @@ using DG.Tweening;
 public class DragThoughts : CommonImageDrag
 {
     public RectTransform rectTransform;
-    public Image imgContent;
    
     [HideInInspector]
     public ThoughtType thoughtType;
+    public Image imgContent;
     public List<Sprite> listSpThought;
 
     private Vector2 posStart;
@@ -38,12 +38,11 @@ public class DragThoughts : CommonImageDrag
         }
     }
 
-    public void SetPosition(Vector2 pos)
+    //Important: This should be called before Init()
+    public void InitPosition(Vector2 pos)
     {
         rectTransform.anchoredPosition = pos;
     }
-
-
 
     #region Drag
     //drag the dresses

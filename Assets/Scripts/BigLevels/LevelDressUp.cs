@@ -6,52 +6,54 @@ using UnityEngine.UI;
 
 public enum DressType
 {
-    dress1,
-    dress2,
+    Duck,
+    Flower,
     None
 }
 public class LevelDressUp : LevelBasic
 {
     public DressType currentType;
-    public GameObject objCharacter;
-    public List<Sprite> newCharacter;
-    public List<DragDress> listDragDress = new List<DragDress>();
-    public DressSlot itemDressSlot;
+    [Header("Clothes")]
+    public GameObject pfDress;
+    public Transform tfContentDress;
+    public List<Vector2> listPosDress = new List<Vector2>();
+    private List<DragDress> listDragDress = new List<DragDress>();
+    [Header("Character")]
+    public ItemCharacterDressUp itemCharacter;
 
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
-        itemDressSlot.Init(this);
-        InitialDresses();
+        itemCharacter.Init(this);
+        InitDress();
     }
 
     
-    public void InitialDresses()
+    public void InitDress()
     {
-        listDragDress[0].Init(DressType.dress1,this);
-        listDragDress[1].Init(DressType.dress2, this);
-    }
- public void ChangeCharacterDress()
-    {
-       //change the character image here according to the input from DragDress;
-       if(currentType == DressType.dress1)
+        //Init Dress
+        listDragDress.Clear();
+        PublicTool.ClearChildItem(tfContentDress);
+        for(int i = 0; i < 2; i++)
         {
-            print("dress1");
-            //character's spriet change to newCharacter[0]
-        }else if (currentType == DressType.dress2)
-        {
-            print("dress1");
-            //character's spriet change to newCharacter[1]
+            GameObject objDress = GameObject.Instantiate(pfDress, tfContentDress);
+            DragDress itemDress = objDress.GetComponent<DragDress>();
+            itemDress.InitPosition(listPosDress[i]);
+            listDragDress.Add(itemDress);
         }
-        else { }
-
+        listDragDress[0].Init(DressType.Duck, this);
+        listDragDress[1].Init(DressType.Flower, this);
     }
 
 
-
-    public void SetCurrentDress(DressType type)
+    public void SetCurrentDragging(DressType type)
     {
         currentType = type;
+    }
+
+    public override void ReleaseDragging()
+    {
+        currentType = DressType.None;
     }
 
     public IEnumerator IE_DragGoalFinish()

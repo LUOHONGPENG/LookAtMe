@@ -117,7 +117,7 @@ public partial class LevelSecondDebate : LevelBasic
             GameObject objDrag = GameObject.Instantiate(pfDrag, tfContentDrag);
             //Important code for automatically generating prefab
             DragThoughts itemDrag = objDrag.GetComponent<DragThoughts>();
-            itemDrag.SetPosition(listDragPos[i]);
+            itemDrag.InitPosition(listDragPos[i]);
             listDragItem.Add(itemDrag);
         }
         listDragItem[0].Init(ThoughtType.Square, this);

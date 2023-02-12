@@ -5,61 +5,74 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class DragDress : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler,IDropHandler
+public class DragDress : CommonImageDrag
 {
-
-    private LevelDressUp parent;
-    public DressType dresstype;//send dragging type
-    public Image imgDress;
     public RectTransform rtDress;
+
+    [HideInInspector]
+    public DressType dressType;//send dragging type
+    public Image imgDress;
+    public List<Sprite> listSpDress = new List<Sprite>();
+
+    private Vector2 posStart;
+    private LevelDressUp parent;
+
 
     public void Init(DressType type,LevelDressUp parent)
     {
         this.parent = parent;
-       // this.dresstype = type;
-
-    }
-
-    //drag the dresses
-    public void OnBeginDrag(PointerEventData eventData) {
-       /*
-        if(gameObject.name == "clothes1")
+        this.dressType = type;
+        //Remember the start position
+        this.posStart = this.transform.position;
+        switch (type)
         {
-            dresstype = DressType.dress1;
-        }else if (gameObject.name == "clothes2") {
-            dresstype = DressType.dress2;
+            case DressType.Duck:
+                imgDress.sprite = listSpDress[0];
+                break;
+            case DressType.Flower:
+                imgDress.sprite = listSpDress[1];
+                break;
         }
-        else { }
-        */
-        
-        imgDress.raycastTarget = false;
-        imgDress.DOFade(0.8f, 0);
-        parent.SetCurrentDress(dresstype);
-      
+        imgDress.SetNativeSize();
+    }
 
-    }
-    public void OnDrag(PointerEventData eventData)
+    //Important: This should be called before Init()
+    public void InitPosition(Vector2 pos)
     {
-        //Debug.Log("onDrag");
-        rtDress.anchoredPosition += eventData.delta;
+        rtDress.anchoredPosition = pos;
     }
-    public void OnEndDrag(PointerEventData eventData)
+
+    #region Drag
+    //drag the dresses
+    public override void BeginDragDeal(PointerEventData eventData)
+    {
+        imgDress.raycastTarget = false;
+        imgDress.DOFade(0.2f, 0);
+        //Remember the start position
+        this.posStart = this.transform.position;
+
+        parent.SetCurrentDragging(dressType);
+    }
+
+    public override void DragDeal(PointerEventData eventData)
+    {
+        //rectTransform.anchoredPosition += eventData.delta;
+        this.transform.position = PublicTool.GetMousePosition2D();
+    }
+
+    public override void EndDragDeal(PointerEventData eventData)
     {
         imgDress.raycastTarget = true;
-        imgDress.DOFade(0f, 0);
+        imgDress.DOFade(1f, 0);
+        this.transform.DOMove(posStart, 0.5f);
 
-
-    }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        //Debug.Log("onPointerDone");
-    }
-    public void OnDrop(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException(); //put dress on character
+        parent.ReleaseDragging();
     }
 
-    
+    #endregion
+
+
+
 
 
 }

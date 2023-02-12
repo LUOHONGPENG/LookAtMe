@@ -70,6 +70,7 @@ public partial class LevelSecondDebate : LevelBasic
     }
     #endregion
 
+    
     #region BattleCheck&Ani
 
     private void CheckWhetherLeaveScreen()
