@@ -186,9 +186,11 @@ MonoBehaviour:
   currentLevelState: 0
   tfContentSprite: {fileID: 5561957713991265299}
   tfContentImage: {fileID: 8140261380541772036}
-  canvasShake: {fileID: 0}
   isTestMode: 0
   testState: 0
+  spLastShoot: {fileID: 0}
+  posLastShoot: {x: 0, y: 0}
+  savedDressType: 2
 --- !u!1 &5431431518196013289
 GameObject:
   m_ObjectHideFlags: 0
