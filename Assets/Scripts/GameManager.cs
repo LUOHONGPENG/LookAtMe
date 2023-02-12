@@ -10,8 +10,9 @@ public class GameManager : MonoSingleton<GameManager>
     public CameraShake cameraShake;
 
     [Header("Manager")]
-    public SoundManager soundManager;
     public LevelManager levelManager;
+    public SoundManager soundManager;
+    public EffectManager effectManager;
     public DataManager dataManager;
 
     public void Start()
