@@ -7,7 +7,13 @@ using DG.Tweening;
 public class LevelSecondIns : LevelBasic
 {
     public CanvasGroup canvasGroupAll;
+    [Header("Photo")]
+    public GameObject pfPhoto;
+    public Transform tfContentPhoto;
+    private ItemInsPhoto itemPhoto;
+    public Image imgBlack;
     [Header("Like")]
+    public Image imgInsPhoto;
     public Image imgLike;
     public Button btnLike;
     public Text codeLikeMe;
@@ -43,6 +49,7 @@ public class LevelSecondIns : LevelBasic
         CheckScroll();
     }
 
+    #region Init
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
@@ -58,6 +65,7 @@ public class LevelSecondIns : LevelBasic
         });
 
         //UI Init
+        layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
         imgLike.DOFade(0, 0);
         btnLike.interactable = true;
         imgPicB.gameObject.SetActive(false);
@@ -66,11 +74,42 @@ public class LevelSecondIns : LevelBasic
         numLikeOther = 2;
         numFreeRound = 0;
         codeLikeOther.text = numLikeOther.ToString();
-        canvasGroupAll.blocksRaycasts = true;
+        canvasGroupAll.blocksRaycasts = false;
 
         currentRound = LevelRound.Like;
+        
+        InitPhoto();
+        StartCoroutine(IE_InitAni());
+    }
+
+    public void InitPhoto()
+    {
+        imgBlack.DOFade(1f,0);
+
+        GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
+        itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
+        itemPhoto.Init(this, PhotoType.Display,1200f,-800f);
+        imgInsPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
+        imgInsPhoto.transform.localPosition = GameManager.Instance.levelManager.posLastShoot;
+        imgInsPhoto.SetNativeSize();
+        imgInsPhoto.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10F));
+
+    }
+
+    public IEnumerator IE_InitAni()
+    {
+        itemPhoto.MoveTo(new Vector2(20.2f, 105.4f), 0.5F);
+        yield return new WaitForSeconds(0.8F);
+        imgBlack.DOFade(0, 0.5f);
+        itemPhoto.canvasGroupPhoto.DOFade(0, 0.5f);
+        yield return new WaitForSeconds(1F);
+        canvasGroupAll.blocksRaycasts = true;
+        PublicTool.ClearChildItem(tfContentPhoto);
         InitRound();
     }
+
+
+    #endregion
 
     #region Action
     private IEnumerator IE_ClickLike()
@@ -88,6 +127,11 @@ public class LevelSecondIns : LevelBasic
     {
         if (scrollDragCheck.isDrag && rtContent.anchoredPosition.y < -100 && !isRefreshDone)
         {
+            if (rtContent.anchoredPosition.y < -128f)
+            {
+                rtContent.anchoredPosition = new Vector2(0, -128F);
+            }
+
             isRefreshRequired = true;
         }
         else if(scrollDragCheck.isEndDrag && isRefreshRequired )
@@ -113,10 +157,11 @@ public class LevelSecondIns : LevelBasic
     private IEnumerator IE_FirstScroll()
     {
         canvasGroupAll.blocksRaycasts = false;
-        layout.padding = new RectOffset(0, 0, 0, 0);
+        layout.padding = new RectOffset(0, 0, 0, GameGlobal.constSI_paddingBottom);
+        rtContent.anchoredPosition = Vector2.zero;
         imgRrefresh.sprite = listSpRefresh[1];
-        yield return new WaitForSeconds(2f);
-        layout.padding = new RectOffset(0, 0, -126, 0);
+        yield return new WaitForSeconds(1.5f);
+        layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
         imgRrefresh.sprite = listSpRefresh[0];
         codeLikeMe.text = 2.ToString();
         canvasGroupAll.blocksRaycasts = true;
@@ -126,10 +171,11 @@ public class LevelSecondIns : LevelBasic
     private IEnumerator IE_SecondScroll()
     {
         canvasGroupAll.blocksRaycasts = false;
-        layout.padding = new RectOffset(0, 0, 0, 0);
+        layout.padding = new RectOffset(0, 0, 0, GameGlobal.constSI_paddingBottom);
+        rtContent.anchoredPosition = Vector2.zero;
         imgRrefresh.sprite = listSpRefresh[1];
-        yield return new WaitForSeconds(2f);
-        layout.padding = new RectOffset(0, 0, -126, 0);
+        yield return new WaitForSeconds(1.5f);
+        layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
         imgRrefresh.sprite = listSpRefresh[0];
         imgPicB.gameObject.SetActive(true);
         objGapB.SetActive(true);
@@ -143,15 +189,16 @@ public class LevelSecondIns : LevelBasic
     private IEnumerator IE_FreeScroll()
     {
         canvasGroupAll.blocksRaycasts = false;
-        layout.padding = new RectOffset(0, 0, 0, 0);
+        layout.padding = new RectOffset(0, 0, 0, GameGlobal.constSI_paddingBottom);
+        rtContent.anchoredPosition = Vector2.zero;
         imgRrefresh.sprite = listSpRefresh[1];
-        yield return new WaitForSeconds(2f);
-        layout.padding = new RectOffset(0, 0, -126, 0);
+        yield return new WaitForSeconds(1.5f);
+        layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
         imgRrefresh.sprite = listSpRefresh[0];
 
-        int ranNum = Random.Range(100, 300);
+        int ranNum = Random.Range(50, 100);
 
-        float timerDelta = GameGlobal.timerSI_freeScrollNumGrow / 4;
+        float timerDelta = GameGlobal.timerSI_freeScrollNumGrow / 4F;
         yield return StartCoroutine(IE_LikeLoop(ranNum, timerDelta / ranNum));
         yield return StartCoroutine(IE_LikeLoop(5 * ranNum, 2* timerDelta / (ranNum*5)));
         yield return StartCoroutine(IE_LikeLoop(ranNum, timerDelta / ranNum));
@@ -190,7 +237,6 @@ public class LevelSecondIns : LevelBasic
             case LevelRound.Like:
                 isRefreshDone = true;
                 scrollRect.vertical = false;
-                layout.padding = new RectOffset(0, 0, -126, 0);
 
                 break;
             case LevelRound.FirstScroll:

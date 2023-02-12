@@ -25,7 +25,7 @@ public class ItemInsPhoto : MonoBehaviour
     private bool isInit = false;
     private bool isShoot = false;
 
-    public void Init(LevelBasic parent,PhotoType type)
+    public void Init(LevelBasic parent,PhotoType type,float posX = 0, float posY = 0)
     {
         this.photoType = type;
         this.parent = parent;
@@ -49,10 +49,10 @@ public class ItemInsPhoto : MonoBehaviour
             case PhotoType.Display:
                 isShoot = true;
                 btnShoot.interactable = false;
-                imgPhoto.DOFade(1f, 0);
-                this.transform.localPosition = new Vector2(20.2f, 99.4f);
+                this.transform.localPosition = new Vector2(posX, posY);
                 this.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10f));
                 this.transform.localScale = new Vector3(GameGlobal.scaleFP_photoToInsX, GameGlobal.scaleFP_photoToInsY, 1);
+                imgPhoto.DOFade(1f, 0);
                 imgPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
                 imgPhoto.SetNativeSize();
                 imgPhoto.transform.localPosition = GameManager.Instance.levelManager.posLastShoot;

@@ -69,7 +69,7 @@ public class LevelFirstIns : LevelBasic
     {
         GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
         itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
-        itemPhoto.Init(this, PhotoType.Display);
+        itemPhoto.Init(this, PhotoType.Display,20.2f,99.4f);
 
 
         imgInsPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
