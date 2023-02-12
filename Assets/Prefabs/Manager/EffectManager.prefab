@@ -76,4 +76,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd502e6e66a547e42a7c5cfa99302bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentPostProcess: {fileID: 1428293021806393227}
+  tfPostProcess: {fileID: 1428293021806393227}
+  efSPVignette: {fileID: 3551075773992416232, guid: ef2f5fddf747d3040af7efb6d9584446, type: 3}

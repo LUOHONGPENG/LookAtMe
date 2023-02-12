@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class LevelSecondParty : LevelBasic
 {
@@ -11,17 +14,35 @@ public class LevelSecondParty : LevelBasic
     public List<Vector2> listPosPartyPeople = new List<Vector2>();
     private List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
 
+    public Image imgBlack;
+
     [Header("MainCharacter")]
     public ItemCharacterDressUp itemCharacter;
     private int countFilp = 0;
     private bool isTriggerDark = false;
 
+    //PostProcess
+    private Vignette efVignette;
+    private bool isInitVignette = false;
+    private float timerVignette = 0;
+
+    private void Update()
+    {
+        CheckVigEffect();
+    }
+
+
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
-        canvasGroupParty.alpha = 1f;
+        //Data
         isTriggerDark = false;
         countFilp = 0;
+        isInitVignette = false;
+        timerVignette = 0;
+        //View
+        imgBlack.gameObject.SetActive(false);
+        canvasGroupParty.alpha = 1f;
         InitPrefab();
         itemCharacter.ChangeClothes(GameManager.Instance.levelManager.savedDressType);
     }
@@ -75,9 +96,38 @@ public class LevelSecondParty : LevelBasic
 
     public IEnumerator IE_FlipGoalDeal()
     {
-
-
+        InitVigEffect();
+        yield return new WaitForSeconds(5f);
+        isInitVignette = false;
+        GameManager.Instance.effectManager.ClearContent();
+        imgBlack.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         NextLevel();
     }
+
+    #region Vignette
+    public void InitVigEffect()
+    {
+        GameObject objVip = GameManager.Instance.effectManager.InitSPVig();
+        Volume volume = objVip.GetComponent<Volume>();
+        Vignette tmp;
+        if (volume.profile.TryGet<Vignette>(out tmp))
+        {
+            efVignette = tmp;
+            efVignette.intensity.value = 0;
+            isInitVignette = true;
+        }
+    }
+
+    public void CheckVigEffect()
+    {
+        if (isInitVignette)
+        {
+            timerVignette += Time.deltaTime;
+
+            efVignette.intensity.value = timerVignette * 0.18f;
+        }
+    }
+
+    #endregion
 }
