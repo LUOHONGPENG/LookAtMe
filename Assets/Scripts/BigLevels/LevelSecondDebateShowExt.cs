@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public partial class LevelSecondDebate : LevelBasic
 {
+    #region ThoughtGoalAni
     private void GoalFinishGenerateOtherThought()
     {
         for (int i = 0; i < 3; i++)
@@ -44,7 +45,9 @@ public partial class LevelSecondDebate : LevelBasic
             listDragItem[i].transform.DOScale(0, GameGlobal.timeFD_commonAni);
         }
     }
+    #endregion
 
+    #region PeopleAni
     private void InitRoundNormalPeople()
     {
         for (int i = 0; i < 3; i++)
@@ -65,4 +68,58 @@ public partial class LevelSecondDebate : LevelBasic
             itemPeopleMe.SurprisePeople();
         }
     }
+    #endregion
+
+    #region BattleCheck&Ani
+
+    private void CheckWhetherLeaveScreen()
+    {
+        if (currentRound != LevelRound.Battle || isSharpWin || !canDragSharp)
+        {
+            return;
+        }
+
+        for(int i = 0; i < 3; i++)
+        {
+            if (!CheckWhetherInScreen(listColOther[i]) && listColInScreen[i])
+            {
+                listPeople[i].SurprisePeople();
+                listColInScreen[i] = false;
+            }
+        }
+
+        //CheckWhetherThreeOutScreen
+        int numOutScreen = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            if (!listColInScreen[i])
+            {
+                numOutScreen++;
+            }
+        }
+        if (numOutScreen >= 3)
+        {
+            isSharpWin = true;
+            StartCoroutine(IE_EndRound());
+        }
+
+    }
+
+    private bool CheckWhetherInScreen(BoxCollider2D targetCol)
+    {
+        ContactFilter2D filter = new ContactFilter2D().NoFilter();
+        List<Collider2D> results = new List<Collider2D>();
+        targetCol.OverlapCollider(filter, results);
+        foreach (BoxCollider2D col in results)
+        {
+            if (col.tag == "ColDetect")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    #endregion
 }

@@ -14,6 +14,7 @@ public partial class LevelSecondDebate : LevelBasic
     }
 
     public LevelRound currentRound = LevelRound.Round1;
+    public CanvasGroup canvasGroupAll;
 
     [Header("People")]
     public GameObject pfPeople;
@@ -39,10 +40,22 @@ public partial class LevelSecondDebate : LevelBasic
     private List<DragThoughts> listDragItem = new List<DragThoughts>();
     public ThoughtsSlot dragSlot;
 
-    public CanvasGroup canvasGroupAll;
+    [Header("Battle")]
+    public List<BoxCollider2D> listColOther = new List<BoxCollider2D>();
+    public List<bool> listColInScreen;
+    public GameObject pfDragSharp;
+    private DragSharp itemSharp;
+    public BoxCollider2D triggerCheckLeaveScreen;
+    public bool canDragSharp = false;
+    private bool isSharpWin = false;
 
     private ThoughtType currentType = ThoughtType.None;
     private ThoughtType firstRoundType = ThoughtType.None;
+
+    private void Update()
+    {
+        CheckWhetherLeaveScreen();
+    }
 
     #region Init
 
@@ -52,7 +65,12 @@ public partial class LevelSecondDebate : LevelBasic
 
         InitPrefabs();
 
+        //Initialize data
+        canDragSharp = false;
+        isSharpWin = false;
+        listColInScreen = new List<bool>() { true, true, true };
         currentRound = LevelRound.Round1;
+
         StartCoroutine(IE_InitRound());
     }
 
@@ -157,7 +175,14 @@ public partial class LevelSecondDebate : LevelBasic
                 yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
                 break;
             case LevelRound.Battle:
-
+                dragSlot.transform.DOScale(0, GameGlobal.timeFD_commonAni);
+                yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
+                GameObject objSharp = GameObject.Instantiate(pfDragSharp, tfGroupMe);
+                itemSharp = objSharp.GetComponent<DragSharp>();
+                itemSharp.Init(tfGroupMe,this);
+                itemSharp.transform.DOScale(1f, GameGlobal.timeFD_commonAni);
+                yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
+                canDragSharp = true;
                 break;
         }
 

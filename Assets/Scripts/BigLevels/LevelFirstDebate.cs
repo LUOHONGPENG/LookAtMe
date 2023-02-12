@@ -23,6 +23,8 @@ public partial class LevelFirstDebate : LevelBasic
     }
 
     public LevelRound currentRound = LevelRound.Round1;
+    public CanvasGroup canvasGroupAll;
+
 
     [Header("People")]
     public GameObject pfPeople;
@@ -55,12 +57,10 @@ public partial class LevelFirstDebate : LevelBasic
     private DragCheer itemDragCheer;
     public GameObject groupCol;
     public BoxCollider2D triggerCheer;
-
-    public CanvasGroup canvasGroupAll;
+    public bool isCheer = false;
 
     private ThoughtType currentType = ThoughtType.None;
     private ThoughtType firstRoundType = ThoughtType.None;
-    public bool isCheer = false;
 
     #region Init
     //Initialize
