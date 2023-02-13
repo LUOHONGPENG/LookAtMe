@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 
 public enum DressType
 {
@@ -22,6 +22,7 @@ public class LevelDressUp : LevelBasic
     [Header("Character")]
     public ItemCharacterDressUp itemCharacter;
     [Header("Photo")]
+    public Button btnShoot;
     public GameObject pfPhoto;
     public Transform tfContentPhoto;
     private ItemInsPhoto itemPhoto;
@@ -31,6 +32,15 @@ public class LevelDressUp : LevelBasic
         base.Init(parent);
         canvasGroupDress.blocksRaycasts = true;
         itemCharacter.Init(this);
+        btnShoot.interactable = false;
+        btnShoot.transform.DOScale(0, 0);
+        btnShoot.onClick.RemoveAllListeners();
+        btnShoot.onClick.AddListener(delegate ()
+        {
+            btnShoot.interactable = false;
+            btnShoot.transform.DOScale(0, 0.5f);
+            StartCoroutine(InitShootPhoto());
+        });
         InitDress();
     }
 
@@ -71,10 +81,8 @@ public class LevelDressUp : LevelBasic
         }
         //Save the type
         GameManager.Instance.levelManager.savedDressType = currentType;
-        //Change to next level after 2 seconds
-        yield return new WaitForSeconds(2f);
-        InitShootPhoto();
-        yield break;
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(IE_ShowButton());
     }
 
     public void SetCurrentDragging(DressType type)
@@ -90,11 +98,26 @@ public class LevelDressUp : LevelBasic
 
     #region ShootPhoto
 
-    public void InitShootPhoto()
+    public IEnumerator IE_ShowButton()
+    {
+        btnShoot.transform.DOScale(1f, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        btnShoot.interactable = true;
+    }
+
+    public IEnumerator InitShootPhoto()
     {
         GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
         itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
-        itemPhoto.Init(this, false);
+        itemPhoto.Init(this, PhotoType.Auto);
+        itemPhoto.MoveTo(new Vector2(1200F, -800F), 0f);
+        yield return new WaitForEndOfFrame();
+        itemPhoto.MoveTo(new Vector2(80F, -80F), 0.5f);
+        yield return new WaitForSeconds(0.5F);
+        itemPhoto.MoveTo(new Vector2(-100F, 150F), 1f);
+        yield return new WaitForSeconds(1F);
+        itemPhoto.ShootExecute();
+        yield break;
     }
 
     public override void AfterShoot()
@@ -105,7 +128,7 @@ public class LevelDressUp : LevelBasic
     public IEnumerator IE_AfterShoot()
     {
         yield return new WaitForSeconds(2f);
-        itemPhoto.MoveTo(new Vector2(1200F, -800F));
+        itemPhoto.MoveTo(new Vector2(1200F, -800F),0.5f);
         yield return new WaitForSeconds(2f);
         NextLevel();
     }

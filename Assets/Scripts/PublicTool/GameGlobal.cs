@@ -17,4 +17,11 @@ public static class GameGlobal
 
     //SecondParty
     public static int countSP_fail = 12;
+
+    //SecondIns
+    public static int countSI_freeScroll = 3;
+    public static float timerSI_freeScrollNumGrow = 2f;
+    public static int constSI_paddingTop = -126;
+    public static int constSI_paddingBottom = 150;
+
 }
