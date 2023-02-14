@@ -7,6 +7,7 @@ public class EffectManager : MonoBehaviour
     public Transform tfPostProcess;
 
     public GameObject efSPVignette;
+    public GameObject efTIBlur;
 
     public void ClearContent()
     {
@@ -15,9 +16,13 @@ public class EffectManager : MonoBehaviour
 
     public GameObject InitSPVig()
     {
-        ClearContent();
         GameObject obj = GameObject.Instantiate(efSPVignette, tfPostProcess);
         return obj;
     }
 
+    public GameObject InitTIBlur()
+    {
+        GameObject obj = GameObject.Instantiate(efTIBlur, tfPostProcess);
+        return obj;
+    }
 }

@@ -106,7 +106,7 @@ public class LevelSecondParty : LevelBasic
     }
 
     #region Vignette
-    public void InitVigEffect()
+    private void InitVigEffect()
     {
         GameObject objVip = GameManager.Instance.effectManager.InitSPVig();
         Volume volume = objVip.GetComponent<Volume>();
@@ -119,7 +119,7 @@ public class LevelSecondParty : LevelBasic
         }
     }
 
-    public void CheckVigEffect()
+    private void CheckVigEffect()
     {
         if (isInitVignette)
         {

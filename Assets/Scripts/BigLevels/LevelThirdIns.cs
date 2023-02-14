@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class LevelThirdIns : LevelBasic
 {
@@ -28,9 +30,15 @@ public class LevelThirdIns : LevelBasic
     public Transform tfContentComment;
     public List<Vector2> listPosComment = new List<Vector2>();
 
+    //PostProcess
+    private DepthOfField efBlur;
+    private bool isInitBlur = false;
+    private float timerBlur = 0;
+
     private void Update()
     {
         CheckScroll();
+        CheckBlurEffect();
     }
 
     #region Init
@@ -112,13 +120,18 @@ public class LevelThirdIns : LevelBasic
         yield return new WaitForSeconds(0.5f);
         GenerateComment();
         yield return new WaitForSeconds(2f);
+        InitBlur();
+        yield return new WaitForSeconds(5f);
+        isInitBlur = false;
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.effectManager.ClearContent();
         NextLevel();
     }
 
     #endregion
 
     #region Comment
-    public void GenerateComment()
+    private void GenerateComment()
     {
         for (int i = 0; i < 5; i++)
         {
@@ -128,6 +141,32 @@ public class LevelThirdIns : LevelBasic
             ItemInsComment itemComment = objComment.GetComponent<ItemInsComment>();
             itemComment.InitImage(i, false);
             itemComment.InitAni(ranTime);
+        }
+    }
+    #endregion
+
+    #region Blur
+
+    private void InitBlur()
+    {
+        GameObject objBlur = GameManager.Instance.effectManager.InitTIBlur();
+        Volume volume = objBlur.GetComponent<Volume>();
+        DepthOfField tmp;
+        if (volume.profile.TryGet<DepthOfField>(out tmp))
+        {
+            efBlur = tmp;
+            efBlur.focusDistance.value = 10f;
+            efBlur.focalLength.value = 50f;            
+            isInitBlur = true;
+        }
+    }
+
+    private void CheckBlurEffect()
+    {
+        if (isInitBlur)
+        {
+            timerBlur += Time.deltaTime;
+            efBlur.focalLength.value = 50f + timerBlur * 40f;
         }
     }
     #endregion
