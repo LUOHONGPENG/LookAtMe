@@ -8,44 +8,35 @@ public class DragCup : MonoBehaviour
 {
     private Vector3 mousePosition;
     public float moveSpeed = 0.1f;
-    public bool checkmouse;
+    public bool checkdrag;//if cups isbeen drag
     public bool isInit;
     private LevelMirror parent;
 
- 
     public void Init(LevelMirror parent)
     {
         this.parent = parent;
         isInit = true;
+        checkdrag = false;
     }
 
-        void Update()
-    { 
-        if(isInit) { 
-            Checkmouse(); 
-        }
-
-        if (checkmouse == true)
+    void Update()
+    {
+        if (isInit) {
+        if (checkdrag)
         {
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
         }
-        else { }
-       
+    }
 
     }
 
-
-    
-    public void Checkmouse()
+    private void OnMouseDown()
     {
-        if (Input.GetMouseButton(0))
-        {
-           checkmouse = true;
-           parent.CheckDragCup(checkmouse);
-        }
+        checkdrag = true;
+        parent.CheckDragCup(checkdrag);
     }
-    
-    
+
+
 }
