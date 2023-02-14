@@ -11,9 +11,9 @@ public class LevelSecondIns : LevelBasic
     public GameObject pfPhoto;
     public Transform tfContentPhoto;
     private ItemInsPhoto itemPhoto;
+    public Image imgInsPhoto;
     public Image imgBlack;
     [Header("Like")]
-    public Image imgInsPhoto;
     public Image imgLike;
     public Button btnLike;
     public Text codeLikeMe;
@@ -70,10 +70,12 @@ public class LevelSecondIns : LevelBasic
         btnLike.interactable = true;
         imgPicB.gameObject.SetActive(false);
         objGapB.SetActive(false);
+        //Like Init
         codeLikeMe.text = 0.ToString();
         numLikeOther = 2;
         numFreeRound = 0;
         codeLikeOther.text = numLikeOther.ToString();
+        //Ban interaction
         canvasGroupAll.blocksRaycasts = false;
 
         currentRound = LevelRound.Like;
@@ -89,6 +91,7 @@ public class LevelSecondIns : LevelBasic
         GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
         itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
         itemPhoto.Init(this, PhotoType.Display,1200f,-800f);
+
         imgInsPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
         imgInsPhoto.transform.localPosition = GameManager.Instance.levelManager.posLastShoot;
         imgInsPhoto.SetNativeSize();

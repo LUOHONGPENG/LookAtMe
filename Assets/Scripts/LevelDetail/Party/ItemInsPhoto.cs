@@ -145,7 +145,16 @@ public class ItemInsPhoto : MonoBehaviour
 
     public void MoveToCenter()
     {
-        this.transform.DOLocalMove(new Vector2(20.2f,99.4F), 0.5f);
+        switch(GameManager.Instance.levelManager.currentLevelState)
+        {
+            case LevelState.FirstParty:
+            case LevelState.SecondParty:
+                this.transform.DOLocalMove(new Vector2(20.2f, 99.4F), 0.5f);
+                break;
+            case LevelState.FakeSuicide:
+                this.transform.DOLocalMove(new Vector2(20.2f, 105.7f), 0.5f);
+                break;
+        }
         this.transform.DOScaleX(GameGlobal.scaleFP_photoToInsX, 0.5f);
         this.transform.DOScaleY(GameGlobal.scaleFP_photoToInsY, 0.5f);
         this.transform.DORotateQuaternion(Quaternion.Euler(new Vector3(0, 0, -10f)), 0.5f);

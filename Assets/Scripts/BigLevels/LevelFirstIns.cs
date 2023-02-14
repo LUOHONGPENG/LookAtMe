@@ -13,11 +13,10 @@ public class LevelFirstIns : LevelBasic
     public GameObject pfPhoto;
     public Transform tfContentPhoto;
     private ItemInsPhoto itemPhoto;
-
-
-    [Header("Like")]
     public Transform tfMaskPhoto;
     public Image imgInsPhoto;
+
+    [Header("Like")]
     public Image imgLike;
     public Button btnLike;
     public Text codeLike;
@@ -61,7 +60,6 @@ public class LevelFirstIns : LevelBasic
         scroll.vertical = false;
 
         InitPhoto();
-
         StartCoroutine(IE_InitAni());
     }
 
