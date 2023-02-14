@@ -20,6 +20,7 @@ public class DataManager
         dicLevelInfo.Add(LevelState.FakeSuicide, new LevelInfo(LevelState.FakeSuicide, false,true));
         dicLevelInfo.Add(LevelState.ThirdIns, new LevelInfo(LevelState.ThirdIns, true, true));
         dicLevelInfo.Add(LevelState.Mirror, new LevelInfo(LevelState.Mirror, false, true));
+        dicLevelInfo.Add(LevelState.RealSuicide, new LevelInfo(LevelState.RealSuicide, false, true));
         dicLevelInfo.Add(LevelState.Hospital, new LevelInfo(LevelState.Hospital, true, true));
     }
 

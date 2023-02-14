@@ -38,33 +38,29 @@ public class LevelFakeSuicide : LevelBasic
 
     //A coroutine that call 
     private Coroutine coNextLevel = null;
-    private bool isInitPhoto = false;
     private bool isInit = false;
 
     //Initialize
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
-
         //Data about checking drawing points
         isDrawDone = false;
-        
         foreach (ItemColDetect item in listColDetect)
         {
             item.isTouched = false;
         }
-
         //InitHand();
+        //InitDrag
         dragLipstick.Init();
-
         //Init Canvas
         GameObject objCanvas = GameObject.Instantiate(pfTempCanvas, parent.tfContentImage);
         itemCanvas = objCanvas.GetComponent<LevelTempCanvas>();
-
+        //Init Mask
         PublicTool.ClearChildItem(tfMask);
-
+        //InitPhoto
         InitPhoto();
-        isInitPhoto = false;
+        
         isInit = true;
     }
 
@@ -237,21 +233,19 @@ public class LevelFakeSuicide : LevelBasic
 
     private void GoTimeCheckDraw()
     {
-        if (isInitPhoto)
-        {
-            return;
-        }
-
         timerCheckReachAllPoints -= Time.deltaTime;
 
         if (timerCheckReachAllPoints < 0)
         {
             if (CheckAllPointsTouched())
             {
+                if (!isDrawDone)
+                {
+                    isDrawDone = true;
+                }
                 if (coNextLevel == null)
                 {
                     coNextLevel = StartCoroutine(IE_InitPhoto());
-                    isInitPhoto = true;
                 }
             }
             else
@@ -275,18 +269,7 @@ public class LevelFakeSuicide : LevelBasic
         return isAllTouched;
     }
 
-
     #endregion
-
-    //Call when level is completed
-    public IEnumerator IE_LevelComplete()
-    {
-        //Change to next level after 2 seconds
-        yield return new WaitForSeconds(2f);
-        NextLevel();
-    }
-
-    
 
 
 }

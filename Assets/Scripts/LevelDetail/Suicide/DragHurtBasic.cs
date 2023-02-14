@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class DragLipstick : MonoBehaviour
+
+public class DragHurtBasic : MonoBehaviour
 {
     public Transform tfDraw;
-    public SpriteRenderer srLipstick;
+    public SpriteRenderer srItem;
 
-    private float dragInitStartPosX;
-    private float dragInitStartPosY;
-    private float dragStartPosX;
-    private float dragStartPosY;
+    protected float dragInitStartPosX;
+    protected float dragInitStartPosY;
+    protected float dragStartPosX;
+    protected float dragStartPosY;
+
     public bool isBeingHeld = false;
-    private bool isInit = false;
     public bool canDrag = false;
+    protected bool isInit = false;
+
     public void Init()
     {
         dragInitStartPosX = this.transform.position.x;
@@ -73,8 +76,7 @@ public class DragLipstick : MonoBehaviour
 
     public void Hide(float time)
     {
-        srLipstick.DOFade(0, time);
+        srItem.DOFade(0, time);
     }
     #endregion
-
 }
