@@ -21,15 +21,15 @@ public class DragCup : MonoBehaviour
 
     void Update()
     {
-        if (isInit) {
-        if (checkdrag)
+        if (isInit) 
         {
-            mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
+            if (checkdrag)
+            {
+                mousePosition = Input.mousePosition;
+                mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
+            }
         }
-    }
-
     }
 
     private void OnMouseDown()
