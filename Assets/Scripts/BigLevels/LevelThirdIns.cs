@@ -28,12 +28,19 @@ public class LevelThirdIns : LevelBasic
     public Transform tfContentComment;
     public List<Vector2> listPosComment = new List<Vector2>();
 
+    private void Update()
+    {
+        CheckScroll();
+    }
+
+    #region Init
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
 
         //UI Init
         layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
+        scrollRect.vertical = false;
         canvasGroupIns.alpha = 0;
         //Ban interaction
         canvasGroupIns.blocksRaycasts = false;
@@ -48,7 +55,6 @@ public class LevelThirdIns : LevelBasic
         itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
         itemPhoto.Init(this, PhotoType.Display, 20.2f, 105.7f);
 
-
         imgInsPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
         imgInsPhoto.transform.localPosition = GameManager.Instance.levelManager.posLastShoot;
         imgInsPhoto.SetNativeSize();
@@ -60,6 +66,70 @@ public class LevelThirdIns : LevelBasic
         canvasGroupIns.DOFade(1f, 0.5f);
         itemPhoto.canvasGroupPhoto.DOFade(0, 0.5f);
         yield return new WaitForSeconds(1F);
-        //PublicTool.ClearChildItem(tfContentPhoto);
+        PublicTool.ClearChildItem(tfContentPhoto);
+        InitScroll();
     }
+
+    //Make the content can be scrolled
+    public void InitScroll()
+    {
+        canvasGroupIns.blocksRaycasts = true;
+        scrollRect.vertical = true;
+        isRefreshDone = false;
+    }
+    #endregion
+
+    #region ScrollAction
+
+    private void CheckScroll()
+    {
+        if (scrollDragCheck.isDrag && rtContent.anchoredPosition.y < -100 && !isRefreshDone)
+        {
+            if (rtContent.anchoredPosition.y < -128f)
+            {
+                rtContent.anchoredPosition = new Vector2(0, -128F);
+            }
+
+            isRefreshRequired = true;
+        }
+        else if (scrollDragCheck.isEndDrag && isRefreshRequired)
+        {
+            isRefreshRequired = false;
+            isRefreshDone = true;
+            StartCoroutine(IE_Scroll());
+        }
+    }
+
+    private IEnumerator IE_Scroll()
+    {
+        canvasGroupIns.blocksRaycasts = false;
+        layout.padding = new RectOffset(0, 0, 0, GameGlobal.constSI_paddingBottom);
+        rtContent.anchoredPosition = Vector2.zero;
+        imgRrefresh.sprite = listSpRefresh[1];
+        yield return new WaitForSeconds(1.5f);
+        layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
+        imgRrefresh.sprite = listSpRefresh[0];
+        yield return new WaitForSeconds(0.5f);
+        GenerateComment();
+        yield return new WaitForSeconds(2f);
+        NextLevel();
+    }
+
+    #endregion
+
+    #region Comment
+    public void GenerateComment()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            float ranTime = Random.Range(0, 1f);
+            GameObject objComment = GameObject.Instantiate(pfComment, tfContentComment);
+            objComment.transform.localPosition = listPosComment[i];
+            ItemInsComment itemComment = objComment.GetComponent<ItemInsComment>();
+            itemComment.InitImage(i, false);
+            itemComment.InitAni(ranTime);
+        }
+    }
+    #endregion
 }
+

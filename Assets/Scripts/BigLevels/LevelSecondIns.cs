@@ -154,7 +154,6 @@ public class LevelSecondIns : LevelBasic
                 StartCoroutine(IE_FreeScroll());
             }
         }
-
     }
 
     private IEnumerator IE_FirstScroll()
@@ -240,7 +239,6 @@ public class LevelSecondIns : LevelBasic
             case LevelRound.Like:
                 isRefreshDone = true;
                 scrollRect.vertical = false;
-
                 break;
             case LevelRound.FirstScroll:
                 scrollRect.vertical = true;

@@ -128,7 +128,7 @@ public class LevelFirstIns : LevelBasic
     {
         for(int i = 0; i < 5; i++)
         {
-            float ranTime = Random.Range(0, 0.5f);
+            float ranTime = Random.Range(0, 1f);
             GameObject objComment = GameObject.Instantiate(pfComment, tfContentComment);
             objComment.transform.localPosition = listPosComment[i];
             ItemInsComment itemComment = objComment.GetComponent<ItemInsComment>();
