@@ -24,4 +24,8 @@ public static class GameGlobal
     public static int constSI_paddingTop = -126;
     public static int constSI_paddingBottom = 150;
 
+    //FakeSelfAbuse
+    public static int HoleRadius = 35;
+
+
 }

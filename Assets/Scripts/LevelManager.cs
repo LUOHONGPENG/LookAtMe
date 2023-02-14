@@ -11,8 +11,10 @@ public enum LevelState
     DressUp,
     SecondParty,
     SecondIns,
-    FakeSelfAbuse,
+    FakeSuicide,
+    ThirdIns,
     Mirror,
+    RealSuicide,
     Hospital,
     End
 }
