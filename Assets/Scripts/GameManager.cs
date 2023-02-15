@@ -21,6 +21,7 @@ public class GameManager : MonoSingleton<GameManager>
         dataManager.Init();
 
         soundManager.Init();
+        effectManager.Init();
         levelManager.Init();
     }
 

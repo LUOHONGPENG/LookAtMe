@@ -91,10 +91,10 @@ public class DragHosEye : CommonImageDrag
         switch (eyeType)
         {
             case EyeType.Top:
-                DOTween.To(() => { return rtThis.anchoredPosition; }, v => { rtThis.anchoredPosition = v; }, new Vector2(0, 600f), 2f);
+                DOTween.To(() => { return rtThis.anchoredPosition; }, v => { rtThis.anchoredPosition = v; }, new Vector2(0, 700f), 2.5f);
                 break;
             case EyeType.Bottom:
-                DOTween.To(() => { return rtThis.anchoredPosition; }, v => { rtThis.anchoredPosition = v; }, new Vector2(0, -700f), 2f);
+                DOTween.To(() => { return rtThis.anchoredPosition; }, v => { rtThis.anchoredPosition = v; }, new Vector2(0, -700f), 2.5f);
                 break;
         }
         
