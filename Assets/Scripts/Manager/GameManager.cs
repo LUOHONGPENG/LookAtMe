@@ -12,6 +12,7 @@ public class GameManager : MonoSingleton<GameManager>
     [Header("Manager")]
     public LevelManager levelManager;
     public SoundManager soundManager;
+    public UIManager uiManager;
     public EffectManager effectManager;
     public DataManager dataManager;
 
