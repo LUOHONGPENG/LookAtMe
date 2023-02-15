@@ -17,6 +17,7 @@ public class LevelRealSuicide : LevelBasic
     private bool isDrawDone;
     //A coroutine that call 
     private Coroutine coNextLevel = null;
+    private Coroutine coColorEffect = null;
     private bool isInit = false;
 
     public override void Init(LevelManager parent)
@@ -67,11 +68,22 @@ public class LevelRealSuicide : LevelBasic
                         if (!itemDetect.isTouched)
                         {
                             itemDetect.isTouched = true;
+                            if(coColorEffect == null)
+                            {
+                                coColorEffect = StartCoroutine(IE_ColorEffect());
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    private IEnumerator IE_ColorEffect()
+    {
+        GameManager.Instance.effectManager.InitColor(EffectColor.EffectColorType.Red);
+        yield return new WaitForSeconds(0.8f);
+        coColorEffect = null;
     }
     #endregion
 

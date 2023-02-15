@@ -15,7 +15,10 @@ public class EffectManager : MonoBehaviour
     public GameObject pfColor;
     public void Init()
     {
-        InitWarning();
+        if (!GameManager.Instance.levelManager.isTestMode)
+        {
+            InitWarning();
+        }
     }
 
     public void ClearContent()

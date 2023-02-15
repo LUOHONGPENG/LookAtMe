@@ -34,7 +34,7 @@ public class DragHurtBasic : MonoBehaviour
         }
     }
 
-    private void CheckDrag()
+    protected virtual void CheckDrag()
     {
         if (isBeingHeld)
         {

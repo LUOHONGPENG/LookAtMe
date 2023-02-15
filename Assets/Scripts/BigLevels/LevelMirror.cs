@@ -58,6 +58,7 @@ public class LevelMirror : LevelBasic
     {
         srCrack.sprite = breakmirror[count];
         count = count + 1;
+        PublicTool.ShakeCamera();
         if (count == 3)
         {
             IfMirrorBroken = true;

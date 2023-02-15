@@ -24,9 +24,9 @@ public class EffectColor : MonoBehaviour
 
     public IEnumerator IE_ColorAni()
     {
-        imgColor.DOFade(0.7f, 0.5f);
-        yield return new WaitForSeconds(1f);
-        imgColor.DOFade(0f, 0.5f);
+        imgColor.DOFade(0.7f, 0.4f);
+        yield return new WaitForSeconds(0.5f);
+        imgColor.DOFade(0f, 0.4f);
         yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
     }
