@@ -53,6 +53,7 @@ public class DragDress : CommonImageDrag
     //drag the dresses
     public override void BeginDragDeal(PointerEventData eventData)
     {
+        base.BeginDragDeal(eventData);
         imgDress.raycastTarget = false;
         imgDress.DOFade(0.2f, 0);
         //Remember the start position

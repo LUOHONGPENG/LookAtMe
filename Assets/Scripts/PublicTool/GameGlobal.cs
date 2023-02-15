@@ -27,5 +27,8 @@ public static class GameGlobal
     //FakeSelfAbuse
     public static int HoleRadius = 35;
 
+    //Hospital
+    public static float rateHos_dragSpeed = 0.3f;
+    public static float rateHos_eyeBack = 40f;
 
 }

@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class CommonImageDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
+    protected float dragStartPosX;
+    protected float dragStartPosY;
     #region DragFunction
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -36,7 +38,9 @@ public class CommonImageDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHan
     //Will Invoke when the player begin to drag
     public virtual void BeginDragDeal(PointerEventData eventData)
     {
-
+        Vector3 mousePos = PublicTool.GetMousePosition2D();
+        dragStartPosX = mousePos.x - this.transform.position.x;
+        dragStartPosY = mousePos.y - this.transform.position.y;
     }
 
     //Will Invoke when the player is dragging

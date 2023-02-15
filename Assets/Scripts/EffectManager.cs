@@ -8,6 +8,7 @@ public class EffectManager : MonoBehaviour
 
     public GameObject efSPVignette;
     public GameObject efTIBlur;
+    public GameObject efHBlur;
 
     public void ClearContent()
     {
@@ -23,6 +24,11 @@ public class EffectManager : MonoBehaviour
     public GameObject InitTIBlur()
     {
         GameObject obj = GameObject.Instantiate(efTIBlur, tfPostProcess);
+        return obj;
+    }
+    public GameObject InitHBlur()
+    {
+        GameObject obj = GameObject.Instantiate(efHBlur, tfPostProcess);
         return obj;
     }
 }
