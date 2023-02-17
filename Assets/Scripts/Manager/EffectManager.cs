@@ -6,7 +6,7 @@ public enum TransitionIconType
 {
     Cheer,
     Dress,
-    Love,
+    Heart,
     Shape
 }
 
