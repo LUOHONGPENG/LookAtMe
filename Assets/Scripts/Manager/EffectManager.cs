@@ -11,8 +11,11 @@ public class EffectManager : MonoBehaviour
     public GameObject efHBlur;
     [Header("UIEffect")]
     public Transform tfUIEffect;
-    public GameObject pfWarning;
     public GameObject pfColor;
+    public GameObject pfTransitionIcon;
+    [Header("Warning")]
+    public Transform tfWarning;
+    public GameObject pfWarning;
     public void Init()
     {
         if (!GameManager.Instance.levelManager.isTestMode)
@@ -21,12 +24,26 @@ public class EffectManager : MonoBehaviour
         }
     }
 
-    public void ClearContent()
+    #region Clear
+    public void ClearContentAll()
     {
         PublicTool.ClearChildItem(tfPostProcess);
         PublicTool.ClearChildItem(tfUIEffect);
+        PublicTool.ClearChildItem(tfWarning);
     }
 
+    public void ClearPostProcess()
+    {
+        PublicTool.ClearChildItem(tfPostProcess);
+    }
+
+    public void ClearWarning()
+    {
+        PublicTool.ClearChildItem(tfWarning);
+    }
+    #endregion
+
+    #region PostProcess
     public GameObject InitSPVig()
     {
         GameObject obj = GameObject.Instantiate(efSPVignette, tfPostProcess);
@@ -43,13 +60,9 @@ public class EffectManager : MonoBehaviour
         GameObject obj = GameObject.Instantiate(efHBlur, tfPostProcess);
         return obj;
     }
+    #endregion
 
-    public void InitWarning()
-    {
-        GameObject obj = GameObject.Instantiate(pfWarning, tfUIEffect);
-        EffectWarning efWarning = obj.GetComponent<EffectWarning>();
-        efWarning.Init();
-    }
+    #region UIEffect
 
     public void InitColor(EffectColor.EffectColorType type)
     {
@@ -57,4 +70,21 @@ public class EffectManager : MonoBehaviour
         EffectColor effectColor = obj.GetComponent<EffectColor>();
         effectColor.Init(type);
     }
+
+    public void InitTransitionIcon(TransitionIconType type)
+    {
+        GameObject obj = GameObject.Instantiate(pfTransitionIcon, tfUIEffect);
+        EffectTransitionIcon effectIcon = obj.GetComponent<EffectTransitionIcon>();
+        effectIcon.Init(type);
+    }
+    #endregion
+
+    #region Warning
+    public void InitWarning()
+    {
+        GameObject obj = GameObject.Instantiate(pfWarning, tfWarning);
+        EffectWarning efWarning = obj.GetComponent<EffectWarning>();
+        efWarning.Init();
+    }
+    #endregion
 }

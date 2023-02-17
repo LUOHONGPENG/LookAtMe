@@ -99,7 +99,7 @@ public class LevelSecondParty : LevelBasic
         InitVigEffect();
         yield return new WaitForSeconds(5f);
         isInitVignette = false;
-        GameManager.Instance.effectManager.ClearContent();
+        GameManager.Instance.effectManager.ClearPostProcess();
         imgBlack.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         NextLevel();

@@ -237,12 +237,14 @@ public partial class LevelFirstDebate : LevelBasic
 
     public IEnumerator IE_EndRound()
     {
-        yield return new WaitForSeconds(GameGlobal.timeFD_roundInterval);
-        if(currentRound == LevelRound.Cheers)
+        if (currentRound == LevelRound.Cheers)
         {
+            GameManager.Instance.effectManager.InitTransitionIcon(TransitionIconType.Cheer);
+            yield return new WaitForSeconds(1f);
             NextLevel();
             yield break;//Similar to return in function
         }
+        yield return new WaitForSeconds(GameGlobal.timeFD_roundInterval);
         currentRound++;
         yield return StartCoroutine(IE_InitRound());
     }

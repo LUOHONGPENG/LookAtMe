@@ -14,13 +14,9 @@ public enum MusicType
 
 public class SoundManager : MonoBehaviour
 {
-
-
-
-
     public void Init()
     {
         
     }
-
+    
 }

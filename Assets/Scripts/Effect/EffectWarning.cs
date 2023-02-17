@@ -25,6 +25,6 @@ public class EffectWarning : MonoBehaviour
         yield return new WaitForSeconds(1f);
         imgWarning.DOFade(0, 1f);
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.effectManager.ClearContent();
+        GameManager.Instance.effectManager.ClearWarning();
     }
 }

@@ -124,7 +124,7 @@ public class LevelThirdIns : LevelBasic
         yield return new WaitForSeconds(5f);
         isInitBlur = false;
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.effectManager.ClearContent();
+        GameManager.Instance.effectManager.ClearPostProcess();
         NextLevel();
     }
 
