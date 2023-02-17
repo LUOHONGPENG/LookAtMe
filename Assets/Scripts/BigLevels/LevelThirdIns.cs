@@ -149,7 +149,7 @@ public class LevelThirdIns : LevelBasic
 
     private void InitBlur()
     {
-        GameObject objBlur = GameManager.Instance.effectManager.InitTIBlur();
+        GameObject objBlur = PublicTool.PostProcessEffect(PostProcessType.ThirdInsBlur);
         Volume volume = objBlur.GetComponent<Volume>();
         DepthOfField tmp;
         if (volume.profile.TryGet<DepthOfField>(out tmp))

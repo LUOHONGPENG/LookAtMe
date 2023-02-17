@@ -2,6 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TransitionIconType
+{
+    Cheer,
+    Dress,
+    Love,
+    Shape
+}
+
+public enum PostProcessType
+{
+    SecondPartyVig,
+    ThirdInsBlur,
+    HospitalBlur
+}
+
 public class EffectManager : MonoBehaviour
 {
     [Header("PostProcess")]
@@ -44,18 +59,33 @@ public class EffectManager : MonoBehaviour
     #endregion
 
     #region PostProcess
-    public GameObject InitSPVig()
+    public GameObject InitPostProcess(PostProcessType type)
+    {
+        switch (type)
+        {
+            case PostProcessType.SecondPartyVig:
+                return InitSPVig();
+            case PostProcessType.ThirdInsBlur:
+                return InitTIBlur();
+            case PostProcessType.HospitalBlur:
+                return InitHBlur();
+        }
+        return null;
+    }
+
+
+    private GameObject InitSPVig()
     {
         GameObject obj = GameObject.Instantiate(efSPVignette, tfPostProcess);
         return obj;
     }
 
-    public GameObject InitTIBlur()
+    private GameObject InitTIBlur()
     {
         GameObject obj = GameObject.Instantiate(efTIBlur, tfPostProcess);
         return obj;
     }
-    public GameObject InitHBlur()
+    private GameObject InitHBlur()
     {
         GameObject obj = GameObject.Instantiate(efHBlur, tfPostProcess);
         return obj;
@@ -80,7 +110,7 @@ public class EffectManager : MonoBehaviour
     #endregion
 
     #region Warning
-    public void InitWarning()
+    private void InitWarning()
     {
         GameObject obj = GameObject.Instantiate(pfWarning, tfWarning);
         EffectWarning efWarning = obj.GetComponent<EffectWarning>();

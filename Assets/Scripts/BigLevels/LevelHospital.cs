@@ -20,7 +20,7 @@ public class LevelHospital : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
-        GameObject objBlur = GameManager.Instance.effectManager.InitHBlur();
+        GameObject objBlur = PublicTool.PostProcessEffect(PostProcessType.HospitalBlur);
         InitBlur(objBlur);
         InitChor(objBlur);
 

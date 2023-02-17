@@ -22,4 +22,16 @@ public class PublicTool : MonoBehaviour
     {
         GameManager.Instance.ShakeCamera();
     }
+
+    #region ShortCut
+    public static void TransitionIconEffect(TransitionIconType type)
+    {
+        GameManager.Instance.effectManager.InitTransitionIcon(type);
+    }
+
+    public static GameObject PostProcessEffect(PostProcessType type)
+    {
+        return GameManager.Instance.effectManager.InitPostProcess(type);
+    }
+    #endregion
 }

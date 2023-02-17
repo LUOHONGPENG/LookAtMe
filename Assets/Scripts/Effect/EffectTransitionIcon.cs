@@ -3,13 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-public enum TransitionIconType
-{
-    Cheer,
-    Dress,
-    Love,
-    Shape
-}
+
 public class EffectTransitionIcon : MonoBehaviour
 {
 
@@ -27,6 +21,9 @@ public class EffectTransitionIcon : MonoBehaviour
         {
             case TransitionIconType.Cheer:
                 aniIcon.Play("Cheer", 0, -1);
+                break;
+            case TransitionIconType.Dress:
+                aniIcon.Play("Dress", 0, -1);
                 break;
         }
         canvasGroupAll.blocksRaycasts = true;

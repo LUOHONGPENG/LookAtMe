@@ -108,7 +108,7 @@ public class LevelSecondParty : LevelBasic
     #region Vignette
     private void InitVigEffect()
     {
-        GameObject objVip = GameManager.Instance.effectManager.InitSPVig();
+        GameObject objVip = PublicTool.PostProcessEffect(PostProcessType.SecondPartyVig);
         Volume volume = objVip.GetComponent<Volume>();
         Vignette tmp;
         if (volume.profile.TryGet<Vignette>(out tmp))
