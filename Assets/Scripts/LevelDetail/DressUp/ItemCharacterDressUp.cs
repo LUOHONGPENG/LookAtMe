@@ -20,18 +20,24 @@ public class ItemCharacterDressUp : CommonImageDragSlot
     //character wares the dress
     public override void DropDeal(PointerEventData eventData)
     {
-        StartCoroutine(parent.IE_DragGoalFinish());
+        parent.DragGoalFinish();
     }
 
     public void ChangeClothes(DressType dressType)
     {
         switch (dressType)
         {
-            case DressType.Duck:
+            case DressType.Black:
                 imgCharacter.sprite = listSpCharacter[1];
                 break;
-            case DressType.Flower:
+            case DressType.Blue:
                 imgCharacter.sprite = listSpCharacter[2];
+                break;
+            case DressType.Red:
+                imgCharacter.sprite = listSpCharacter[3];
+                break;
+            case DressType.Flower:
+                imgCharacter.sprite = listSpCharacter[4];
                 break;
         }
         imgCharacter.SetNativeSize();

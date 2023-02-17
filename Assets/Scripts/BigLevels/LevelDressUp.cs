@@ -6,7 +6,9 @@ using DG.Tweening;
 
 public enum DressType
 {
-    Duck,
+    Black,
+    Blue,
+    Red,
     Flower,
     None
 }
@@ -20,69 +22,86 @@ public class LevelDressUp : LevelBasic
     public List<Vector2> listPosDress = new List<Vector2>();
     private List<DragDress> listDragDress = new List<DragDress>();
     [Header("Character")]
-    public ItemCharacterDressUp itemCharacter;
+    public GameObject pfCharacter;
+    public Transform tfCharacter;
+    private ItemCharacterDressUp itemCharacter;
     [Header("Photo")]
     public Button btnShoot;
     public GameObject pfPhoto;
     public Transform tfContentPhoto;
     private ItemInsPhoto itemPhoto;
+    private bool isShowButton;
 
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
         canvasGroupDress.blocksRaycasts = true;
-        itemCharacter.Init(this);
         btnShoot.interactable = false;
         btnShoot.transform.DOScale(0, 0);
         btnShoot.onClick.RemoveAllListeners();
         btnShoot.onClick.AddListener(delegate ()
         {
+            canvasGroupDress.blocksRaycasts = false;
             btnShoot.interactable = false;
             btnShoot.transform.DOScale(0, 0.5f);
             StartCoroutine(InitShootPhoto());
         });
+        isShowButton = false;
+        InitCharacter();
         InitDress();
     }
 
-    
+    public void InitCharacter()
+    {
+        GameObject objCharacter = GameObject.Instantiate(pfCharacter, tfCharacter);
+        itemCharacter = objCharacter.GetComponent<ItemCharacterDressUp>();
+        itemCharacter.Init(this);
+    }
+        
     public void InitDress()
     {
         //Init Dress
         listDragDress.Clear();
         PublicTool.ClearChildItem(tfContentDress);
-        for(int i = 0; i < 2; i++)
+        for(int i = 0; i < 4; i++)
         {
             GameObject objDress = GameObject.Instantiate(pfDress, tfContentDress);
             DragDress itemDress = objDress.GetComponent<DragDress>();
             itemDress.InitPosition(listPosDress[i]);
             listDragDress.Add(itemDress);
         }
-        listDragDress[0].Init(DressType.Duck, this);
-        listDragDress[1].Init(DressType.Flower, this);
+        listDragDress[0].Init(DressType.Black, this);
+        listDragDress[1].Init(DressType.Blue, this);
+        listDragDress[2].Init(DressType.Red, this);
+        listDragDress[3].Init(DressType.Flower, this);
+
     }
 
     #region Drag
 
-    public IEnumerator IE_DragGoalFinish()
+    public void DragGoalFinish()
     {
         //Ban all interaction about dressing
-        canvasGroupDress.blocksRaycasts = false;
         //ChangeTheClothe
         itemCharacter.ChangeClothes(currentType);
         //HideTheClothe
-        switch (currentType)
+        for(int i = 0; i < 4; i++)
         {
-            case DressType.Duck:
-                listDragDress[0].SuddenHide();
-                break;
-            case DressType.Flower:
-                listDragDress[1].SuddenHide();
-                break;
+            if(listDragDress[i].dressType == currentType)
+            {
+                listDragDress[i].SuddenHide();
+            }
+            else
+            {
+                listDragDress[i].SuddenShow();
+            }
         }
-        //Save the type
         GameManager.Instance.levelManager.savedDressType = currentType;
-        yield return new WaitForSeconds(1f);
-        yield return StartCoroutine(IE_ShowButton());
+        if (!isShowButton)
+        {
+            StartCoroutine(IE_ShowButton());
+            isShowButton = true;
+        }
     }
 
     public void SetCurrentDragging(DressType type)
@@ -112,9 +131,9 @@ public class LevelDressUp : LevelBasic
         itemPhoto.Init(this, PhotoType.Auto);
         itemPhoto.MoveTo(new Vector2(1200F, -800F), 0f);
         yield return new WaitForEndOfFrame();
-        itemPhoto.MoveTo(new Vector2(80F, -80F), 0.5f);
+        itemPhoto.MoveTo(new Vector2(-120F, -80F), 0.5f);
         yield return new WaitForSeconds(0.5F);
-        itemPhoto.MoveTo(new Vector2(-100F, 150F), 1f);
+        itemPhoto.MoveTo(new Vector2(-300F, 150F), 1f);
         yield return new WaitForSeconds(1F);
         itemPhoto.ShootExecute();
         yield break;

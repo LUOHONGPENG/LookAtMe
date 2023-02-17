@@ -26,11 +26,17 @@ public class DragDress : CommonImageDrag
         this.posStart = this.transform.position;
         switch (type)
         {
-            case DressType.Duck:
+            case DressType.Black:
                 imgDress.sprite = listSpDress[0];
                 break;
-            case DressType.Flower:
+            case DressType.Blue:
                 imgDress.sprite = listSpDress[1];
+                break;
+            case DressType.Red:
+                imgDress.sprite = listSpDress[2];
+                break;
+            case DressType.Flower:
+                imgDress.sprite = listSpDress[3];
                 break;
         }
         imgDress.SetNativeSize();
@@ -47,7 +53,13 @@ public class DragDress : CommonImageDrag
     {
         imgDress.gameObject.SetActive(false);
     }
-
+    public void SuddenShow()
+    {
+        imgDress.raycastTarget = true;
+        imgDress.DOFade(1f, 0);
+        this.transform.position = posStart;
+        imgDress.gameObject.SetActive(true);
+    }
 
     #region Drag
     //drag the dresses

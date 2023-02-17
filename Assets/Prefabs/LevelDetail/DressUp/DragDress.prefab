@@ -59,12 +59,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0fecd9d5ffe4e4b93a3d623cc5837d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dresstype: 0
   rtDress: {fileID: 6649268085541120113}
+  dressType: 0
   imgDress: {fileID: 7922768691193906474}
   listSpDress:
   - {fileID: 21300000, guid: 8d00716576f72d343a9e4b7ff56af81a, type: 3}
   - {fileID: 21300000, guid: 1bdaa2db81e57f646a4545a300f49ad3, type: 3}
+  - {fileID: 21300000, guid: cb14fa49d5da238469c022fcbd915f8e, type: 3}
+  - {fileID: 21300000, guid: ef90e5296eca397469fff75d6de5cc80, type: 3}
 --- !u!114 &7922768691193906474
 MonoBehaviour:
   m_ObjectHideFlags: 0
