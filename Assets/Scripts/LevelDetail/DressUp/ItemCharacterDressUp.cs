@@ -15,6 +15,7 @@ public class ItemCharacterDressUp : CommonImageDragSlot
     {
         this.parent = parent;
         imgCharacter.sprite = listSpCharacter[0];
+        imgCharacter.SetNativeSize();
     }
 
     //character wares the dress

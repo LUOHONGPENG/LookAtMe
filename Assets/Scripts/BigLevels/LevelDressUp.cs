@@ -27,6 +27,8 @@ public class LevelDressUp : LevelBasic
     private ItemCharacterDressUp itemCharacter;
     [Header("Photo")]
     public Button btnShoot;
+    public Image imgBtnShoot;
+    public List<Sprite> listSpShoot;
     public GameObject pfPhoto;
     public Transform tfContentPhoto;
     private ItemInsPhoto itemPhoto;
@@ -36,6 +38,7 @@ public class LevelDressUp : LevelBasic
     {
         base.Init(parent);
         canvasGroupDress.blocksRaycasts = true;
+        imgBtnShoot.sprite = listSpShoot[0];
         btnShoot.interactable = false;
         btnShoot.transform.DOScale(0, 0);
         btnShoot.onClick.RemoveAllListeners();
@@ -43,7 +46,8 @@ public class LevelDressUp : LevelBasic
         {
             canvasGroupDress.blocksRaycasts = false;
             btnShoot.interactable = false;
-            btnShoot.transform.DOScale(0, 0.5f);
+            imgBtnShoot.sprite = listSpShoot[1];
+            //btnShoot.transform.DOScale(0, 0.5f);
             StartCoroutine(InitShootPhoto());
         });
         isShowButton = false;

@@ -237,7 +237,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 551, y: -326}
-  m_SizeDelta: {x: 145, y: 174}
+  m_SizeDelta: {x: 139, y: 139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1184667032966800400
 CanvasRenderer:
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e075f51d6428a604191043d96907a157, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 045121dab08ac9d439012c0ee418462a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -432,5 +432,9 @@ MonoBehaviour:
   pfCharacter: {fileID: 1492156030251561232, guid: 6c838e4d9ecbb5946b2fa2070a081d9a, type: 3}
   tfCharacter: {fileID: 1398954516422172417}
   btnShoot: {fileID: 91443644190290634}
+  imgBtnShoot: {fileID: 673170043760515392}
+  listSpShoot:
+  - {fileID: 21300000, guid: 045121dab08ac9d439012c0ee418462a, type: 3}
+  - {fileID: 21300000, guid: 171fd59a30db3e04f88b7d0afdac067e, type: 3}
   pfPhoto: {fileID: 1316031157892909074, guid: 6e21ce8f4c3c28f47bc10b4e10ea60a5, type: 3}
   tfContentPhoto: {fileID: 8674877670607761785}
