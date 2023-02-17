@@ -25,6 +25,12 @@ public class EffectTransitionIcon : MonoBehaviour
             case TransitionIconType.Dress:
                 aniIcon.Play("Dress", 0, -1);
                 break;
+            case TransitionIconType.Heart:
+                aniIcon.Play("Heart", 0, -1);
+                break;
+            case TransitionIconType.Shape:
+                aniIcon.Play("Shape", 0, -1);
+                break;
         }
         canvasGroupAll.blocksRaycasts = true;
         StartCoroutine(IE_Ani());

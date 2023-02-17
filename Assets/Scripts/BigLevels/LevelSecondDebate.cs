@@ -209,12 +209,14 @@ public partial class LevelSecondDebate : LevelBasic
     }
     public IEnumerator IE_EndRound()
     {
-        yield return new WaitForSeconds(GameGlobal.timeFD_roundInterval);
         if (currentRound == LevelRound.Battle)
         {
+            PublicTool.TransitionIconEffect(TransitionIconType.Dress);
+            yield return new WaitForSeconds(1f);
             NextLevel();
             yield break;//Similar to return in function
         }
+        yield return new WaitForSeconds(GameGlobal.timeFD_roundInterval);
         currentRound++;
         yield return StartCoroutine(IE_InitRound());
     }
