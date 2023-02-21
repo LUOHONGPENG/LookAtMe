@@ -63,9 +63,9 @@ public partial class LevelSecondDebate : LevelBasic
         {
             for (int i = 0; i < 3; i++)
             {
-                listPeople[i].SurprisePeople();
+                listPeople[i].SurprisePeople(false);
             }
-            itemPeopleMe.SurprisePeople();
+            itemPeopleMe.SurprisePeople(true);
         }
     }
     #endregion
@@ -84,7 +84,7 @@ public partial class LevelSecondDebate : LevelBasic
         {
             if (!CheckWhetherInScreen(listColOther[i]) && listColInScreen[i])
             {
-                listPeople[i].SurprisePeople();
+                listPeople[i].SurprisePeople(true);
                 listColInScreen[i] = false;
             }
         }

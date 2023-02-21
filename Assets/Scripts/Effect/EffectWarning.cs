@@ -10,17 +10,33 @@ public class EffectWarning : MonoBehaviour
 
     public Image imgWarning;
 
+    public Button btnOk;
+
     public void Init()
     {
         canvasGroupContent.alpha = 0;
-        StartCoroutine(InitAni());
+
+        btnOk.interactable = true;
+        btnOk.onClick.RemoveAllListeners();
+        btnOk.onClick.AddListener(delegate ()
+        {
+            btnOk.interactable = false;
+            StartCoroutine(IE_Close());
+        });
+
+        StartCoroutine(IE_InitAni());
     }
 
-    public IEnumerator InitAni()
+    public IEnumerator IE_InitAni()
     {
         yield return new WaitForSeconds(1f);
         canvasGroupContent.DOFade(1f, 1f);
         yield return new WaitForSeconds(5f);
+
+    }
+
+    public IEnumerator IE_Close()
+    {
         canvasGroupContent.DOFade(0f, 1f);
         yield return new WaitForSeconds(1f);
         imgWarning.DOFade(0, 1f);

@@ -39,11 +39,11 @@ public class ItemDebatePeople : MonoBehaviour
         imgSurprise.transform.DOScale(0, 0.5F);
     }
 
-    public void SurprisePeople()
+    public void SurprisePeople(bool isTag)
     {
         imgPeople.sprite = listSpPeople[(int)peopleType * 2 + 1];
         imgPeople.SetNativeSize();
-        if (peopleType != PeopleType.Me)
+        if (isTag)
         {
             imgSurprise.transform.DOScale(1F, 0.5F);
         }
@@ -52,10 +52,8 @@ public class ItemDebatePeople : MonoBehaviour
     public void SetPosition()
     {
         imgPeople.transform.localPosition = listPosPeople[(int)peopleType];
-        if(peopleType!= PeopleType.Me)
-        {
-            imgSurprise.transform.localPosition = listPosSurprise[(int)peopleType];
-        }
+        imgSurprise.transform.localPosition = listPosSurprise[(int)peopleType];
+
     }
 
     public void InitSurprise()

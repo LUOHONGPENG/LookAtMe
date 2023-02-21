@@ -71,9 +71,9 @@ public partial class LevelFirstDebate
         {
             for (int i = 0; i < 3; i++)
             {
-                listPeople[i].SurprisePeople();
+                listPeople[i].SurprisePeople(false);
             }
-            itemPeopleMe.SurprisePeople();
+            itemPeopleMe.SurprisePeople(true);
         }
     }
 }
