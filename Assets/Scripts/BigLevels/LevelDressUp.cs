@@ -6,9 +6,9 @@ using DG.Tweening;
 
 public enum DressType
 {
+    Red,
     Black,
     Blue,
-    Red,
     Flower,
     None
 }

@@ -425,9 +425,9 @@ MonoBehaviour:
   pfDress: {fileID: 8746857437174376453, guid: 90b2b313c5485f94897911bb6402f12d, type: 3}
   tfContentDress: {fileID: 2530848767137895155}
   listPosDress:
-  - {x: -509, y: 150}
+  - {x: -490, y: 190}
   - {x: -556, y: 180}
-  - {x: -593, y: 211}
+  - {x: -600, y: 150}
   - {x: -664, y: 186}
   pfCharacter: {fileID: 1492156030251561232, guid: 6c838e4d9ecbb5946b2fa2070a081d9a, type: 3}
   tfCharacter: {fileID: 1398954516422172417}
