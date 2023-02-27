@@ -10,6 +10,7 @@ public class ThoughtContent : MonoBehaviour
     public List<Sprite> listSpShape;
     public Sprite spEllipsis;
     public Image imgContent;
+    public Image imgEllipsis;
     public bool isOther;
 
     public void Init(bool isOther)
@@ -21,6 +22,7 @@ public class ThoughtContent : MonoBehaviour
         }
         else
         {
+            imgEllipsis.gameObject.SetActive(false);
             imgContent.DOFade(0, 0);
             imgContent.transform.DOScale(0, 0);
         }
@@ -43,10 +45,12 @@ public class ThoughtContent : MonoBehaviour
     {
         if (isOther)
         {
-            imgContent.sprite = spEllipsis;
+            imgContent.gameObject.SetActive(false);
+            imgEllipsis.gameObject.SetActive(true);
         }
         else
         {
+            imgEllipsis.gameObject.SetActive(false);
             HideAni();
         }
     }
@@ -61,6 +65,7 @@ public class ThoughtContent : MonoBehaviour
     //Show My thought don't need delay
     private IEnumerator IE_ShowMe(ThoughtType type)
     {
+
         switch (type)
         {
             case ThoughtType.Square:
@@ -82,6 +87,8 @@ public class ThoughtContent : MonoBehaviour
     private IEnumerator IE_delayShowOther(ThoughtType type, float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
+        imgContent.gameObject.SetActive(true);
+        imgEllipsis.gameObject.SetActive(false);
         switch (type)
         {
             case ThoughtType.Square:

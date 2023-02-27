@@ -213,6 +213,7 @@ public partial class LevelSecondDebate : LevelBasic
     {
         if (currentRound == LevelRound.Battle)
         {
+            yield return new WaitForSeconds(1f);
             PublicTool.TransitionIconEffect(TransitionIconType.Dress);
             yield return new WaitForSeconds(1f);
             NextLevel();
