@@ -21,6 +21,7 @@ public class ItemDebatePeople : MonoBehaviour
     public List<Vector2> listPosPeople;
     public List<Sprite> listSpSurprise;
     public List<Vector2> listPosSurprise;
+    private Coroutine coSurprise;
 
     public void Init(PeopleType peopleType)
     {
@@ -45,8 +46,20 @@ public class ItemDebatePeople : MonoBehaviour
         imgPeople.SetNativeSize();
         if (isTag)
         {
-            imgSurprise.transform.DOScale(1F, 0.5F);
+            if (coSurprise == null)
+            {
+                coSurprise = StartCoroutine(IE_Surprise());
+            }
         }
+    }
+
+    private IEnumerator IE_Surprise()
+    {
+        imgSurprise.transform.DOScale(1.5f, 0.4F);
+        yield return new WaitForSeconds(0.4f);
+        imgSurprise.transform.DOScale(1f, 0.4F);
+        coSurprise = null;
+        yield break;
     }
 
     public void SetPosition()

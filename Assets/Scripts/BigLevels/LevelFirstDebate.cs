@@ -49,6 +49,7 @@ public partial class LevelFirstDebate : LevelBasic
     public List<Vector2> listDragPos;
     private List<DragThoughts> listDragItem = new List<DragThoughts>();
     public ThoughtsSlot dragSlot;
+    public Image imgDragBox;
 
     [Header("Cheer")]
     public GameObject pfCheer;
@@ -145,6 +146,7 @@ public partial class LevelFirstDebate : LevelBasic
             case LevelRound.Round1:
                 //HideAllComponent
                 tfGroupMe.DOScale(0, 0);
+                imgDragBox.DOFade(0, 0);
                 for (int i = 0; i < 3; i++)
                 {
                     listGroupFrame[i].DOScale(0, 0);
@@ -158,6 +160,7 @@ public partial class LevelFirstDebate : LevelBasic
                     listGroupFrame[i].DOScale(1f, GameGlobal.timeFD_commonAni);
                     listDragItem[i].transform.DOScale(1f, GameGlobal.timeFD_commonAni);
                 }
+                imgDragBox.DOFade(1f, GameGlobal.timeFD_commonAni);
                 yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
                 break;
             case LevelRound.Round2:
@@ -173,6 +176,7 @@ public partial class LevelFirstDebate : LevelBasic
                         listDragItem[i].transform.DOScale(1f, GameGlobal.timeFD_commonAni);
                     }
                 }
+                imgDragBox.DOFade(1f, GameGlobal.timeFD_commonAni);
                 for (int i = 0; i < 3; i++)
                 {
                     listOtherThought[i].RoundInit();
@@ -271,6 +275,4 @@ public partial class LevelFirstDebate : LevelBasic
         }
     }
     #endregion
-
-
 }

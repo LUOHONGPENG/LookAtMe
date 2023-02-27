@@ -40,6 +40,7 @@ public partial class LevelSecondDebate : LevelBasic
 
     private void GoalFinishZeroScaleAllDragOption()
     {
+        imgDragBox.DOFade(0, GameGlobal.timeFD_commonAni);
         for (int i = 0; i < 3; i++)
         {
             listDragItem[i].transform.DOScale(0, GameGlobal.timeFD_commonAni);

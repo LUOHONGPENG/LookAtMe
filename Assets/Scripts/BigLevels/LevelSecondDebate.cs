@@ -2,7 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public partial class LevelSecondDebate : LevelBasic
 {
@@ -39,6 +39,7 @@ public partial class LevelSecondDebate : LevelBasic
     public List<Vector2> listDragPos;
     private List<DragThoughts> listDragItem = new List<DragThoughts>();
     public ThoughtsSlot dragSlot;
+    public Image imgDragBox;
 
     [Header("Battle")]
     public List<BoxCollider2D> listColOther = new List<BoxCollider2D>();
@@ -140,6 +141,7 @@ public partial class LevelSecondDebate : LevelBasic
                 InitRoundNormalPeople();
                 //HideAllComponent
                 tfGroupMe.DOScale(0, 0);
+                imgDragBox.DOFade(0, 0);
                 for (int i = 0; i < 3; i++)
                 {
                     listGroupFrame[i].DOScale(0, 0);
@@ -148,6 +150,7 @@ public partial class LevelSecondDebate : LevelBasic
                 yield return new WaitForSeconds(1f);
                 //ShowUpAnimation
                 tfGroupMe.DOScale(1f, GameGlobal.timeFD_commonAni);
+                imgDragBox.DOFade(1f, GameGlobal.timeFD_commonAni);
                 for (int i = 0; i < 3; i++)
                 {
                     listGroupFrame[i].DOScale(1f, GameGlobal.timeFD_commonAni);
@@ -167,6 +170,7 @@ public partial class LevelSecondDebate : LevelBasic
                         listDragItem[i].transform.DOScale(1f, GameGlobal.timeFD_commonAni);
                     }
                 }
+                imgDragBox.DOFade(1f, GameGlobal.timeFD_commonAni);
                 for (int i = 0; i < 3; i++)
                 {
                     listOtherThought[i].RoundInit();
@@ -185,8 +189,6 @@ public partial class LevelSecondDebate : LevelBasic
                 canDragSharp = true;
                 break;
         }
-
-
         canvasGroupAll.blocksRaycasts = true;
         yield break;
     }

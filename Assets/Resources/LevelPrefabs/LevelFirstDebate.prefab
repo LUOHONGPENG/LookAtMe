@@ -754,6 +754,7 @@ MonoBehaviour:
   - {x: 0, y: 20}
   - {x: 150, y: 20}
   dragSlot: {fileID: 3201916146818934095}
+  imgDragBox: {fileID: 4486918285679682694}
   pfCheer: {fileID: 1592113188136139594, guid: a9ff613208b6b5a45916e51ded36e657, type: 3}
   pfDragCheer: {fileID: 868612695627091005, guid: 8429fc102db915746b8792e8a326e6ec, type: 3}
   groupCol: {fileID: 792059447731812318}

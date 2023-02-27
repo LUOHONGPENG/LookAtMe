@@ -1165,6 +1165,7 @@ MonoBehaviour:
   - {x: 0, y: 20}
   - {x: 150, y: 20}
   dragSlot: {fileID: 6048361170090295114}
+  imgDragBox: {fileID: 5402348650181503603}
   listColOther:
   - {fileID: 648732620154591955}
   - {fileID: 2638445554605445937}
