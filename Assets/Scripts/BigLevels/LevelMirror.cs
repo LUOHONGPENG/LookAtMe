@@ -12,8 +12,11 @@ public class LevelMirror : LevelBasic
     private int count; //count the round
     private LevelManager parent;
     public DragCup itemCup;
-    
-    
+
+    public GameObject objCup;
+    public GameObject objCupHeld;
+
+    private float timerColdDown = 1f;
     
     public override void Init(LevelManager parent)
     {
@@ -22,6 +25,9 @@ public class LevelMirror : LevelBasic
         count = 0;
         IfDragCup = false;
         IfMirrorBroken = false ;
+
+        objCup.SetActive(true);
+        objCupHeld.SetActive(false);
     }
  
     void Update()
@@ -39,14 +45,19 @@ public class LevelMirror : LevelBasic
             return;
         }
 
+        if (IfDragCup)
+        {
+            timerColdDown -= Time.deltaTime;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (IfDragCup && CheckHitMirror())
+            if (IfDragCup && CheckHitMirror() && timerColdDown<0)
             {
                 if (count < 3)
                 {
                     ChangeSprite();
+                    timerColdDown = 0.3f;
                 }
             }
         }
@@ -67,7 +78,14 @@ public class LevelMirror : LevelBasic
 
     public void CheckDragCup(bool flag)
     {
-        IfDragCup = flag;
+        if (!IfDragCup && flag)
+        {
+            objCup.SetActive(false);
+            objCupHeld.SetActive(true);
+            timerColdDown = 0.3f;
+            IfDragCup = flag;
+        }
+
     }
 
     public IEnumerator IE_GoToNextLevel()
