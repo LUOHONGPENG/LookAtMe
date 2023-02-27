@@ -155,8 +155,8 @@ public class LevelThirdIns : LevelBasic
         if (volume.profile.TryGet<DepthOfField>(out tmp))
         {
             efBlur = tmp;
-            efBlur.focusDistance.value = 10f;
-            efBlur.focalLength.value = 50f;            
+            timerBlur = 0;
+            efBlur.focalLength.value = 0f;            
             isInitBlur = true;
         }
     }
@@ -166,7 +166,7 @@ public class LevelThirdIns : LevelBasic
         if (isInitBlur)
         {
             timerBlur += Time.deltaTime;
-            efBlur.focalLength.value = 50f + timerBlur * 40f;
+            efBlur.focalLength.value = 0f + timerBlur * 40f;
         }
     }
     #endregion
