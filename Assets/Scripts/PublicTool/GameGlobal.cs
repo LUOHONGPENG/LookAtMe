@@ -13,7 +13,8 @@ public static class GameGlobal
     public static float timerFP_light = 0.5f;//The time that the light become bright from none
     public static float scaleFP_photoToInsX = 0.65f;//The X scale of the photo scale down after taking photo(Dont touch it) 
     public static float scaleFP_photoToInsY = 0.7f;//The Y scale of the photo scale down after taking photo(Dont touch it) 
-
+    public static float posFP_photoToInsX = 48f;
+    public static float posFP_photoToInsY = 86f;
 
     //SecondParty
     public static int countSP_fail = 12;

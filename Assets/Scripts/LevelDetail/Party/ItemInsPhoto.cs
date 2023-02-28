@@ -21,6 +21,7 @@ public class ItemInsPhoto : MonoBehaviour
     public Button btnShoot;
     public Image imgPhoto;
     public Image imgBlack;
+    public Image imgFrame;
 
     private bool isInit = false;
     private bool isShoot = false;
@@ -149,7 +150,7 @@ public class ItemInsPhoto : MonoBehaviour
         {
             case LevelState.FirstParty:
             case LevelState.SecondParty:
-                this.transform.DOLocalMove(new Vector2(20.2f, 99.4F), 0.5f);
+                this.transform.DOLocalMove(new Vector2(GameGlobal.posFP_photoToInsX, GameGlobal.posFP_photoToInsY), 0.5f);
                 break;
             case LevelState.FakeSuicide:
                 this.transform.DOLocalMove(new Vector2(20.2f, 105.7f), 0.5f);

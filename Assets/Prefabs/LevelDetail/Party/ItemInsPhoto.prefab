@@ -141,6 +141,7 @@ MonoBehaviour:
   btnShoot: {fileID: 4208488238017005790}
   imgPhoto: {fileID: 1766408311710265942}
   imgBlack: {fileID: 2098781434779607578}
+  imgFrame: {fileID: 2952900125768547490}
 --- !u!225 &8176419170352011410
 CanvasGroup:
   m_ObjectHideFlags: 0

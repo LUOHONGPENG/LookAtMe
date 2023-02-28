@@ -8,6 +8,8 @@ public class LevelFirstIns : LevelBasic
 {
     public ScrollRect scroll;
     public CanvasGroup canvasGroupIns;
+    public Image imgBg;
+
 
     [Header("Photo")]
     public GameObject pfPhoto;
@@ -33,6 +35,7 @@ public class LevelFirstIns : LevelBasic
 
     public override void Init(LevelManager parent)
     {
+        imgBg.DOFade(0, 0);
         base.Init(parent);
 
         InitView();
@@ -67,7 +70,7 @@ public class LevelFirstIns : LevelBasic
     {
         GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
         itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
-        itemPhoto.Init(this, PhotoType.Display,20.2f,99.4f);
+        itemPhoto.Init(this, PhotoType.Display,GameGlobal.posFP_photoToInsX, GameGlobal.posFP_photoToInsY);
 
 
         imgInsPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
@@ -78,8 +81,11 @@ public class LevelFirstIns : LevelBasic
 
     public IEnumerator IE_InitAni()
     {
+        itemPhoto.imgFrame.DOFade(0, 0.5f);
+        imgBg.DOFade(1f, 0.5f);
+        yield return new WaitForSeconds(0.5F);
+        itemPhoto.imgPhoto.DOFade(0, 0.5f);
         canvasGroupIns.DOFade(1f, 0.5f);
-        itemPhoto.canvasGroupPhoto.DOFade(0, 0.5f);
         yield return new WaitForSeconds(1F);
         PublicTool.ClearChildItem(tfContentPhoto);
     }
