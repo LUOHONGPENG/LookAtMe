@@ -13,6 +13,7 @@ public class LevelFirstParty : LevelBasic
     public List<Vector2> listPosPartyPeople = new List<Vector2>();
     //A list that contains 4 partypeople prefabs
     private List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
+    public ItemCharacterParty itemCharacter;
 
     [Header("MainCharacter")]
     public Image imgLight;
@@ -29,6 +30,7 @@ public class LevelFirstParty : LevelBasic
 
         isTaskDoneExtra = false;
 
+        itemCharacter.Init(DressType.Red);
         InitCharacterGroup();
         InitPrefab();
     }
@@ -61,6 +63,8 @@ public class LevelFirstParty : LevelBasic
 
     public override void FlipPartyPeople(int ID)
     {
+        itemCharacter.UpdatePose();
+
         int numPeopleFlip = 0;
         foreach (ItemPartyPeople people in listPartyPeople)
         {

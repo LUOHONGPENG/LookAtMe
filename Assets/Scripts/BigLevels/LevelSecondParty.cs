@@ -17,7 +17,7 @@ public class LevelSecondParty : LevelBasic
     public Image imgBlack;
 
     [Header("MainCharacter")]
-    public ItemCharacterDressUp itemCharacter;
+    public ItemCharacterParty itemCharacter;
     private int countFilp = 0;
     private bool isTriggerDark = false;
 
@@ -44,7 +44,7 @@ public class LevelSecondParty : LevelBasic
         imgBlack.gameObject.SetActive(false);
         canvasGroupParty.alpha = 1f;
         InitPrefab();
-        itemCharacter.ChangeClothes(GameManager.Instance.levelManager.savedDressType);
+        itemCharacter.Init(GameManager.Instance.levelManager.savedDressType);
     }
     public void InitPrefab()
     {
@@ -62,6 +62,8 @@ public class LevelSecondParty : LevelBasic
 
     public override void FlipPartyPeople(int ID)
     {
+        itemCharacter.UpdatePose();
+
         if (!isTriggerDark)
         {
             countFilp++;

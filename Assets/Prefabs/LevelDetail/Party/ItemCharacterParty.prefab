@@ -60,7 +60,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imgCharacter: {fileID: 1243897492172165935}
-  listSpCharacter: []
+  listSpCharacter00:
+  - {fileID: 21300000, guid: 3c71abd7b45db614f8cdcbbe277433be, type: 3}
+  - {fileID: 21300000, guid: ebeaed6166278bd4ba2a9f54442355ff, type: 3}
+  - {fileID: 21300000, guid: ff9fd824865f58f4b965293786bc180c, type: 3}
+  - {fileID: 21300000, guid: c5647c9ecf9e89a4089a3da9a5bc1bc1, type: 3}
+  listSpCharacter01:
+  - {fileID: 21300000, guid: 45c6daf5fc1f62043bd695254c7af408, type: 3}
+  - {fileID: 21300000, guid: 10dee11fa889fcb4ebb7f24b0ee0e498, type: 3}
+  - {fileID: 21300000, guid: fdf8e77837e4f6140aaf04b7310ce621, type: 3}
+  - {fileID: 21300000, guid: d474fbe0d67ff92489a908eeeb775793, type: 3}
+  listSpCharacter02:
+  - {fileID: 21300000, guid: e9f2ae7b80653a3418466705d9ec559a, type: 3}
+  - {fileID: 21300000, guid: 10dee11fa889fcb4ebb7f24b0ee0e498, type: 3}
+  - {fileID: 21300000, guid: 78b0736d3b887e84bbc05562c8159227, type: 3}
+  - {fileID: 21300000, guid: 16cbee31f4397484ebcf00fc4d5eaf90, type: 3}
 --- !u!114 &1243897492172165935
 MonoBehaviour:
   m_ObjectHideFlags: 0
