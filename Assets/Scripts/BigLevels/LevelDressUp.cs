@@ -74,9 +74,9 @@ public class LevelDressUp : LevelBasic
             itemDress.InitPosition(listPosDress[i]);
             listDragDress.Add(itemDress);
         }
-        listDragDress[0].Init(DressType.Black, this);
-        listDragDress[1].Init(DressType.Blue, this);
-        listDragDress[2].Init(DressType.Red, this);
+        listDragDress[0].Init(DressType.Red, this);
+        listDragDress[1].Init(DressType.Black, this);
+        listDragDress[2].Init(DressType.Blue, this);
         listDragDress[3].Init(DressType.Flower, this);
 
     }
