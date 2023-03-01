@@ -39,4 +39,9 @@ public class PublicTool : MonoBehaviour
         return GameManager.Instance.effectManager.InitPostProcess(type);
     }
     #endregion
+
+    public static void PlaySound(SoundType soundType,bool needFadeIn = false, bool needStop = false, float stopTime = 0)
+    {
+        GameManager.Instance.soundManager.PlaySound(soundType, needFadeIn,needStop, stopTime);
+    }
 }

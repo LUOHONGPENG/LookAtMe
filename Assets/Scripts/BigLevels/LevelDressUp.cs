@@ -49,6 +49,8 @@ public class LevelDressUp : LevelBasic
             imgBtnShoot.sprite = listSpShoot[1];
             //btnShoot.transform.DOScale(0, 0.5f);
             StartCoroutine(InitShootPhoto());
+
+            PublicTool.PlaySound(SoundType.Click);
         });
         isShowButton = false;
         InitCharacter();

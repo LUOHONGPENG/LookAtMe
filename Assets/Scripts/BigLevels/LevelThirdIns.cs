@@ -144,6 +144,7 @@ public class LevelThirdIns : LevelBasic
         yield return new WaitForSeconds(0.5f);
         GenerateComment();
         yield return new WaitForSeconds(2f);
+        PublicTool.PlaySound(SoundType.Breath,true,true,5f);
         InitBlur();
         yield return new WaitForSeconds(5f);
         isInitBlur = false;

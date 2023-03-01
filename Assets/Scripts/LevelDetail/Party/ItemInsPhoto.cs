@@ -99,6 +99,7 @@ public class ItemInsPhoto : MonoBehaviour
     public IEnumerator ShootIns()
     {
         canvasGroupPhoto.alpha = 0;
+        PublicTool.PlaySound(SoundType.Camera);
         yield return new WaitForEndOfFrame();
 
 /*        int ScreenSizeX = Screen.width;

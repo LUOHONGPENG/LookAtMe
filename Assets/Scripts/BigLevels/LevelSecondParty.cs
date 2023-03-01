@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-
+using DG.Tweening;
 public class LevelSecondParty : LevelBasic
 {
     public CanvasGroup canvasGroupParty;
@@ -99,11 +99,14 @@ public class LevelSecondParty : LevelBasic
     public IEnumerator IE_FlipGoalDeal()
     {
         InitVigEffect();
+        PublicTool.PlaySound(SoundType.HeartBeat, true, true, 7f);
         yield return new WaitForSeconds(5f);
         isInitVignette = false;
-        GameManager.Instance.effectManager.ClearPostProcess();
         imgBlack.gameObject.SetActive(true);
+        imgBlack.DOFade(0, 0);
+        imgBlack.DOFade(1f, 2f);
         yield return new WaitForSeconds(2f);
+        GameManager.Instance.effectManager.ClearPostProcess();
         NextLevel();
     }
 
