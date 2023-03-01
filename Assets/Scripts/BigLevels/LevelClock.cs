@@ -66,9 +66,8 @@ public class LevelClock : LevelBasic
 
     private IEnumerator IE_ClockFinish()
     {
-        yield return new WaitForSeconds(1f);
-        PublicTool.TransitionIconEffect(TransitionIconType.Shape);
-        yield return new WaitForSeconds(1f);
+        PublicTool.TransitionChapter(2);
+        yield return new WaitForSeconds(2f);
         NextLevel();
         yield break;
     }

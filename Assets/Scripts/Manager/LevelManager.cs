@@ -9,6 +9,7 @@ public enum LevelState
     FirstParty,
     FirstIns,
     Clock,
+    ChapterTwo,
     SecondDebate,
     DressUp,
     SecondParty,

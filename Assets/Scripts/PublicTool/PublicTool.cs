@@ -29,6 +29,11 @@ public class PublicTool : MonoBehaviour
         GameManager.Instance.effectManager.InitTransitionIcon(type);
     }
 
+    public static void TransitionChapter(int ID)
+    {
+        GameManager.Instance.effectManager.InitChapter(ID);
+    }
+
     public static GameObject PostProcessEffect(PostProcessType type)
     {
         return GameManager.Instance.effectManager.InitPostProcess(type);
