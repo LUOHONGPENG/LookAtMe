@@ -120,14 +120,21 @@ public class EffectManager : MonoBehaviour
     #endregion
 
     #region Chapter
-
     public void InitChapter(int ID)
     {
+        StartCoroutine(IE_Chapter(ID));   
+
+
+
+    }
+
+    private IEnumerator IE_Chapter(int ID)
+    {
+        InitColor(EffectColor.EffectColorType.White);
+        yield return new WaitForSeconds(0.2F);
         GameObject obj = GameObject.Instantiate(pfChapter, tfUIEffect);
         EffectChapter itemChapter = obj.GetComponent<EffectChapter>();
         itemChapter.Init(ID);
     }
-
-
     #endregion
 }

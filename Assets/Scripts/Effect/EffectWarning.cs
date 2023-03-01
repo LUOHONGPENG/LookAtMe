@@ -38,10 +38,10 @@ public class EffectWarning : MonoBehaviour
     public IEnumerator IE_Close()
     {
         canvasGroupContent.DOFade(0f, 1f);
-        yield return new WaitForSeconds(1f);
         PublicTool.TransitionChapter(1);
-        imgWarning.DOFade(0, 1f);
         yield return new WaitForSeconds(1f);
+        imgWarning.DOFade(0, 1f);
+        yield return new WaitForSeconds(2f);
         GameManager.Instance.effectManager.ClearWarning();
     }
 }

@@ -281,7 +281,8 @@ public class LevelSecondIns : LevelBasic
         yield return new WaitForSeconds(1f);
         if (currentRound == LevelRound.FreeScroll)
         {
-            yield return new WaitForSeconds(2f);
+            PublicTool.TransitionChapter(3);
+            yield return new WaitForSeconds(1.5f);
             NextLevel();
             yield break;//Similar to return in function
         }
