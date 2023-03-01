@@ -135,9 +135,9 @@ public class LevelDressUp : LevelBasic
         itemPhoto.Init(this, PhotoType.Auto);
         itemPhoto.MoveTo(new Vector2(1200F, -800F), 0f);
         yield return new WaitForEndOfFrame();
-        itemPhoto.MoveTo(new Vector2(-120F, -80F), 0.5f);
+        itemPhoto.MoveTo(new Vector2(-100F, -80F), 0.5f);
         yield return new WaitForSeconds(0.5F);
-        itemPhoto.MoveTo(new Vector2(-300F, 150F), 1f);
+        itemPhoto.MoveTo(new Vector2(-280F, 320F), 1f);
         yield return new WaitForSeconds(1F);
         itemPhoto.ShootExecute();
         yield break;

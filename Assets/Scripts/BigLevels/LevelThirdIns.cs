@@ -9,6 +9,7 @@ using UnityEngine.Rendering.Universal;
 public class LevelThirdIns : LevelBasic
 {
     public CanvasGroup canvasGroupIns;
+    public Image imgBg;
     [Header("Photo")]
     public GameObject pfPhoto;
     public Transform tfContentPhoto;
@@ -50,6 +51,7 @@ public class LevelThirdIns : LevelBasic
         layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
         scrollRect.vertical = false;
         canvasGroupIns.alpha = 0;
+        imgBg.DOFade(0, 0);
         //Ban interaction
         canvasGroupIns.blocksRaycasts = false;
 
@@ -61,19 +63,23 @@ public class LevelThirdIns : LevelBasic
     {
         GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
         itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
-        itemPhoto.Init(this, PhotoType.Display, 20.2f, 105.7f);
+        itemPhoto.Init(this, PhotoType.Display, GameGlobal.posTI_photoToInsX, GameGlobal.posTI_photoToInsY);
 
         imgInsPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
         imgInsPhoto.transform.localPosition = GameManager.Instance.levelManager.posLastShoot;
         imgInsPhoto.SetNativeSize();
-        imgInsPhoto.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10F));
+        //imgInsPhoto.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10F));
     }
 
     public IEnumerator IE_InitAni()
     {
+        imgBg.DOFade(1f, 0.5f);
+        itemPhoto.imgFrame.DOFade(0, 0.5f);
+        yield return new WaitForSeconds(0.5F);
         canvasGroupIns.DOFade(1f, 0.5f);
+        yield return new WaitForSeconds(0.5F);
         itemPhoto.canvasGroupPhoto.DOFade(0, 0.5f);
-        yield return new WaitForSeconds(1F);
+        yield return new WaitForSeconds(0.5F);
         PublicTool.ClearChildItem(tfContentPhoto);
         InitScroll();
     }

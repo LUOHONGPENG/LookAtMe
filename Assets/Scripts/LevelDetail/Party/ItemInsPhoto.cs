@@ -51,7 +51,7 @@ public class ItemInsPhoto : MonoBehaviour
                 isShoot = true;
                 btnShoot.interactable = false;
                 this.transform.localPosition = new Vector2(posX, posY);
-                this.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10f));
+                //this.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10f));
                 this.transform.localScale = new Vector3(GameGlobal.scaleFP_photoToInsX, GameGlobal.scaleFP_photoToInsY, 1);
                 imgPhoto.DOFade(1f, 0);
                 imgPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
@@ -149,16 +149,18 @@ public class ItemInsPhoto : MonoBehaviour
         switch(GameManager.Instance.levelManager.currentLevelState)
         {
             case LevelState.FirstParty:
-            case LevelState.SecondParty:
                 this.transform.DOLocalMove(new Vector2(GameGlobal.posFP_photoToInsX, GameGlobal.posFP_photoToInsY), 0.5f);
                 break;
+            case LevelState.SecondParty:
+                this.transform.DOLocalMove(new Vector2(GameGlobal.posSI_photoToInsX, GameGlobal.posSI_photoToInsY), 0.5f);
+                break;
             case LevelState.FakeSuicide:
-                this.transform.DOLocalMove(new Vector2(20.2f, 105.7f), 0.5f);
+                this.transform.DOLocalMove(new Vector2(GameGlobal.posTI_photoToInsX, GameGlobal.posTI_photoToInsY), 0.5f);
                 break;
         }
         this.transform.DOScaleX(GameGlobal.scaleFP_photoToInsX, 0.5f);
         this.transform.DOScaleY(GameGlobal.scaleFP_photoToInsY, 0.5f);
-        this.transform.DORotateQuaternion(Quaternion.Euler(new Vector3(0, 0, -10f)), 0.5f);
+        //this.transform.DORotateQuaternion(Quaternion.Euler(new Vector3(0, 0, -10f)), 0.5f);
     }
 
     public void MoveTo(Vector2 pos,float time)

@@ -76,7 +76,7 @@ public class LevelFirstIns : LevelBasic
         imgInsPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
         imgInsPhoto.transform.localPosition = GameManager.Instance.levelManager.posLastShoot;
         imgInsPhoto.SetNativeSize();
-        imgInsPhoto.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10F));
+        //imgInsPhoto.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10F));
     }
 
     public IEnumerator IE_InitAni()
