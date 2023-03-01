@@ -31,6 +31,8 @@ public class LevelThirdIns : LevelBasic
     public Transform tfContentComment;
     public List<Vector2> listPosComment = new List<Vector2>();
 
+    public Image imgTip;
+
     //PostProcess
     private DepthOfField efBlur;
     private bool isInitBlur = false;
@@ -46,6 +48,7 @@ public class LevelThirdIns : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        imgTip.DOFade(0, 0);
 
         //UI Init
         layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
@@ -90,7 +93,21 @@ public class LevelThirdIns : LevelBasic
         canvasGroupIns.blocksRaycasts = true;
         scrollRect.vertical = true;
         isRefreshDone = false;
+        ShowTip();
     }
+    #endregion
+
+    #region
+    public void ShowTip()
+    {
+        imgTip.DOFade(0.75f, 0.5f);
+    }
+
+    public void HideTip()
+    {
+        imgTip.DOFade(0, 0.5f);
+    }
+
     #endregion
 
     #region ScrollAction
@@ -99,9 +116,9 @@ public class LevelThirdIns : LevelBasic
     {
         if (scrollDragCheck.isDrag && rtContent.anchoredPosition.y < -100 && !isRefreshDone)
         {
-            if (rtContent.anchoredPosition.y < -128f)
+            if (rtContent.anchoredPosition.y < GameGlobal.constSI_paddingTop)
             {
-                rtContent.anchoredPosition = new Vector2(0, -128F);
+                rtContent.anchoredPosition = new Vector2(0, GameGlobal.constSI_paddingTop);
             }
 
             isRefreshRequired = true;
@@ -110,6 +127,7 @@ public class LevelThirdIns : LevelBasic
         {
             isRefreshRequired = false;
             isRefreshDone = true;
+            HideTip();
             StartCoroutine(IE_Scroll());
         }
     }

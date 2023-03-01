@@ -28,6 +28,7 @@ public class LevelSecondIns : LevelBasic
     private bool isRefreshDone = false;
     private bool isRefreshRequired = false;
     [Header("OtherContent")]
+    public Image imgTip;
     public Image imgPicB;
     public GameObject objGapB;
     public Text codeLikeOther;
@@ -53,7 +54,9 @@ public class LevelSecondIns : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        //Init Alpha
         imgBlack.DOFade(1, 0);
+        imgTip.DOFade(0, 0);
 
         btnLike.onClick.RemoveAllListeners();
         btnLike.onClick.AddListener(delegate ()
@@ -144,6 +147,7 @@ public class LevelSecondIns : LevelBasic
         {
             isRefreshRequired = false;
             isRefreshDone = true;
+            HideTip();
             if (currentRound == LevelRound.FirstScroll)
             {
                 StartCoroutine(IE_FirstScroll());
@@ -217,6 +221,7 @@ public class LevelSecondIns : LevelBasic
         {
             canvasGroupAll.blocksRaycasts = true;
             isRefreshDone = false;
+            ShowTip();
         }
     }
 
@@ -232,7 +237,18 @@ public class LevelSecondIns : LevelBasic
     }
     #endregion
 
+    #region
+    public void ShowTip()
+    {
+        imgTip.DOFade(0.75f, 0.5f);
+    }
 
+    public void HideTip()
+    {
+        imgTip.DOFade(0, 0.5f);
+    }
+
+    #endregion
 
     #region Flowcontrol
 
@@ -247,12 +263,15 @@ public class LevelSecondIns : LevelBasic
             case LevelRound.FirstScroll:
                 scrollRect.vertical = true;
                 isRefreshDone = false;
+                ShowTip();
                 break;
             case LevelRound.SecondScroll:
                 isRefreshDone = false;
+                ShowTip();
                 break;
             case LevelRound.FreeScroll:
                 isRefreshDone = false;
+                ShowTip();
                 break;
         }
     }
@@ -262,7 +281,7 @@ public class LevelSecondIns : LevelBasic
         yield return new WaitForSeconds(1f);
         if (currentRound == LevelRound.FreeScroll)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
             NextLevel();
             yield break;//Similar to return in function
         }
