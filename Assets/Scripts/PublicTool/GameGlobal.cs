@@ -27,8 +27,8 @@ public static class GameGlobal
     public static int constSI_paddingTop = -106;
     public static int constSI_paddingBottom = 150;
 
-    //FakeSelfAbuse
-    public static int HoleRadius = 35;
+    //FakeSuicide
+    public static int HoleRadius = 32;//For both suicide
 
     //ThirdIns
     public static float posTI_photoToInsX = 36.5f;

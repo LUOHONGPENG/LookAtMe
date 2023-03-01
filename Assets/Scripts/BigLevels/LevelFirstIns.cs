@@ -108,8 +108,6 @@ public class LevelFirstIns : LevelBasic
         
         GenerateComment();
         yield return new WaitForSeconds(3f);
-        PublicTool.TransitionIconEffect(TransitionIconType.Shape);
-        yield return new WaitForSeconds(1f);
         NextLevel();
     }
 
