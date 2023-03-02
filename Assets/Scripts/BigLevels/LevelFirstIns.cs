@@ -40,6 +40,9 @@ public class LevelFirstIns : LevelBasic
 
         InitView();
 
+        PublicTool.PlayMusic(MusicType.InsHappy);
+
+
         btnLike.onClick.RemoveAllListeners();
         btnLike.onClick.AddListener(delegate ()
         {

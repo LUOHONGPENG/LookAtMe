@@ -27,6 +27,10 @@ public class SoundManager : MonoBehaviour
     public AudioSource au_heartBeat;
 
     public AudioSource m_discuss;
+    public AudioSource m_insHappy;
+    public AudioSource m_insSad;
+    public AudioSource m_party;
+
 
     private AudioSource au_voicePlaying;
 
@@ -114,6 +118,15 @@ public class SoundManager : MonoBehaviour
             case MusicType.Discuss:
                 tempSound = m_discuss;
                 break;
+            case MusicType.InsHappy:
+                tempSound = m_insHappy;
+                break;
+            case MusicType.InsSad:
+                tempSound = m_insSad;
+                break;
+            case MusicType.Party:
+                tempSound = m_party;
+                break;
             default:
                 tempSound = m_discuss;
                 break;
@@ -122,7 +135,9 @@ public class SoundManager : MonoBehaviour
         {
             au_voicePlaying.Stop();
         }
+        tempSound.volume = 0;
         tempSound.Play();
+        tempSound.DOFade(1f, 1f);
         au_voicePlaying = tempSound;
 
     }

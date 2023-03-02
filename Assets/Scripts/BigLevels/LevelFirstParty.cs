@@ -27,6 +27,7 @@ public class LevelFirstParty : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        PublicTool.PlayMusic(MusicType.Party);
 
         isTaskDoneExtra = false;
 
@@ -113,7 +114,9 @@ public class LevelFirstParty : LevelBasic
     public IEnumerator IE_AfterShoot()
     {
         canvasGroupParty.DOFade(0, 0.5f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        PublicTool.StopMusic();
+        yield return new WaitForSeconds(1.1f);
         NextLevel();
     }
 

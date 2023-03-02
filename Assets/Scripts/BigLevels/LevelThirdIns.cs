@@ -48,6 +48,7 @@ public class LevelThirdIns : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        PublicTool.PlayMusic(MusicType.InsSad);
         imgTip.DOFade(0, 0);
 
         //UI Init
@@ -148,7 +149,8 @@ public class LevelThirdIns : LevelBasic
         InitBlur();
         yield return new WaitForSeconds(5f);
         isInitBlur = false;
-        yield return new WaitForSeconds(1f);
+        PublicTool.StopMusic();
+        yield return new WaitForSeconds(1.1f);
         GameManager.Instance.effectManager.ClearPostProcess();
         NextLevel();
     }

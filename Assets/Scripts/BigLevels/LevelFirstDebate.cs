@@ -246,8 +246,8 @@ public partial class LevelFirstDebate : LevelBasic
         if (currentRound == LevelRound.Cheers)
         {
             PublicTool.TransitionIconEffect(TransitionIconType.Cheer);
-            yield return new WaitForSeconds(1f);
             PublicTool.StopMusic();
+            yield return new WaitForSeconds(1.1f);
             NextLevel();
             yield break;//Similar to return in function
         }

@@ -67,7 +67,9 @@ public class LevelClock : LevelBasic
     private IEnumerator IE_ClockFinish()
     {
         PublicTool.TransitionChapter(2);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        PublicTool.StopMusic();
+        yield return new WaitForSeconds(1f);
         NextLevel();
         yield break;
     }

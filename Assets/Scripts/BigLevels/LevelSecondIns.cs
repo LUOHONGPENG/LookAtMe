@@ -54,6 +54,8 @@ public class LevelSecondIns : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        PublicTool.PlayMusic(MusicType.InsSad);
+
         //Init Alpha
         imgBlack.DOFade(1, 0);
         imgTip.DOFade(0, 0);
@@ -282,6 +284,7 @@ public class LevelSecondIns : LevelBasic
         if (currentRound == LevelRound.FreeScroll)
         {
             PublicTool.TransitionChapter(3);
+            PublicTool.StopMusic();
             yield return new WaitForSeconds(1.5f);
             NextLevel();
             yield break;//Similar to return in function
