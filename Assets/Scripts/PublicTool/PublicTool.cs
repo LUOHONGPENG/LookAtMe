@@ -42,7 +42,10 @@ public class PublicTool : MonoBehaviour
 
     public static void PlaySound(SoundType soundType,bool needFadeIn = false, bool needStop = false, float stopTime = 0)
     {
-        GameManager.Instance.soundManager.PlaySound(soundType, needFadeIn,needStop, stopTime);
+        if (GameManager.Instance.isSoundOn)
+        {
+            GameManager.Instance.soundManager.PlaySound(soundType, needFadeIn, needStop, stopTime);
+        }
     }
 
     public static bool CheckSound(SoundType soundType)
@@ -53,7 +56,10 @@ public class PublicTool : MonoBehaviour
 
     public static void PlayMusic(MusicType musicType)
     {
-        GameManager.Instance.soundManager.PlayMusic(musicType);
+        if (GameManager.Instance.isMusicOn)
+        {
+            GameManager.Instance.soundManager.PlayMusic(musicType);
+        }
     }
 
     public static void StopMusic()

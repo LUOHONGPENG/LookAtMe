@@ -41,12 +41,12 @@ public partial class LevelManager : MonoBehaviour
         if (isTestMode)
         {
             currentLevelState = testState;
+            LoadLevel();
         }
         else
         {
             currentLevelState = LevelState.FirstDebate;
         }
-        LoadLevel();
     }
     
     public void LoadLevel()

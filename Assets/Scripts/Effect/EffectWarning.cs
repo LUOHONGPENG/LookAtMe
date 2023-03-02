@@ -20,6 +20,7 @@ public class EffectWarning : MonoBehaviour
         btnOk.onClick.RemoveAllListeners();
         btnOk.onClick.AddListener(delegate ()
         {
+            PublicTool.PlaySound(SoundType.Click);
             btnOk.interactable = false;
             StartCoroutine(IE_Close());
         });
@@ -38,10 +39,10 @@ public class EffectWarning : MonoBehaviour
     public IEnumerator IE_Close()
     {
         canvasGroupContent.DOFade(0f, 1f);
-        PublicTool.TransitionChapter(1);
         yield return new WaitForSeconds(1f);
         imgWarning.DOFade(0, 1f);
-        yield return new WaitForSeconds(2f);
+        GameManager.Instance.uiManager.startPageManager.ShowPage();
+        yield return new WaitForSeconds(1f);
         GameManager.Instance.effectManager.ClearWarning();
     }
 }
