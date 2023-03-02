@@ -82,7 +82,7 @@ public class StartPageManager : MonoBehaviour
             PublicTool.PlaySound(SoundType.Click);
         });
 
-
+        //Music
         btnMusic.onClick.RemoveAllListeners();
         btnMusic.onClick.AddListener(delegate ()
         {
