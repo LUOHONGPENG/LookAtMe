@@ -44,6 +44,7 @@ public class StartPageManager : MonoBehaviour
             PublicTool.TransitionChapter(1);
             canvasGroupAll.blocksRaycasts = false;
             StartCoroutine(IE_Close());
+            GameManager.Instance.uiManager.ShowMenu();
         });
 
         btnSetting.onClick.RemoveAllListeners();
