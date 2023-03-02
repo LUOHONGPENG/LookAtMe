@@ -35,6 +35,13 @@ public class MenuPageManager : MonoBehaviour
                 Application.Quit();
             #endif
         });
+
+
+#if UNITY_WEBGL
+                    btnQuit.gameObject.SetActive(false);
+#endif
+
+
     }
 
     public void ShowPage()
