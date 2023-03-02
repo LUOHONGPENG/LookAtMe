@@ -12,6 +12,14 @@ public class PublicTool : MonoBehaviour
         }
     }
 
+    public static float CalculateAngle(Vector2 from,Vector2 to)
+    {
+        float angle;
+        Vector3 cross = Vector3.Cross(from, to);
+        angle = Vector2.Angle(from, to);
+        return cross.z > 0 ? -angle : angle;
+    }
+
     public static Vector2 GetMousePosition2D()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -40,6 +48,7 @@ public class PublicTool : MonoBehaviour
     }
     #endregion
 
+    #region Music
     public static void PlaySound(SoundType soundType,bool needFadeIn = false, bool needStop = false, float stopTime = 0)
     {
         if (GameManager.Instance.isSoundOn)
@@ -66,5 +75,5 @@ public class PublicTool : MonoBehaviour
     {
         GameManager.Instance.soundManager.StopMusic();
     }
-
+    #endregion
 }

@@ -242,7 +242,8 @@ MonoBehaviour:
   imgMoon: {fileID: 4192602183132375690}
   imgSun: {fileID: 1508038953391591952}
   vClock: 0
-  itemClock: {fileID: 0}
+  itemClock: {fileID: 7545202259383034093}
+  tfPointer: {fileID: 1465093013932021531}
 --- !u!1 &1936743906799825007
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,14 +558,15 @@ GameObject:
   m_Component:
   - component: {fileID: 8823368672829276298}
   - component: {fileID: 7983616690581877411}
+  - component: {fileID: 7545202259383034093}
   - component: {fileID: 6033595641624993204}
   m_Layer: 6
-  m_Name: DragPointer
+  m_Name: DragClock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8823368672829276298
 RectTransform:
   m_ObjectHideFlags: 0
@@ -583,7 +585,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.2000008}
-  m_SizeDelta: {x: 10, y: 100}
+  m_SizeDelta: {x: 13, y: 96}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7983616690581877411
 CanvasRenderer:
@@ -593,6 +595,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4852115522277908157}
   m_CullTransparentMesh: 1
+--- !u!114 &7545202259383034093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4852115522277908157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470a2238c969b914d9065257c4d21649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imgPointer: {fileID: 6033595641624993204}
 --- !u!114 &6033595641624993204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,7 +628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6e2a59b8132232243b153f33ec12fec3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -824,6 +839,7 @@ GameObject:
   - component: {fileID: 1703545783292411184}
   - component: {fileID: 4056574085327571321}
   - component: {fileID: 99852874938325563}
+  - component: {fileID: 983269930222808021}
   m_Layer: 6
   m_Name: imgClock
   m_TagString: Untagged
@@ -890,6 +906,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &983269930222808021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7880077993087788677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470a2238c969b914d9065257c4d21649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imgPointer: {fileID: 0}
 --- !u!1 &8022811359588332126
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,17 +12,21 @@ public class LevelClock : LevelBasic
     public Image imgSun;
     [Range(0,1f)]public float vClock = 0;
     private bool isInit = false;
+    public bool canDrag = true;
 
+    [Header("Clock")]
     public DragClock itemClock;
+    public Transform tfPointer;
     private Coroutine coClock;
 
 
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
-        //itemClock.Init(this);
+        itemClock.Init(this);
         vClock = 0;
         this.isInit = true;
+        this.canDrag = true;
     }
 
     private void Update()
@@ -31,7 +35,7 @@ public class LevelClock : LevelBasic
         {
             if (vClock < 1)
             {
-                vClock += Time.deltaTime * 0.35f;
+                vClock = itemClock.ConvertAngleToRate();
             }
 
             UpdateClock();
@@ -40,6 +44,7 @@ public class LevelClock : LevelBasic
             {
                 if(coClock == null)
                 {
+                    canDrag = false;
                     coClock = StartCoroutine(IE_ClockFinish());
                 }
             }
@@ -66,6 +71,7 @@ public class LevelClock : LevelBasic
 
     private IEnumerator IE_ClockFinish()
     {
+        yield return new WaitForSeconds(1f);
         PublicTool.TransitionChapter(2);
         yield return new WaitForSeconds(1f);
         PublicTool.StopMusic();
