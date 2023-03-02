@@ -75,6 +75,8 @@ public partial class LevelFirstDebate : LevelBasic
         isCheer = false;
         currentRound = LevelRound.Round1;
         StartCoroutine(IE_InitRound());
+
+        PublicTool.PlayMusic(MusicType.Discuss);
     }
 
     //Dynamic
@@ -245,6 +247,7 @@ public partial class LevelFirstDebate : LevelBasic
         {
             PublicTool.TransitionIconEffect(TransitionIconType.Cheer);
             yield return new WaitForSeconds(1f);
+            PublicTool.StopMusic();
             NextLevel();
             yield break;//Similar to return in function
         }

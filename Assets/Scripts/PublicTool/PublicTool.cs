@@ -44,4 +44,15 @@ public class PublicTool : MonoBehaviour
     {
         GameManager.Instance.soundManager.PlaySound(soundType, needFadeIn,needStop, stopTime);
     }
+
+    public static void PlayMusic(MusicType musicType)
+    {
+        GameManager.Instance.soundManager.PlayMusic(musicType);
+    }
+
+    public static void StopMusic()
+    {
+        GameManager.Instance.soundManager.StopMusic();
+    }
+
 }

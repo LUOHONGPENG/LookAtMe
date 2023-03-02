@@ -10,6 +10,14 @@ public enum SoundType
     HeartBeat
 }
 
+public enum MusicType
+{
+    Discuss,
+    InsHappy,
+    InsSad,
+    Party
+}
+
 
 public class SoundManager : MonoBehaviour
 {
@@ -17,6 +25,10 @@ public class SoundManager : MonoBehaviour
     public AudioSource au_camera;
     public AudioSource au_breath;
     public AudioSource au_heartBeat;
+
+    public AudioSource m_discuss;
+
+    private AudioSource au_voicePlaying;
 
 
     private Dictionary<SoundType, float> dic_SoundStartTime = new Dictionary<SoundType, float>();
@@ -93,4 +105,41 @@ public class SoundManager : MonoBehaviour
         sound.Stop();
     }
 
+    public void PlayMusic(MusicType musicType)
+    {
+        AudioSource tempSound;
+
+        switch (musicType)
+        {
+            case MusicType.Discuss:
+                tempSound = m_discuss;
+                break;
+            default:
+                tempSound = m_discuss;
+                break;
+        }
+        if (au_voicePlaying != null)
+        {
+            au_voicePlaying.Stop();
+        }
+        tempSound.Play();
+        au_voicePlaying = tempSound;
+
+    }
+
+    public void StopMusic()
+    {
+        if (au_voicePlaying != null)
+        {
+            au_voicePlaying.DOFade(0, 1f);
+            StartCoroutine(IE_StopMusic());
+        }
+    }
+
+    private IEnumerator IE_StopMusic()
+    {
+        yield return new WaitForSeconds(1f);
+        au_voicePlaying.Stop();
+
+    }
 }

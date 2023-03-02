@@ -72,6 +72,8 @@ public partial class LevelSecondDebate : LevelBasic
         listColInScreen = new List<bool>() { true, true, true };
         currentRound = LevelRound.Round1;
 
+        PublicTool.PlayMusic(MusicType.Discuss);
+
         StartCoroutine(IE_InitRound());
     }
 
@@ -215,6 +217,7 @@ public partial class LevelSecondDebate : LevelBasic
         {
             yield return new WaitForSeconds(1f);
             PublicTool.TransitionIconEffect(TransitionIconType.Dress);
+            PublicTool.StopMusic();
             yield return new WaitForSeconds(1f);
             NextLevel();
             yield break;//Similar to return in function
