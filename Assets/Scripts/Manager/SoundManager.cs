@@ -7,7 +7,13 @@ public enum SoundType
     Click,
     Camera,
     Breath,
-    HeartBeat
+    HeartBeat,
+    Lipstick,
+    Disagree,
+    Break1,
+    Break2,
+    Cheer,
+    Wow
 }
 
 public enum MusicType
@@ -25,6 +31,13 @@ public class SoundManager : MonoBehaviour
     public AudioSource au_camera;
     public AudioSource au_breath;
     public AudioSource au_heartBeat;
+    public AudioSource au_lipstick;
+    public AudioSource au_disagree;
+    public AudioSource au_break1;
+    public AudioSource au_break2;
+    public AudioSource au_cheer;
+    public AudioSource au_wow;
+
 
     public AudioSource m_discuss;
     public AudioSource m_insHappy;
@@ -36,6 +49,8 @@ public class SoundManager : MonoBehaviour
 
 
     private Dictionary<SoundType, float> dic_SoundStartTime = new Dictionary<SoundType, float>();
+    private Dictionary<SoundType, AudioSource> dic_SoundType = new Dictionary<SoundType, AudioSource>();
+
 
     public void Init()
     {
@@ -46,6 +61,19 @@ public class SoundManager : MonoBehaviour
     {
         dic_SoundStartTime.Clear();
         dic_SoundStartTime.Add(SoundType.Click, 0);
+
+        dic_SoundType.Clear();
+        dic_SoundType.Add(SoundType.Click, au_click);
+        dic_SoundType.Add(SoundType.Camera, au_camera);
+        dic_SoundType.Add(SoundType.Breath, au_breath);
+        dic_SoundType.Add(SoundType.HeartBeat, au_heartBeat);
+        dic_SoundType.Add(SoundType.Lipstick, au_lipstick);
+        dic_SoundType.Add(SoundType.Disagree, au_disagree);
+        dic_SoundType.Add(SoundType.Break1, au_break1);
+        dic_SoundType.Add(SoundType.Break2, au_break2);
+        dic_SoundType.Add(SoundType.Cheer, au_cheer);
+        dic_SoundType.Add(SoundType.Wow, au_wow);
+
 
     }
 
@@ -62,26 +90,11 @@ public class SoundManager : MonoBehaviour
     }
     public void PlaySound(SoundType soundType, bool needFadeIn = false,  bool needStop = false, float stopTime = 0)
     {
-        AudioSource tempSound;
+        AudioSource tempSound = au_click;
 
-        switch (soundType)
+        if (dic_SoundType.ContainsKey(soundType))
         {
-            case SoundType.Click:
-                tempSound = au_click;
-                break;
-            case SoundType.Camera:
-                tempSound = au_camera;
-                break;
-            case SoundType.Breath:
-                tempSound = au_breath;
-                break;
-            case SoundType.HeartBeat:
-                tempSound = au_heartBeat;
-                break;
-
-            default:
-                tempSound = au_click;
-                break;
+            tempSound = dic_SoundType[soundType];
         }
 
         tempSound.time = GetTime(soundType);
@@ -95,13 +108,25 @@ public class SoundManager : MonoBehaviour
             tempSound.DOFade(1f,0.5f);
         }
 
-
         if (needStop)
         {
             StartCoroutine(IE_StopSound(tempSound,stopTime));
         }
 
     }
+
+    public bool CheckSoundPlay(SoundType soundType)
+    {
+        if (dic_SoundType.ContainsKey(soundType))
+        {
+            return dic_SoundType[soundType].isPlaying;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
     public IEnumerator IE_StopSound(AudioSource sound, float time)
     {

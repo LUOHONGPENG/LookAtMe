@@ -35,6 +35,8 @@ public class LevelSecondParty : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        PublicTool.PlayMusic(MusicType.Party);
+
         //Data
         isTriggerDark = false;
         countFilp = 0;
@@ -99,6 +101,7 @@ public class LevelSecondParty : LevelBasic
     public IEnumerator IE_FlipGoalDeal()
     {
         InitVigEffect();
+        PublicTool.StopMusic();
         PublicTool.PlaySound(SoundType.HeartBeat, true, true, 7f);
         yield return new WaitForSeconds(5f);
         isInitVignette = false;

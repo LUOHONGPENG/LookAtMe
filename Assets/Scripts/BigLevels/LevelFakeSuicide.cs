@@ -180,6 +180,10 @@ public class LevelFakeSuicide : LevelBasic
                         if (!itemDetect.isTouched)
                         {
                             itemDetect.isTouched = true;
+                            if (!PublicTool.CheckSound(SoundType.Lipstick))
+                            {
+                                PublicTool.PlaySound(SoundType.Lipstick);
+                            }
                         }
                     }
                 }

@@ -85,6 +85,7 @@ public class LevelFirstParty : LevelBasic
 
     public IEnumerator IE_FlipGoalDeal()
     {
+        PublicTool.PlaySound(SoundType.Wow);
         imgLight.DOFade(1f, GameGlobal.timerFP_light);
         imgRibbon.transform.DOLocalMoveY(100, GameGlobal.timerFP_light);
         yield return new WaitForSeconds(GameGlobal.timerFP_light);

@@ -235,6 +235,7 @@ public partial class LevelFirstDebate : LevelBasic
     public IEnumerator IE_CheerGoalFinish()
     {
         itemDragCheer.canDrag = false;
+        PublicTool.PlaySound(SoundType.Cheer);
         listDebateCheer[2].AniStop();
         yield return StartCoroutine(IE_EndRound());
         yield break;
