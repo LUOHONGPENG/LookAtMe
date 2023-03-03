@@ -31,7 +31,7 @@ public class LevelThirdIns : LevelBasic
     public Transform tfContentComment;
     public List<Vector2> listPosComment = new List<Vector2>();
 
-    public Image imgTip;
+    public CanvasGroup groupTip;
 
     //PostProcess
     private DepthOfField efBlur;
@@ -49,7 +49,7 @@ public class LevelThirdIns : LevelBasic
     {
         base.Init(parent);
         PublicTool.PlayMusic(MusicType.InsSad);
-        imgTip.DOFade(0, 0);
+        groupTip.DOFade(0, 0);
 
         //UI Init
         layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
@@ -101,12 +101,12 @@ public class LevelThirdIns : LevelBasic
     #region
     public void ShowTip()
     {
-        imgTip.DOFade(0.75f, 0.5f);
+        groupTip.DOFade(0.75f, 0.5f);
     }
 
     public void HideTip()
     {
-        imgTip.DOFade(0, 0.5f);
+        groupTip.DOFade(0, 0.5f);
     }
 
     #endregion

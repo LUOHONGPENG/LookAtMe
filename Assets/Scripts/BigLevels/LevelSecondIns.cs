@@ -28,7 +28,7 @@ public class LevelSecondIns : LevelBasic
     private bool isRefreshDone = false;
     private bool isRefreshRequired = false;
     [Header("OtherContent")]
-    public Image imgTip;
+    public CanvasGroup groupTip;
     public Image imgPicB;
     public GameObject objGapB;
     public Text codeLikeOther;
@@ -58,7 +58,7 @@ public class LevelSecondIns : LevelBasic
 
         //Init Alpha
         imgBlack.DOFade(1, 0);
-        imgTip.DOFade(0, 0);
+        groupTip.DOFade(0, 0);
 
         btnLike.onClick.RemoveAllListeners();
         btnLike.onClick.AddListener(delegate ()
@@ -242,12 +242,12 @@ public class LevelSecondIns : LevelBasic
     #region
     public void ShowTip()
     {
-        imgTip.DOFade(0.75f, 0.5f);
+        groupTip.DOFade(0.75f, 0.5f);
     }
 
     public void HideTip()
     {
-        imgTip.DOFade(0, 0.5f);
+        groupTip.DOFade(0, 0.5f);
     }
 
     #endregion
