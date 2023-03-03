@@ -75,7 +75,6 @@ public partial class LevelFirstDebate
                 listPeople[i].SurprisePeople(false);
             }
             itemPeopleMe.SurprisePeople(true);
-            PublicTool.PlaySound(SoundType.Disagree);
         }
     }
 }

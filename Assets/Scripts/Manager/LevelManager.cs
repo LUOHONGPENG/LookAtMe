@@ -8,8 +8,6 @@ public enum LevelState
     FirstDebate,
     FirstParty,
     FirstIns,
-    Clock,
-    ChapterTwo,
     SecondDebate,
     DressUp,
     SecondParty,
@@ -41,12 +39,12 @@ public partial class LevelManager : MonoBehaviour
         if (isTestMode)
         {
             currentLevelState = testState;
-            LoadLevel();
         }
         else
         {
             currentLevelState = LevelState.FirstDebate;
         }
+        LoadLevel();
     }
     
     public void LoadLevel()
@@ -111,5 +109,4 @@ public partial class LevelManager : MonoBehaviour
             LoadLevel();
         }
     }
-
 }

@@ -6,8 +6,6 @@ TagManager:
   tags:
   - ColMask
   - ColDetect
-  - CanShoot
-  - Interaction
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6248700514311586059}
   - component: {fileID: 8809235117215870406}
-  - component: {fileID: 2620663253514511107}
   - component: {fileID: 8423388823718656198}
   - component: {fileID: 3951119906385364294}
   m_Layer: 6
@@ -53,27 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 6248700514311586059}
-  hoverController: {fileID: 2620663253514511107}
-  thoughtType: 0
   imgContent: {fileID: 3951119906385364294}
+  thoughtType: 0
   listSpThought:
   - {fileID: 21300000, guid: e549dcde509055d44802947f7c60cb74, type: 3}
   - {fileID: 21300000, guid: 8a77d8a036a4e4d438f27f56497770dc, type: 3}
   - {fileID: 21300000, guid: c4abeafd15496c749a9260c285c9bf03, type: 3}
---- !u!114 &2620663253514511107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2399345516277067108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5830218e68acb4345bb1d1850695a0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tfTarget: {fileID: 6248700514311586059}
-  isEnabled: 1
 --- !u!222 &8423388823718656198
 CanvasRenderer:
   m_ObjectHideFlags: 0
