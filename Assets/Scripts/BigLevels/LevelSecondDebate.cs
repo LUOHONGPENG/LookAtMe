@@ -63,7 +63,6 @@ public partial class LevelSecondDebate : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
-        PublicTool.PlayMusic(MusicType.Discuss);
 
         InitPrefabs();
 
@@ -72,7 +71,6 @@ public partial class LevelSecondDebate : LevelBasic
         isSharpWin = false;
         listColInScreen = new List<bool>() { true, true, true };
         currentRound = LevelRound.Round1;
-
 
         StartCoroutine(IE_InitRound());
     }
@@ -217,8 +215,7 @@ public partial class LevelSecondDebate : LevelBasic
         {
             yield return new WaitForSeconds(1f);
             PublicTool.TransitionIconEffect(TransitionIconType.Dress);
-            PublicTool.StopMusic();
-            yield return new WaitForSeconds(1.1f);
+            yield return new WaitForSeconds(1f);
             NextLevel();
             yield break;//Similar to return in function
         }

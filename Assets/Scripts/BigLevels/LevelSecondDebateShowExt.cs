@@ -67,7 +67,6 @@ public partial class LevelSecondDebate : LevelBasic
                 listPeople[i].SurprisePeople(false);
             }
             itemPeopleMe.SurprisePeople(true);
-            PublicTool.PlaySound(SoundType.Disagree);
         }
     }
     #endregion

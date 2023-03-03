@@ -41,12 +41,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2942258618277415008}
   - component: {fileID: 1801178307269323076}
-  - component: {fileID: 3261953596526846213}
   - component: {fileID: 738832705766384818}
   - component: {fileID: 6779331456494838846}
   m_Layer: 6
   m_Name: DragGrass
-  m_TagString: Interaction
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,25 +80,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tfDraw: {fileID: 6355620364658470991}
   srItem: {fileID: 738832705766384818}
-  colHit: {fileID: 6779331456494838846}
-  hoverSprite: {fileID: 3261953596526846213}
   isBeingHeld: 0
   canDrag: 0
---- !u!114 &3261953596526846213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4876154829968678967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3a17bddbcda7d0429c4b163cbe290c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tfTarget: {fileID: 2942258618277415008}
-  colHover: {fileID: 6779331456494838846}
-  isEnabled: 1
 --- !u!212 &738832705766384818
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -176,5 +158,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5, y: 3.8}
+  m_Size: {x: 6.06, y: 8.09}
   m_EdgeRadius: 0

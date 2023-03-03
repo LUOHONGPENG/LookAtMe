@@ -368,10 +368,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'This game contains suicide scenes which may cause you discomfort.
-
-    If
-    you confirm to continue, please click OK below.'
+  m_Text: "This video game psychologically profiles you as you play. \nIt gets to
+    know who you really are then uses this information to change itself. It uses
+    its knowledge against you, creating your own personal nightmare. \nThis game
+    plays you as much as you play it."
 --- !u!1 &3338014488262431209
 GameObject:
   m_ObjectHideFlags: 0

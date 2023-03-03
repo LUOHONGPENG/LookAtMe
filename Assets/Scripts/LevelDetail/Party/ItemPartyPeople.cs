@@ -6,14 +6,9 @@ using UnityEngine.UI;
 public class ItemPartyPeople : MonoBehaviour
 {
     //View
-    public List<Sprite> listSpPeopleNormal = new List<Sprite>();
-    public List<Sprite> listSpPeopleLove = new List<Sprite>();
-    public List<Sprite> listSpPeopleAngry = new List<Sprite>();
-
-
+    public List<Sprite> listSpPeople = new List<Sprite>();
     public Image imgPartyPeople;
     public Button btnPartyPeople;
-    public CommonHoverUI hoverBtnPeople;
     //Data
     public bool isFlip = false;
     private int peopleID = 0;
@@ -25,9 +20,7 @@ public class ItemPartyPeople : MonoBehaviour
         this.peopleID = ID;
         this.parent = parent;
         isFlip = false;
-        imgPartyPeople.sprite = listSpPeopleNormal[ID];
-        imgPartyPeople.SetNativeSize();
-
+        imgPartyPeople.sprite = listSpPeople[0];
         btnPartyPeople.onClick.RemoveAllListeners();
         btnPartyPeople.onClick.AddListener(delegate ()
         {
@@ -56,20 +49,13 @@ public class ItemPartyPeople : MonoBehaviour
     public void Flip()
     {
         timerFlip = GameGlobal.timerFP_notice;
-        if(parent is LevelFirstParty)
-        {
-            imgPartyPeople.sprite = listSpPeopleLove[peopleID];
-        }
-        else if(parent is LevelSecondParty)
-        {
-            imgPartyPeople.sprite = listSpPeopleAngry[peopleID];
-        }
+        imgPartyPeople.sprite = listSpPeople[1];
         isFlip = true;
     }
     public void FlipBack()
     {
         timerFlip = 0;
-        imgPartyPeople.sprite = listSpPeopleNormal[peopleID];
+        imgPartyPeople.sprite = listSpPeople[0];
         isFlip = false;
     }
     #endregion

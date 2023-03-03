@@ -16,10 +16,6 @@ public class GameManager : MonoSingleton<GameManager>
     public EffectManager effectManager;
     public DataManager dataManager;
 
-    public bool isSoundOn = true;
-    public bool isMusicOn = true;
-
-
     public void Start()
     {
         dataManager = new DataManager();
@@ -29,9 +25,6 @@ public class GameManager : MonoSingleton<GameManager>
         effectManager.Init();
         uiManager.Init();
         levelManager.Init();
-
-        isMusicOn = true;
-        isSoundOn = true;
     }
 
     public void ShakeCamera()

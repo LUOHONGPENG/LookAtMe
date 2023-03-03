@@ -28,7 +28,6 @@ public class EffectManager : MonoBehaviour
     public Transform tfUIEffect;
     public GameObject pfColor;
     public GameObject pfTransitionIcon;
-    public GameObject pfChapter;
     [Header("Warning")]
     public Transform tfWarning;
     public GameObject pfWarning;
@@ -116,25 +115,6 @@ public class EffectManager : MonoBehaviour
         GameObject obj = GameObject.Instantiate(pfWarning, tfWarning);
         EffectWarning efWarning = obj.GetComponent<EffectWarning>();
         efWarning.Init();
-    }
-    #endregion
-
-    #region Chapter
-    public void InitChapter(int ID)
-    {
-        StartCoroutine(IE_Chapter(ID));   
-
-
-
-    }
-
-    private IEnumerator IE_Chapter(int ID)
-    {
-        InitColor(EffectColor.EffectColorType.White);
-        yield return new WaitForSeconds(0.2F);
-        GameObject obj = GameObject.Instantiate(pfChapter, tfUIEffect);
-        EffectChapter itemChapter = obj.GetComponent<EffectChapter>();
-        itemChapter.Init(ID);
     }
     #endregion
 }

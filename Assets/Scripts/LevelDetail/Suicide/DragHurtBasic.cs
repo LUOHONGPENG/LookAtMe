@@ -8,8 +8,6 @@ public class DragHurtBasic : MonoBehaviour
 {
     public Transform tfDraw;
     public SpriteRenderer srItem;
-    public BoxCollider2D colHit;
-    public CommonHoverSprite hoverSprite;
 
     protected float dragInitStartPosX;
     protected float dragInitStartPosY;
@@ -32,7 +30,6 @@ public class DragHurtBasic : MonoBehaviour
     {
         if (isInit)
         {
-            CheckWhetherDrag();
             CheckDrag();
         }
     }
@@ -46,67 +43,29 @@ public class DragHurtBasic : MonoBehaviour
         }
     }
 
-
-    public void CheckWhetherDrag()
+    public void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0)&& canDrag)
+        if (Input.GetMouseButtonDown(0) && canDrag)
         {
-            Vector3 mousePosNew = Input.mousePosition;
-            mousePosNew.z = 10;
-            Vector3 screenPos = Camera.main.ScreenToWorldPoint(mousePosNew);
-            RaycastHit2D hit = Physics2D.Raycast(screenPos, Vector2.zero);
+            Vector3 mousePos = PublicTool.GetMousePosition2D();
+            dragStartPosX = mousePos.x - this.transform.position.x;
+            dragStartPosY = mousePos.y - this.transform.position.y;
 
-            if(hit.collider != null)
+            if (!isBeingHeld)
             {
-                if (hit.collider.tag == "Interaction")
-                {
-                    Vector3 mousePos = PublicTool.GetMousePosition2D();
-                    dragStartPosX = mousePos.x - this.transform.position.x;
-                    dragStartPosY = mousePos.y - this.transform.position.y;
-                    isBeingHeld = true;
-                    hoverSprite.isEnabled = false;
-                    return;
-                }
-            }
-
-
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (isBeingHeld)
-            {
-                isBeingHeld = false;
-                hoverSprite.isEnabled = true;
-                MoveBack();
+                isBeingHeld = true;
             }
         }
     }
 
-
-    /*    public void OnMouseDown()
+    public void OnMouseUp()
+    {
+        if (isBeingHeld)
         {
-            if (Input.GetMouseButtonDown(0) && canDrag)
-            {
-                Vector3 mousePos = PublicTool.GetMousePosition2D();
-                dragStartPosX = mousePos.x - this.transform.position.x;
-                dragStartPosY = mousePos.y - this.transform.position.y;
-
-                if (!isBeingHeld)
-                {
-                    isBeingHeld = true;
-                }
-            }
+            isBeingHeld = false;
+            MoveBack();
         }
-
-        public void OnMouseUp()
-        {
-            if (isBeingHeld)
-            {
-                isBeingHeld = false;
-                MoveBack();
-            }
-        }*/
+    }
 
     public void MoveBack()
     {

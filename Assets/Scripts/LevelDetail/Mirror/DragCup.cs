@@ -11,9 +11,6 @@ public class DragCup : MonoBehaviour
     public bool checkdrag;//if cups isbeen drag
     public bool isInit;
     private LevelMirror parent;
-    public BoxCollider2D colHit;
-    public CommonHoverSprite hoverSprite;
-
 
     public void Init(LevelMirror parent)
     {
@@ -32,42 +29,14 @@ public class DragCup : MonoBehaviour
                 mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
                 transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
             }
-            else
-            {
-                CheckWhetherDrag();
-            }
         }
     }
 
-/*    private void OnMouseDown()
+    private void OnMouseDown()
     {
         checkdrag = true;
         parent.CheckDragCup(checkdrag);
     }
-*/
-    public void CheckWhetherDrag()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 mousePosNew = Input.mousePosition;
-            mousePosNew.z = 10;
-            Vector3 screenPos = Camera.main.ScreenToWorldPoint(mousePosNew);
-            RaycastHit2D[] hits = Physics2D.RaycastAll(screenPos, Vector2.zero);
-            foreach (RaycastHit2D hit in hits)
-            {
-                if (hit.collider != null)
-                {
-                    if (hit.collider.tag == "Interaction")
-                    {
 
-                        checkdrag = true;
-                        hoverSprite.isEnabled = false;
-                        parent.CheckDragCup(checkdrag);
 
-                        return;
-                    }
-                }
-            }
-        }
-    }
 }
