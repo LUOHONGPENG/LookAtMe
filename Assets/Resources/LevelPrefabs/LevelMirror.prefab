@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6108133133612213579}
+  - component: {fileID: 953049030287183458}
   - component: {fileID: 6178509303549664972}
   - component: {fileID: 4834645446601629144}
   m_Layer: 6
   m_Name: cup
-  m_TagString: CanDrag
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,6 +36,21 @@ Transform:
   m_Father: {fileID: 2937072518245036714}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &953049030287183458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326383536424658786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a17bddbcda7d0429c4b163cbe290c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tfTarget: {fileID: 6108133133612213579}
+  colHover: {fileID: 4834645446601629144}
+  isEnabled: 1
 --- !u!114 &6178509303549664972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,6 +67,7 @@ MonoBehaviour:
   checkdrag: 0
   isInit: 0
   colHit: {fileID: 4834645446601629144}
+  hoverSprite: {fileID: 953049030287183458}
 --- !u!61 &4834645446601629144
 BoxCollider2D:
   m_ObjectHideFlags: 0

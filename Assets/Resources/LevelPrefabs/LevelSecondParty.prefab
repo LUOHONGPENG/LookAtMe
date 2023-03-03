@@ -180,8 +180,8 @@ MonoBehaviour:
   listPosPartyPeople:
   - {x: -557, y: 244}
   - {x: 463, y: 256}
-  - {x: -466, y: -224}
-  - {x: 463, y: -254}
+  - {x: -550, y: -224}
+  - {x: 600, y: -254}
   imgBlack: {fileID: 2099621425409336570}
   itemCharacter: {fileID: 3983463488673740970}
 --- !u!1 &5000796411556772171

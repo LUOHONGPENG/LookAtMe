@@ -9,6 +9,7 @@ public class DragHurtBasic : MonoBehaviour
     public Transform tfDraw;
     public SpriteRenderer srItem;
     public BoxCollider2D colHit;
+    public CommonHoverSprite hoverSprite;
 
     protected float dragInitStartPosX;
     protected float dragInitStartPosY;
@@ -57,12 +58,13 @@ public class DragHurtBasic : MonoBehaviour
 
             if(hit.collider != null)
             {
-                if (hit.collider.tag == "CanDrag")
+                if (hit.collider.tag == "Interaction")
                 {
                     Vector3 mousePos = PublicTool.GetMousePosition2D();
                     dragStartPosX = mousePos.x - this.transform.position.x;
                     dragStartPosY = mousePos.y - this.transform.position.y;
                     isBeingHeld = true;
+                    hoverSprite.isEnabled = false;
                     return;
                 }
             }
@@ -75,6 +77,7 @@ public class DragHurtBasic : MonoBehaviour
             if (isBeingHeld)
             {
                 isBeingHeld = false;
+                hoverSprite.isEnabled = true;
                 MoveBack();
             }
         }

@@ -12,6 +12,8 @@ public class DragCup : MonoBehaviour
     public bool isInit;
     private LevelMirror parent;
     public BoxCollider2D colHit;
+    public CommonHoverSprite hoverSprite;
+
 
     public void Init(LevelMirror parent)
     {
@@ -55,10 +57,11 @@ public class DragCup : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    if (hit.collider.tag == "CanDrag")
+                    if (hit.collider.tag == "Interaction")
                     {
 
                         checkdrag = true;
+                        hoverSprite.isEnabled = false;
                         parent.CheckDragCup(checkdrag);
 
                         return;

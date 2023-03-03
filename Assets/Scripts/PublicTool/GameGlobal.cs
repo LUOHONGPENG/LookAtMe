@@ -43,4 +43,5 @@ public static class GameGlobal
     public static float rateHos_dragSpeed = 0.3f;
     public static float rateHos_eyeBack = 40f;
 
+    public static float rateScale_hover = 1.15f;
 }

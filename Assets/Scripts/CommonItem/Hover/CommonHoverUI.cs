@@ -12,7 +12,7 @@ public class CommonHoverUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     {
         if (isEnabled)
         {
-            tfTarget.localScale = new Vector2(1.2f, 1.2f);
+            tfTarget.localScale = new Vector2(GameGlobal.rateScale_hover, GameGlobal.rateScale_hover);
         }
         else
         {
