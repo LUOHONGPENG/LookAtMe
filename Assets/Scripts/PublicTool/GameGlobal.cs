@@ -17,7 +17,7 @@ public static class GameGlobal
     public static float posFP_photoToInsY = 112.6f;
 
     //Clock
-    public static float rateClock_oneRound = 0.1f;//the process rate of one round of clock
+    public static float rateClock_oneRound = 0.2f;//the process rate of one round of clock
 
     //SecondParty
     public static int countSP_fail = 12;
