@@ -45,7 +45,7 @@ public class DragHosEye : CommonImageDrag
         Vector2 mousePosition = PublicTool.GetMousePosition2D();
         float deltaY = (mousePosition.y - lastFrameMousePosY);
         lastFrameMousePosY = mousePosition.y;
-        Debug.Log(deltaY);
+        //Debug.Log(deltaY);
         float targetY = this.transform.position.y + deltaY * GameGlobal.rateHos_dragSpeed;
         if (eyeType == EyeType.Top && this.transform.position.y < targetY)
         {

@@ -286,7 +286,7 @@ Camera:
   field of view: 34
   orthographic: 1
   orthographic size: 5.4
-  m_Depth: 1
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 87
@@ -666,6 +666,8 @@ MonoBehaviour:
   soundManager: {fileID: 339860276}
   uiManager: {fileID: 1731389634}
   effectManager: {fileID: 1457777419}
+  isSoundOn: 1
+  isMusicOn: 1
 --- !u!1001 &1731389633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -885,7 +887,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014121772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -222,7 +222,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -298,5 +298,6 @@ MonoBehaviour:
   tfUIEffect: {fileID: 6650454498051988422}
   pfColor: {fileID: 1542614595253822537, guid: 94d01ed8db80cbb4693148086b0a821c, type: 3}
   pfTransitionIcon: {fileID: 3695090765880679479, guid: 4d1ebf957e608cc49b414f49f6a72a7a, type: 3}
+  pfChapter: {fileID: 5703784734635469315, guid: b9cabe5df7ed8ab4cbe786c0bee14949, type: 3}
   tfWarning: {fileID: 6085554384884450693}
   pfWarning: {fileID: 9190981628346382287, guid: 73a4f70a0c2944640a866bf669697738, type: 3}

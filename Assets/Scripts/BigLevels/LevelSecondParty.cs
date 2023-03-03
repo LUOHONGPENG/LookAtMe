@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-
+using DG.Tweening;
 public class LevelSecondParty : LevelBasic
 {
     public CanvasGroup canvasGroupParty;
@@ -17,7 +17,7 @@ public class LevelSecondParty : LevelBasic
     public Image imgBlack;
 
     [Header("MainCharacter")]
-    public ItemCharacterDressUp itemCharacter;
+    public ItemCharacterParty itemCharacter;
     private int countFilp = 0;
     private bool isTriggerDark = false;
 
@@ -35,6 +35,8 @@ public class LevelSecondParty : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        PublicTool.PlayMusic(MusicType.Party);
+
         //Data
         isTriggerDark = false;
         countFilp = 0;
@@ -44,7 +46,7 @@ public class LevelSecondParty : LevelBasic
         imgBlack.gameObject.SetActive(false);
         canvasGroupParty.alpha = 1f;
         InitPrefab();
-        itemCharacter.ChangeClothes(GameManager.Instance.levelManager.savedDressType);
+        itemCharacter.Init(GameManager.Instance.levelManager.savedDressType);
     }
     public void InitPrefab()
     {
@@ -62,6 +64,8 @@ public class LevelSecondParty : LevelBasic
 
     public override void FlipPartyPeople(int ID)
     {
+        itemCharacter.UpdatePose();
+
         if (!isTriggerDark)
         {
             countFilp++;
@@ -97,11 +101,15 @@ public class LevelSecondParty : LevelBasic
     public IEnumerator IE_FlipGoalDeal()
     {
         InitVigEffect();
+        PublicTool.StopMusic();
+        PublicTool.PlaySound(SoundType.HeartBeat, true, true, 7f);
         yield return new WaitForSeconds(5f);
         isInitVignette = false;
-        GameManager.Instance.effectManager.ClearPostProcess();
         imgBlack.gameObject.SetActive(true);
+        imgBlack.DOFade(0, 0);
+        imgBlack.DOFade(1f, 2f);
         yield return new WaitForSeconds(2f);
+        GameManager.Instance.effectManager.ClearPostProcess();
         NextLevel();
     }
 

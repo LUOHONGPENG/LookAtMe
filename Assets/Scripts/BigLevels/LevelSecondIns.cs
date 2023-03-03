@@ -28,6 +28,7 @@ public class LevelSecondIns : LevelBasic
     private bool isRefreshDone = false;
     private bool isRefreshRequired = false;
     [Header("OtherContent")]
+    public Image imgTip;
     public Image imgPicB;
     public GameObject objGapB;
     public Text codeLikeOther;
@@ -53,6 +54,11 @@ public class LevelSecondIns : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        PublicTool.PlayMusic(MusicType.InsSad);
+
+        //Init Alpha
+        imgBlack.DOFade(1, 0);
+        imgTip.DOFade(0, 0);
 
         btnLike.onClick.RemoveAllListeners();
         btnLike.onClick.AddListener(delegate ()
@@ -95,17 +101,19 @@ public class LevelSecondIns : LevelBasic
         imgInsPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
         imgInsPhoto.transform.localPosition = GameManager.Instance.levelManager.posLastShoot;
         imgInsPhoto.SetNativeSize();
-        imgInsPhoto.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10F));
+        //imgInsPhoto.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10F));
 
     }
 
     public IEnumerator IE_InitAni()
     {
-        itemPhoto.MoveTo(new Vector2(20.2f, 105.4f), 0.5F);
+        itemPhoto.imgFrame.DOFade(0, 0.5F);
+        itemPhoto.MoveTo(new Vector2(GameGlobal.posSI_photoToInsX, GameGlobal.posSI_photoToInsY), 0.5F);
         yield return new WaitForSeconds(0.8F);
         imgBlack.DOFade(0, 0.5f);
+        yield return new WaitForSeconds(0.5F);
         itemPhoto.canvasGroupPhoto.DOFade(0, 0.5f);
-        yield return new WaitForSeconds(1F);
+        yield return new WaitForSeconds(0.5F);
         canvasGroupAll.blocksRaycasts = true;
         PublicTool.ClearChildItem(tfContentPhoto);
         InitRound();
@@ -130,9 +138,9 @@ public class LevelSecondIns : LevelBasic
     {
         if (scrollDragCheck.isDrag && rtContent.anchoredPosition.y < -100 && !isRefreshDone)
         {
-            if (rtContent.anchoredPosition.y < -128f)
+            if (rtContent.anchoredPosition.y < GameGlobal.constSI_paddingTop)
             {
-                rtContent.anchoredPosition = new Vector2(0, -128F);
+                rtContent.anchoredPosition = new Vector2(0, GameGlobal.constSI_paddingTop);
             }
 
             isRefreshRequired = true;
@@ -141,6 +149,7 @@ public class LevelSecondIns : LevelBasic
         {
             isRefreshRequired = false;
             isRefreshDone = true;
+            HideTip();
             if (currentRound == LevelRound.FirstScroll)
             {
                 StartCoroutine(IE_FirstScroll());
@@ -198,7 +207,7 @@ public class LevelSecondIns : LevelBasic
         layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
         imgRrefresh.sprite = listSpRefresh[0];
 
-        int ranNum = Random.Range(50, 100);
+        int ranNum = Random.Range(20, 40);
 
         float timerDelta = GameGlobal.timerSI_freeScrollNumGrow / 4F;
         yield return StartCoroutine(IE_LikeLoop(ranNum, timerDelta / ranNum));
@@ -214,6 +223,7 @@ public class LevelSecondIns : LevelBasic
         {
             canvasGroupAll.blocksRaycasts = true;
             isRefreshDone = false;
+            ShowTip();
         }
     }
 
@@ -221,14 +231,26 @@ public class LevelSecondIns : LevelBasic
     {
         for (int i = 0; i < num; i++)
         {
-            numLikeOther++;
+            int ranNum = Random.Range(1, 3);
+            numLikeOther += ranNum;
             codeLikeOther.text = numLikeOther.ToString();
             yield return new WaitForSeconds(time);
         }
     }
     #endregion
 
+    #region
+    public void ShowTip()
+    {
+        imgTip.DOFade(0.75f, 0.5f);
+    }
 
+    public void HideTip()
+    {
+        imgTip.DOFade(0, 0.5f);
+    }
+
+    #endregion
 
     #region Flowcontrol
 
@@ -243,12 +265,15 @@ public class LevelSecondIns : LevelBasic
             case LevelRound.FirstScroll:
                 scrollRect.vertical = true;
                 isRefreshDone = false;
+                ShowTip();
                 break;
             case LevelRound.SecondScroll:
                 isRefreshDone = false;
+                ShowTip();
                 break;
             case LevelRound.FreeScroll:
                 isRefreshDone = false;
+                ShowTip();
                 break;
         }
     }
@@ -258,7 +283,9 @@ public class LevelSecondIns : LevelBasic
         yield return new WaitForSeconds(1f);
         if (currentRound == LevelRound.FreeScroll)
         {
-            yield return new WaitForSeconds(3f);
+            PublicTool.TransitionChapter(3);
+            PublicTool.StopMusic();
+            yield return new WaitForSeconds(1.5f);
             NextLevel();
             yield break;//Similar to return in function
         }

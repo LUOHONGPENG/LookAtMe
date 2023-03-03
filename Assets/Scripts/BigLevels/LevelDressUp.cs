@@ -27,6 +27,7 @@ public class LevelDressUp : LevelBasic
     private ItemCharacterDressUp itemCharacter;
     [Header("Photo")]
     public Button btnShoot;
+    public CommonHoverUI hoverBtnShoot;
     public Image imgBtnShoot;
     public List<Sprite> listSpShoot;
     public GameObject pfPhoto;
@@ -46,9 +47,12 @@ public class LevelDressUp : LevelBasic
         {
             canvasGroupDress.blocksRaycasts = false;
             btnShoot.interactable = false;
+            hoverBtnShoot.isEnabled = false;
             imgBtnShoot.sprite = listSpShoot[1];
             //btnShoot.transform.DOScale(0, 0.5f);
             StartCoroutine(InitShootPhoto());
+
+            PublicTool.PlaySound(SoundType.Click);
         });
         isShowButton = false;
         InitCharacter();
@@ -74,9 +78,9 @@ public class LevelDressUp : LevelBasic
             itemDress.InitPosition(listPosDress[i]);
             listDragDress.Add(itemDress);
         }
-        listDragDress[0].Init(DressType.Black, this);
-        listDragDress[1].Init(DressType.Blue, this);
-        listDragDress[2].Init(DressType.Red, this);
+        listDragDress[0].Init(DressType.Red, this);
+        listDragDress[1].Init(DressType.Black, this);
+        listDragDress[2].Init(DressType.Blue, this);
         listDragDress[3].Init(DressType.Flower, this);
 
     }
@@ -132,14 +136,16 @@ public class LevelDressUp : LevelBasic
     {
         GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
         itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
-        itemPhoto.Init(this, PhotoType.Auto);
+        itemPhoto.Init(this, PhotoType.Manual);
+
+/*        itemPhoto.Init(this, PhotoType.Auto);
         itemPhoto.MoveTo(new Vector2(1200F, -800F), 0f);
         yield return new WaitForEndOfFrame();
-        itemPhoto.MoveTo(new Vector2(-120F, -80F), 0.5f);
+        itemPhoto.MoveTo(new Vector2(-100F, -80F), 0.5f);
         yield return new WaitForSeconds(0.5F);
-        itemPhoto.MoveTo(new Vector2(-300F, 150F), 1f);
+        itemPhoto.MoveTo(new Vector2(-280F, 320F), 1f);
         yield return new WaitForSeconds(1F);
-        itemPhoto.ShootExecute();
+        itemPhoto.ShootExecute();*/
         yield break;
     }
 
