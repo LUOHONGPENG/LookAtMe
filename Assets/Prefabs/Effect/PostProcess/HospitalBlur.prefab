@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5111494516142575953}
   - component: {fileID: 863429191864241272}
-  - component: {fileID: 4962182308313158695}
+  - component: {fileID: -3206619873320656595}
   m_Layer: 0
   m_Name: HospitalBlur
   m_TagString: Untagged
@@ -50,7 +50,7 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 864d3ff41fdffe54095cd76f74cc82bc, type: 2}
---- !u!65 &4962182308313158695
+--- !u!65 &-3206619873320656595
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,5 +61,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 100, y: 100, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: -10}
