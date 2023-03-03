@@ -25,7 +25,7 @@ public class MouseTipManager : MonoBehaviour
         imgTip.DOFade(0, 0);
     }
 
-    public void ShowTip(TipType type)
+    public void ShowTip(TipType type,float time = 0)
     {
         switch (type)
         {
@@ -36,6 +36,12 @@ public class MouseTipManager : MonoBehaviour
                 aniTip.Play("Drag");
                 break;
         }
+        StartCoroutine(IE_ShowTip(time));
+    }
+
+    public IEnumerator IE_ShowTip(float time)
+    {
+        yield return new WaitForSeconds(time);
         tfAni.DOScale(0.2F, 0.5F);
         imgTip.DOFade(1F, 0.5F);
     }

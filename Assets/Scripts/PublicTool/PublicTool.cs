@@ -79,9 +79,9 @@ public class PublicTool : MonoBehaviour
 
     #region Tip
 
-    public static void ShowMouseTip(TipType tipType)
+    public static void ShowMouseTip(TipType tipType,float time = 0)
     {
-        GameManager.Instance.uiManager.mouseTipManager.ShowTip(tipType);
+        GameManager.Instance.uiManager.mouseTipManager.ShowTip(tipType,time);
     }
 
 

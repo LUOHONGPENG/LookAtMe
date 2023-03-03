@@ -57,6 +57,7 @@ public class LevelDressUp : LevelBasic
         isShowButton = false;
         InitCharacter();
         InitDress();
+        PublicTool.ShowMouseTip(TipType.Drag, 2f);
     }
 
     public void InitCharacter()
@@ -91,6 +92,7 @@ public class LevelDressUp : LevelBasic
     {
         //Ban all interaction about dressing
         //ChangeTheClothe
+        PublicTool.HideMouseTip();
         itemCharacter.ChangeClothes(currentType);
         //HideTheClothe
         for(int i = 0; i < 4; i++)
