@@ -91,6 +91,8 @@ public class LevelFirstIns : LevelBasic
         canvasGroupIns.DOFade(1f, 0.5f);
         yield return new WaitForSeconds(1F);
         PublicTool.ClearChildItem(tfContentPhoto);
+
+        PublicTool.ShowMouseTip(TipType.Click);
     }
 
     #endregion
@@ -98,6 +100,8 @@ public class LevelFirstIns : LevelBasic
     #region Like
     public IEnumerator IE_FirstLike()
     {
+        PublicTool.HideMouseTip();
+
         imgLike.DOFade(1f, 0.5f);
         imgLike.transform.DOScale(2f, 0.5f);
         
@@ -111,6 +115,7 @@ public class LevelFirstIns : LevelBasic
         
         GenerateComment();
         yield return new WaitForSeconds(3f);
+
         NextLevel();
     }
 

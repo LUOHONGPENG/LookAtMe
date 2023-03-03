@@ -76,4 +76,18 @@ public class PublicTool : MonoBehaviour
         GameManager.Instance.soundManager.StopMusic();
     }
     #endregion
+
+    #region Tip
+
+    public static void ShowMouseTip(TipType tipType)
+    {
+        GameManager.Instance.uiManager.mouseTipManager.ShowTip(tipType);
+    }
+
+
+    public static void HideMouseTip()
+    {
+        GameManager.Instance.uiManager.mouseTipManager.HideTip();
+    }
+    #endregion
 }

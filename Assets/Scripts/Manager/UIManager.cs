@@ -8,12 +8,14 @@ public class UIManager : MonoBehaviour
 {
     public StartPageManager startPageManager;
     public MenuPageManager menuPageManager;
+    public MouseTipManager mouseTipManager;
     public Button btnMenu;
 
     public void Init()
     {
         startPageManager.Init();
         menuPageManager.Init();
+        mouseTipManager.Init();
 
         btnMenu.onClick.RemoveAllListeners();
         btnMenu.onClick.AddListener(delegate ()

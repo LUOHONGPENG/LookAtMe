@@ -159,7 +159,7 @@ public class LevelDressUp : LevelBasic
         yield return new WaitForSeconds(2f);
         itemPhoto.MoveTo(new Vector2(1200F, -800F),0.5f);
         yield return new WaitForSeconds(1f);
-        PublicTool.TransitionIconEffect(TransitionIconType.Cheer);
+        PublicTool.TransitionIconEffect(TransitionIconType.Shape);
         yield return new WaitForSeconds(1f);
         NextLevel();
     }
