@@ -118,6 +118,9 @@ public class StartPageManager : MonoBehaviour
                 objMain.SetActive(true);
                 objSetting.SetActive(false);
                 objAbout.SetActive(false);
+                btnAbout.transform.localScale = Vector2.one;
+                btnSetting.transform.localScale = Vector2.one;
+                btnStart.transform.localScale = Vector2.one;
                 break;
             case PageType.Setting:
                 objMain.SetActive(false);
@@ -125,11 +128,15 @@ public class StartPageManager : MonoBehaviour
                 objAbout.SetActive(false);
                 UpdateSoundButton();
                 UpdateMusicButton();
+                btnSound.transform.localScale = Vector2.one;
+                btnMusic.transform.localScale = Vector2.one;
+                btnBackS.transform.localScale = Vector2.one;
                 break;
             case PageType.About:
                 objMain.SetActive(false);
                 objSetting.SetActive(false);
                 objAbout.SetActive(true);
+                btnBackA.transform.localScale = Vector2.one;
                 break;
         }
     }

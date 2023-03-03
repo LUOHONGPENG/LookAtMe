@@ -27,6 +27,7 @@ public class LevelDressUp : LevelBasic
     private ItemCharacterDressUp itemCharacter;
     [Header("Photo")]
     public Button btnShoot;
+    public CommonHoverUI hoverBtnShoot;
     public Image imgBtnShoot;
     public List<Sprite> listSpShoot;
     public GameObject pfPhoto;
@@ -46,6 +47,7 @@ public class LevelDressUp : LevelBasic
         {
             canvasGroupDress.blocksRaycasts = false;
             btnShoot.interactable = false;
+            hoverBtnShoot.isEnabled = false;
             imgBtnShoot.sprite = listSpShoot[1];
             //btnShoot.transform.DOScale(0, 0.5f);
             StartCoroutine(InitShootPhoto());

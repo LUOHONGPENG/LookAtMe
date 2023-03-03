@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
         btnMenu.onClick.AddListener(delegate ()
         {
             menuPageManager.ShowPage();
+            btnMenu.transform.localScale = Vector2.one;
         });
         btnMenu.transform.DOScale(0, 0);
     }

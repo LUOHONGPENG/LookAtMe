@@ -18,6 +18,7 @@ public class MenuPageManager : MonoBehaviour
         {
             PublicTool.PlaySound(SoundType.Click);
             objPopups.SetActive(false);
+            btnBack.transform.localScale = Vector2.one;
         });
 
         btnRestart.onClick.RemoveAllListeners();
