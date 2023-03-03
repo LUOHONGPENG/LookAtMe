@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7989221111087180017}
   - component: {fileID: 4415934956563494062}
   m_Layer: 6
-  m_Name: colliderShoot
+  m_Name: colCanShoot
   m_TagString: CanShoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
