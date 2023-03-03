@@ -24,4 +24,9 @@ public class CommonHoverUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     {
         tfTarget.localScale = Vector2.one;
     }
+
+    public void ResetOne()
+    {
+        tfTarget.localScale = Vector2.one;
+    }
 }

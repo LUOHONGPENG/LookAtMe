@@ -13,6 +13,7 @@ public class ItemPartyPeople : MonoBehaviour
 
     public Image imgPartyPeople;
     public Button btnPartyPeople;
+    public CommonHoverUI hoverBtnPeople;
     //Data
     public bool isFlip = false;
     private int peopleID = 0;
