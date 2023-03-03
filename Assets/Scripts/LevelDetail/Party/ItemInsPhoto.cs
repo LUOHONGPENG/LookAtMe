@@ -21,6 +21,8 @@ public class ItemInsPhoto : MonoBehaviour
     public Button btnShoot;
     public Image imgPhoto;
     public Image imgBlack;
+    public Image imgFrame;
+    public Image imgBan;
 
     private bool isInit = false;
     private bool isShoot = false;
@@ -35,7 +37,6 @@ public class ItemInsPhoto : MonoBehaviour
         btnShoot.onClick.AddListener(delegate ()
         {
             ShootExecute();
-            btnShoot.interactable = false;
         });
 
         switch (photoType)
@@ -50,7 +51,7 @@ public class ItemInsPhoto : MonoBehaviour
                 isShoot = true;
                 btnShoot.interactable = false;
                 this.transform.localPosition = new Vector2(posX, posY);
-                this.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10f));
+                //this.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10f));
                 this.transform.localScale = new Vector3(GameGlobal.scaleFP_photoToInsX, GameGlobal.scaleFP_photoToInsY, 1);
                 imgPhoto.DOFade(1f, 0);
                 imgPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
@@ -70,10 +71,50 @@ public class ItemInsPhoto : MonoBehaviour
 
     void Update()
     {
+        if (!isInit)
+        {
+            return;
+        }
+        UpdateCameraState();
         CheckFollowMouse();
     }
 
     #region BasicFunction
+
+    private bool CheckWhetherCanShoot()
+    {
+        if (!isShoot)
+        {
+            Vector3 mousePosNew = Input.mousePosition;
+            mousePosNew.z = 10;
+            Vector3 screenPos = Camera.main.ScreenToWorldPoint(mousePosNew);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(screenPos, Vector2.zero);
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider != null)
+                {
+                    if (hit.collider.tag == "CanShoot")
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private void UpdateCameraState()
+    {
+        if (!CheckWhetherCanShoot()&&!isShoot)
+        {
+            imgBan.gameObject.SetActive(true);
+        }
+        else
+        {
+            imgBan.gameObject.SetActive(false);
+        }
+    }
+
 
     private void CheckFollowMouse()
     {
@@ -85,19 +126,21 @@ public class ItemInsPhoto : MonoBehaviour
 
     public void ShootExecute()
     {
-        if (!isShoot)
+        if (CheckWhetherCanShoot())
         {
             isShoot = true;
             StartCoroutine(ShootIns());
             parent.AfterShoot();
             BlackMask();
             MoveToCenter();
+            btnShoot.interactable = false;
         }
     }
 
     public IEnumerator ShootIns()
     {
         canvasGroupPhoto.alpha = 0;
+        PublicTool.PlaySound(SoundType.Camera);
         yield return new WaitForEndOfFrame();
 
 /*        int ScreenSizeX = Screen.width;
@@ -148,16 +191,21 @@ public class ItemInsPhoto : MonoBehaviour
         switch(GameManager.Instance.levelManager.currentLevelState)
         {
             case LevelState.FirstParty:
-            case LevelState.SecondParty:
-                this.transform.DOLocalMove(new Vector2(20.2f, 99.4F), 0.5f);
+                this.transform.DOLocalMove(new Vector2(GameGlobal.posFP_photoToInsX, GameGlobal.posFP_photoToInsY), 0.5f);
                 break;
+            case LevelState.DressUp:
+                this.transform.DOLocalMove(new Vector2(GameGlobal.posSI_photoToInsX, GameGlobal.posSI_photoToInsY), 0.5f);
+                break;
+/*            case LevelState.SecondParty:
+                this.transform.DOLocalMove(new Vector2(GameGlobal.posSI_photoToInsX, GameGlobal.posSI_photoToInsY), 0.5f);
+                break;*/
             case LevelState.FakeSuicide:
-                this.transform.DOLocalMove(new Vector2(20.2f, 105.7f), 0.5f);
+                this.transform.DOLocalMove(new Vector2(GameGlobal.posTI_photoToInsX, GameGlobal.posTI_photoToInsY), 0.5f);
                 break;
         }
         this.transform.DOScaleX(GameGlobal.scaleFP_photoToInsX, 0.5f);
         this.transform.DOScaleY(GameGlobal.scaleFP_photoToInsY, 0.5f);
-        this.transform.DORotateQuaternion(Quaternion.Euler(new Vector3(0, 0, -10f)), 0.5f);
+        //this.transform.DORotateQuaternion(Quaternion.Euler(new Vector3(0, 0, -10f)), 0.5f);
     }
 
     public void MoveTo(Vector2 pos,float time)

@@ -26,13 +26,13 @@ public class DragDress : CommonImageDrag
         this.posStart = this.transform.position;
         switch (type)
         {
-            case DressType.Black:
+            case DressType.Red:
                 imgDress.sprite = listSpDress[0];
                 break;
-            case DressType.Blue:
+            case DressType.Black:
                 imgDress.sprite = listSpDress[1];
                 break;
-            case DressType.Red:
+            case DressType.Blue:
                 imgDress.sprite = listSpDress[2];
                 break;
             case DressType.Flower:

@@ -73,6 +73,11 @@ public class LevelMirror : LevelBasic
         if (count == 3)
         {
             IfMirrorBroken = true;
+            PublicTool.PlaySound(SoundType.Break2);
+        }
+        else
+        {
+            PublicTool.PlaySound(SoundType.Break1);
         }
     }
 
