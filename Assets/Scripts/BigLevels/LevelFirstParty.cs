@@ -13,6 +13,7 @@ public class LevelFirstParty : LevelBasic
     public List<Vector2> listPosPartyPeople = new List<Vector2>();
     //A list that contains 4 partypeople prefabs
     private List<ItemPartyPeople> listPartyPeople = new List<ItemPartyPeople>();
+    public ItemCharacterParty itemCharacter;
 
     [Header("MainCharacter")]
     public Image imgLight;
@@ -26,9 +27,11 @@ public class LevelFirstParty : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        PublicTool.PlayMusic(MusicType.Party);
 
         isTaskDoneExtra = false;
 
+        itemCharacter.Init(DressType.Red);
         InitCharacterGroup();
         InitPrefab();
     }
@@ -61,6 +64,8 @@ public class LevelFirstParty : LevelBasic
 
     public override void FlipPartyPeople(int ID)
     {
+        itemCharacter.UpdatePose();
+
         int numPeopleFlip = 0;
         foreach (ItemPartyPeople people in listPartyPeople)
         {
@@ -74,12 +79,17 @@ public class LevelFirstParty : LevelBasic
         if (numPeopleFlip >= 4 && !isTaskDoneExtra)
         {
             isTaskDoneExtra = true;
+            foreach(var item in listPartyPeople)
+            {
+                item.hoverBtnPeople.enabled = false;
+            }
             StartCoroutine(IE_FlipGoalDeal());
         }
     }
 
     public IEnumerator IE_FlipGoalDeal()
     {
+        PublicTool.PlaySound(SoundType.Wow);
         imgLight.DOFade(1f, GameGlobal.timerFP_light);
         imgRibbon.transform.DOLocalMoveY(100, GameGlobal.timerFP_light);
         yield return new WaitForSeconds(GameGlobal.timerFP_light);
@@ -109,7 +119,9 @@ public class LevelFirstParty : LevelBasic
     public IEnumerator IE_AfterShoot()
     {
         canvasGroupParty.DOFade(0, 0.5f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        PublicTool.StopMusic();
+        yield return new WaitForSeconds(1.1f);
         NextLevel();
     }
 

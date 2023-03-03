@@ -75,6 +75,8 @@ public partial class LevelFirstDebate : LevelBasic
         isCheer = false;
         currentRound = LevelRound.Round1;
         StartCoroutine(IE_InitRound());
+
+        PublicTool.PlayMusic(MusicType.Discuss);
     }
 
     //Dynamic
@@ -233,6 +235,7 @@ public partial class LevelFirstDebate : LevelBasic
     public IEnumerator IE_CheerGoalFinish()
     {
         itemDragCheer.canDrag = false;
+        PublicTool.PlaySound(SoundType.Cheer);
         listDebateCheer[2].AniStop();
         yield return StartCoroutine(IE_EndRound());
         yield break;
@@ -244,7 +247,8 @@ public partial class LevelFirstDebate : LevelBasic
         if (currentRound == LevelRound.Cheers)
         {
             PublicTool.TransitionIconEffect(TransitionIconType.Cheer);
-            yield return new WaitForSeconds(1f);
+            PublicTool.StopMusic();
+            yield return new WaitForSeconds(1.1f);
             NextLevel();
             yield break;//Similar to return in function
         }

@@ -9,6 +9,7 @@ using UnityEngine.Rendering.Universal;
 public class LevelThirdIns : LevelBasic
 {
     public CanvasGroup canvasGroupIns;
+    public Image imgBg;
     [Header("Photo")]
     public GameObject pfPhoto;
     public Transform tfContentPhoto;
@@ -30,6 +31,8 @@ public class LevelThirdIns : LevelBasic
     public Transform tfContentComment;
     public List<Vector2> listPosComment = new List<Vector2>();
 
+    public Image imgTip;
+
     //PostProcess
     private DepthOfField efBlur;
     private bool isInitBlur = false;
@@ -45,11 +48,14 @@ public class LevelThirdIns : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        PublicTool.PlayMusic(MusicType.InsSad);
+        imgTip.DOFade(0, 0);
 
         //UI Init
         layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
         scrollRect.vertical = false;
         canvasGroupIns.alpha = 0;
+        imgBg.DOFade(0, 0);
         //Ban interaction
         canvasGroupIns.blocksRaycasts = false;
 
@@ -61,19 +67,23 @@ public class LevelThirdIns : LevelBasic
     {
         GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
         itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
-        itemPhoto.Init(this, PhotoType.Display, 20.2f, 105.7f);
+        itemPhoto.Init(this, PhotoType.Display, GameGlobal.posTI_photoToInsX, GameGlobal.posTI_photoToInsY);
 
         imgInsPhoto.sprite = GameManager.Instance.levelManager.spLastShoot;
         imgInsPhoto.transform.localPosition = GameManager.Instance.levelManager.posLastShoot;
         imgInsPhoto.SetNativeSize();
-        imgInsPhoto.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10F));
+        //imgInsPhoto.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -10F));
     }
 
     public IEnumerator IE_InitAni()
     {
+        imgBg.DOFade(1f, 0.5f);
+        itemPhoto.imgFrame.DOFade(0, 0.5f);
+        yield return new WaitForSeconds(0.5F);
         canvasGroupIns.DOFade(1f, 0.5f);
+        yield return new WaitForSeconds(0.5F);
         itemPhoto.canvasGroupPhoto.DOFade(0, 0.5f);
-        yield return new WaitForSeconds(1F);
+        yield return new WaitForSeconds(0.5F);
         PublicTool.ClearChildItem(tfContentPhoto);
         InitScroll();
     }
@@ -84,7 +94,21 @@ public class LevelThirdIns : LevelBasic
         canvasGroupIns.blocksRaycasts = true;
         scrollRect.vertical = true;
         isRefreshDone = false;
+        ShowTip();
     }
+    #endregion
+
+    #region
+    public void ShowTip()
+    {
+        imgTip.DOFade(0.75f, 0.5f);
+    }
+
+    public void HideTip()
+    {
+        imgTip.DOFade(0, 0.5f);
+    }
+
     #endregion
 
     #region ScrollAction
@@ -93,9 +117,9 @@ public class LevelThirdIns : LevelBasic
     {
         if (scrollDragCheck.isDrag && rtContent.anchoredPosition.y < -100 && !isRefreshDone)
         {
-            if (rtContent.anchoredPosition.y < -128f)
+            if (rtContent.anchoredPosition.y < GameGlobal.constSI_paddingTop)
             {
-                rtContent.anchoredPosition = new Vector2(0, -128F);
+                rtContent.anchoredPosition = new Vector2(0, GameGlobal.constSI_paddingTop);
             }
 
             isRefreshRequired = true;
@@ -104,6 +128,7 @@ public class LevelThirdIns : LevelBasic
         {
             isRefreshRequired = false;
             isRefreshDone = true;
+            HideTip();
             StartCoroutine(IE_Scroll());
         }
     }
@@ -120,10 +145,12 @@ public class LevelThirdIns : LevelBasic
         yield return new WaitForSeconds(0.5f);
         GenerateComment();
         yield return new WaitForSeconds(2f);
+        PublicTool.PlaySound(SoundType.Breath,true,true,5f);
         InitBlur();
         yield return new WaitForSeconds(5f);
         isInitBlur = false;
-        yield return new WaitForSeconds(1f);
+        PublicTool.StopMusic();
+        yield return new WaitForSeconds(1.1f);
         GameManager.Instance.effectManager.ClearPostProcess();
         NextLevel();
     }
