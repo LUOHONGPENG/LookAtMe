@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6779331456494838846}
   m_Layer: 6
   m_Name: DragGrass
-  m_TagString: Untagged
+  m_TagString: CanDrag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tfDraw: {fileID: 6355620364658470991}
   srItem: {fileID: 738832705766384818}
+  colHit: {fileID: 6779331456494838846}
   isBeingHeld: 0
   canDrag: 0
 --- !u!212 &738832705766384818
@@ -158,5 +159,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.06, y: 8.09}
+  m_Size: {x: 3.5, y: 3.8}
   m_EdgeRadius: 0

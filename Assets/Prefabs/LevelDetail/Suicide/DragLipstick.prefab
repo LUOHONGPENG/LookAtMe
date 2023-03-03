@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8242442961487252534}
   m_Layer: 6
   m_Name: DragLipstick
-  m_TagString: Untagged
+  m_TagString: CanDrag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tfDraw: {fileID: 6246750834415265429}
   srItem: {fileID: 5696235750269552802}
+  colHit: {fileID: 8242442961487252534}
   isBeingHeld: 0
   canDrag: 0
 --- !u!212 &5696235750269552802

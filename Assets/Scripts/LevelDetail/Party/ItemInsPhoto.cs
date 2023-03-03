@@ -152,9 +152,12 @@ public class ItemInsPhoto : MonoBehaviour
             case LevelState.FirstParty:
                 this.transform.DOLocalMove(new Vector2(GameGlobal.posFP_photoToInsX, GameGlobal.posFP_photoToInsY), 0.5f);
                 break;
-            case LevelState.SecondParty:
+            case LevelState.DressUp:
                 this.transform.DOLocalMove(new Vector2(GameGlobal.posSI_photoToInsX, GameGlobal.posSI_photoToInsY), 0.5f);
                 break;
+/*            case LevelState.SecondParty:
+                this.transform.DOLocalMove(new Vector2(GameGlobal.posSI_photoToInsX, GameGlobal.posSI_photoToInsY), 0.5f);
+                break;*/
             case LevelState.FakeSuicide:
                 this.transform.DOLocalMove(new Vector2(GameGlobal.posTI_photoToInsX, GameGlobal.posTI_photoToInsY), 0.5f);
                 break;

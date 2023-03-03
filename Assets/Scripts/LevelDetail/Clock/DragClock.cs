@@ -45,7 +45,6 @@ public class DragClock : CommonImageDrag
 
         Vector2 vecCurrent = new Vector2(-Mathf.Sin(currentAngle * Mathf.Deg2Rad), Mathf.Cos(currentAngle * Mathf.Deg2Rad));
 
-
         float angleDiff = PublicTool.CalculateAngle(vecPoint, vecCurrent);
         float angleMouse = PublicTool.CalculateAngle(vecPoint, vecInit);
 
@@ -58,7 +57,7 @@ public class DragClock : CommonImageDrag
             currentAngle = angleMouse;
             calculateAngle = currentAngle - 360f * countRound;
             SetRotation(currentAngle);
-            Debug.Log(calculateAngle);
+            //Debug.Log(calculateAngle);
         }
 
     }
@@ -73,7 +72,7 @@ public class DragClock : CommonImageDrag
     {
         if (isInit)
         {
-            return 0.1f * Mathf.Abs(calculateAngle)/360f;
+            return GameGlobal.rateClock_oneRound * Mathf.Abs(calculateAngle)/360f;
         }
         else
         {

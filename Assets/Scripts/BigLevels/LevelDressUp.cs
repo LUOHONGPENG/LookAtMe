@@ -134,14 +134,16 @@ public class LevelDressUp : LevelBasic
     {
         GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
         itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
-        itemPhoto.Init(this, PhotoType.Auto);
+        itemPhoto.Init(this, PhotoType.Manual);
+
+/*        itemPhoto.Init(this, PhotoType.Auto);
         itemPhoto.MoveTo(new Vector2(1200F, -800F), 0f);
         yield return new WaitForEndOfFrame();
         itemPhoto.MoveTo(new Vector2(-100F, -80F), 0.5f);
         yield return new WaitForSeconds(0.5F);
         itemPhoto.MoveTo(new Vector2(-280F, 320F), 1f);
         yield return new WaitForSeconds(1F);
-        itemPhoto.ShootExecute();
+        itemPhoto.ShootExecute();*/
         yield break;
     }
 
