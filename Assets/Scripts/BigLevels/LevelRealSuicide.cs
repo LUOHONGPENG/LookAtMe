@@ -39,6 +39,8 @@ public class LevelRealSuicide : LevelBasic
         GameObject objCanvas = GameObject.Instantiate(pfTempCanvas, parent.tfContentImage);
         itemCanvas = objCanvas.GetComponent<LevelTempCanvas>();
 
+        PublicTool.PlaySound(SoundType.HeartBeat);
+
         isInit = true;
     }
     private void Update()
@@ -157,6 +159,7 @@ public class LevelRealSuicide : LevelBasic
         InitEye();
         //Change to next level after 2 seconds
         yield return new WaitForSeconds(2f);
+        PublicTool.StopSound(SoundType.HeartBeat);
         GameManager.Instance.effectManager.ClearPostProcess();
         NextLevel();
     }

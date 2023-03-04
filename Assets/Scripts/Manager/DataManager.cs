@@ -24,6 +24,7 @@ public class DataManager
         dicLevelInfo.Add(LevelState.Mirror, new LevelInfo(LevelState.Mirror, false, true));
         dicLevelInfo.Add(LevelState.RealSuicide, new LevelInfo(LevelState.RealSuicide, false, true));
         dicLevelInfo.Add(LevelState.Hospital, new LevelInfo(LevelState.Hospital, true, true));
+        dicLevelInfo.Add(LevelState.Diagnosis, new LevelInfo(LevelState.Diagnosis, true, true));
     }
 
 }

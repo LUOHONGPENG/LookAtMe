@@ -18,7 +18,8 @@ public class MouseTipManager : MonoBehaviour
     public Transform tfAni;
     public Animator aniTip;
     public Image imgTip;
-
+    private Coroutine coShowTip;
+    
     public void Init()
     {
         tfAni.DOScale(0, 0);
@@ -36,7 +37,7 @@ public class MouseTipManager : MonoBehaviour
                 aniTip.Play("Drag");
                 break;
         }
-        StartCoroutine(IE_ShowTip(time));
+        coShowTip = StartCoroutine(IE_ShowTip(time));
     }
 
     public IEnumerator IE_ShowTip(float time)
@@ -48,6 +49,10 @@ public class MouseTipManager : MonoBehaviour
 
     public void HideTip()
     {
+        if (coShowTip != null)
+        {
+            StopCoroutine(coShowTip);
+        }
         tfAni.DOScale(0, 0.5f);
         imgTip.DOFade(0, 0.5f);
     }

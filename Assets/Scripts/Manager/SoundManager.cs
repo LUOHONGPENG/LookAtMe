@@ -107,13 +107,30 @@ public class SoundManager : MonoBehaviour
             tempSound.volume = 0;
             tempSound.DOFade(1f,0.5f);
         }
+        else
+        {
+            tempSound.volume = 1f;
+        }
 
         if (needStop)
         {
             StartCoroutine(IE_StopSound(tempSound,stopTime));
         }
-
     }
+
+    public void StopSound(SoundType soundType)
+    {
+        AudioSource tempSound = au_click;
+
+        if (dic_SoundType.ContainsKey(soundType))
+        {
+            tempSound = dic_SoundType[soundType];
+            tempSound.DOFade(0, 1f);
+            StartCoroutine(IE_StopSound(tempSound, 1f));
+        }
+    }
+
+
 
     public bool CheckSoundPlay(SoundType soundType)
     {

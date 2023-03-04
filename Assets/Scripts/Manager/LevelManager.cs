@@ -19,6 +19,7 @@ public enum LevelState
     Mirror,
     RealSuicide,
     Hospital,
+    Diagnosis,
     End
 }
 

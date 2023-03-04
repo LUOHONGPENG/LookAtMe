@@ -57,6 +57,11 @@ public class PublicTool : MonoBehaviour
         }
     }
 
+    public static void StopSound(SoundType soundType)
+    {
+        GameManager.Instance.soundManager.StopSound(soundType);
+    }
+
     public static bool CheckSound(SoundType soundType)
     {
         return GameManager.Instance.soundManager.CheckSoundPlay(soundType);
