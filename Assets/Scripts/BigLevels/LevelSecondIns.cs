@@ -29,6 +29,7 @@ public class LevelSecondIns : LevelBasic
     private bool isRefreshRequired = false;
     [Header("OtherContent")]
     public CanvasGroup groupTip;
+    public Image imgEmoji;
     public Image imgPicB;
     public GameObject objGapB;
     public Text codeLikeOther;
@@ -59,6 +60,7 @@ public class LevelSecondIns : LevelBasic
         //Init Alpha
         imgBlack.DOFade(1, 0);
         groupTip.DOFade(0, 0);
+        imgEmoji.transform.DOScale(0, 0);
 
         btnLike.onClick.RemoveAllListeners();
         btnLike.onClick.AddListener(delegate ()
@@ -67,12 +69,14 @@ public class LevelSecondIns : LevelBasic
             {
                 StartCoroutine(IE_ClickLike());
                 btnLike.interactable = false;
+                imgLike.raycastTarget = true;
             }
         });
 
         //UI Init
         layout.padding = new RectOffset(0, 0, GameGlobal.constSI_paddingTop, GameGlobal.constSI_paddingBottom);
         imgLike.DOFade(0, 0);
+        imgLike.raycastTarget = false;
         btnLike.interactable = true;
         imgPicB.gameObject.SetActive(false);
         objGapB.SetActive(false);
@@ -280,6 +284,13 @@ public class LevelSecondIns : LevelBasic
 
     private IEnumerator IE_EndRound()
     {
+        switch (currentRound)
+        {
+            case LevelRound.SecondScroll:
+            case LevelRound.FreeScroll:
+                StartCoroutine(IE_ShowEmoji());
+                break;
+        }
         yield return new WaitForSeconds(1f);
         if (currentRound == LevelRound.FreeScroll)
         {
@@ -294,5 +305,15 @@ public class LevelSecondIns : LevelBasic
         yield break;
     }
 
+    #endregion
+
+    #region Emoji
+
+    public IEnumerator IE_ShowEmoji()
+    {
+        imgEmoji.transform.DOScale(1f, 1f);
+        yield return new WaitForSeconds(3f);
+        imgEmoji.transform.DOScale(0, 1f);
+    }
     #endregion
 }

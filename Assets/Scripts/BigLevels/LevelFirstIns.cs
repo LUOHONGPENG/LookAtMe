@@ -50,6 +50,8 @@ public class LevelFirstIns : LevelBasic
             {
                 StartCoroutine(IE_FirstLike());
                 StartCoroutine(IE_FirstLikeNum());
+                btnLike.interactable = false;
+                imgLike.raycastTarget = true;
                 isLike = true;
             }
         });
@@ -61,6 +63,7 @@ public class LevelFirstIns : LevelBasic
         canvasGroupIns.alpha = 0;
         //Init view
         imgLike.DOFade(0.01f, 0);
+        imgLike.raycastTarget = false;
         codeLike.text = 0.ToString();
         numLike = 0;
         scroll.vertical = false;
