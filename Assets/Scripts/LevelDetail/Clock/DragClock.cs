@@ -23,7 +23,6 @@ public class DragClock : CommonImageDrag
 
         currentAngle = 0;
         SetRotation(currentAngle);
-
     }
 
     public override void DragDeal(PointerEventData eventData)
@@ -39,8 +38,9 @@ public class DragClock : CommonImageDrag
         {
             return;
         }
-
+        //Vector_MouseToCenter
         Vector2 vecPoint = PublicTool.GetMousePosition2D() - new Vector2(tfPointer.position.x,tfPointer.position.y);
+        //Vector_Up
         Vector2 vecInit = new Vector2(0, 1);
 
         Vector2 vecCurrent = new Vector2(-Mathf.Sin(currentAngle * Mathf.Deg2Rad), Mathf.Cos(currentAngle * Mathf.Deg2Rad));
