@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class LevelHospital : LevelBasic
 {
     public DragHosEye dragEyeTop;
     public DragHosEye dragEyeBottom;
+    public Image imgBlack;
     //PostProcess
     private DepthOfField efBlur;
     private ChromaticAberration efChro;
@@ -23,6 +25,7 @@ public class LevelHospital : LevelBasic
         GameObject objBlur = PublicTool.PostProcessEffect(PostProcessType.HospitalBlur);
         InitBlur(objBlur);
         InitChor(objBlur);
+        StartCoroutine(IE_InitDark());
 
         isInit = true;
     }
@@ -48,6 +51,16 @@ public class LevelHospital : LevelBasic
             efChro.intensity.value = 1f;
         }
     }
+
+    public IEnumerator IE_InitDark()
+    {
+        imgBlack.DOFade(1, 0);
+        imgBlack.raycastTarget = true;
+        yield return new WaitForSeconds(2f);
+        imgBlack.DOFade(0, 0.5F);
+        imgBlack.raycastTarget = false;
+    }
+
     #endregion
 
     public void Update()

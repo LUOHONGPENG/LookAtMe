@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LevelRealSuicide : LevelBasic
 {
+    public GameObject pfTempCanvas;
+    private LevelTempCanvas itemCanvas;
+    public GameObject pfEye;
     [Header("ColDetect")]
     public List<ItemColDetect> listColDetect;
     [Header("Mask")]
@@ -32,6 +35,10 @@ public class LevelRealSuicide : LevelBasic
         //InitDrag
         dragGrass.Init();
         PublicTool.ClearChildItem(tfMask);
+        //Init Canvas
+        GameObject objCanvas = GameObject.Instantiate(pfTempCanvas, parent.tfContentImage);
+        itemCanvas = objCanvas.GetComponent<LevelTempCanvas>();
+
         isInit = true;
     }
     private void Update()
@@ -127,10 +134,30 @@ public class LevelRealSuicide : LevelBasic
     }
     #endregion
 
+    #region EyeAni
+
+    private void InitEye()
+    {
+        GameObject objEye = GameObject.Instantiate(pfEye, itemCanvas.tfPhoto);
+        Animator aniEye = objEye.GetComponent<Animator>();
+        aniEye.Play("CloseEye");
+/*        itemPhoto = objPhoto.GetComponent<ItemInsPhoto>();
+        itemPhoto.Init(this, PhotoType.Manual);
+        itemPhoto.gameObject.SetActive(false);*/
+    }
+
+
+
+    #endregion
+
+
+
     public IEnumerator IE_LevelComplete()
     {
+        InitEye();
         //Change to next level after 2 seconds
         yield return new WaitForSeconds(2f);
+        GameManager.Instance.effectManager.ClearPostProcess();
         NextLevel();
     }
 
