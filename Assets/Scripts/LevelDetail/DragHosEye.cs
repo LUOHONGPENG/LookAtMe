@@ -66,9 +66,9 @@ public class DragHosEye : CommonImageDrag
                 rtThis.anchoredPosition = new Vector2(0, absPosY - GameGlobal.rateHos_eyeBack * Time.deltaTime);
             }
 
-            if (rtThis.anchoredPosition.y < 0)
+            if (rtThis.anchoredPosition.y < 20)
             {
-                rtThis.anchoredPosition = new Vector2(0, 0);
+                rtThis.anchoredPosition = new Vector2(0, 20);
             }
         }
         else if(eyeType == EyeType.Bottom)
@@ -78,9 +78,9 @@ public class DragHosEye : CommonImageDrag
                 rtThis.anchoredPosition = new Vector2(0, -absPosY + GameGlobal.rateHos_eyeBack * Time.deltaTime);
             }
 
-            if (rtThis.anchoredPosition.y > 0)
+            if (rtThis.anchoredPosition.y > -20)
             {
-                rtThis.anchoredPosition = new Vector2(0, 0);
+                rtThis.anchoredPosition = new Vector2(0, -20);
             }
         }
     }
