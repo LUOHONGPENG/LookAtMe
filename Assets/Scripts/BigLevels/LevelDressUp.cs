@@ -27,6 +27,7 @@ public class LevelDressUp : LevelBasic
     private ItemCharacterDressUp itemCharacter;
     [Header("Photo")]
     public Button btnShoot;
+    public CommonHoverUI hoverBtnShoot;
     public Image imgBtnShoot;
     public List<Sprite> listSpShoot;
     public GameObject pfPhoto;
@@ -46,6 +47,7 @@ public class LevelDressUp : LevelBasic
         {
             canvasGroupDress.blocksRaycasts = false;
             btnShoot.interactable = false;
+            hoverBtnShoot.isEnabled = false;
             imgBtnShoot.sprite = listSpShoot[1];
             //btnShoot.transform.DOScale(0, 0.5f);
             StartCoroutine(InitShootPhoto());
@@ -55,6 +57,7 @@ public class LevelDressUp : LevelBasic
         isShowButton = false;
         InitCharacter();
         InitDress();
+        PublicTool.ShowMouseTip(TipType.Drag, 2f);
     }
 
     public void InitCharacter()
@@ -89,6 +92,7 @@ public class LevelDressUp : LevelBasic
     {
         //Ban all interaction about dressing
         //ChangeTheClothe
+        PublicTool.HideMouseTip();
         itemCharacter.ChangeClothes(currentType);
         //HideTheClothe
         for(int i = 0; i < 4; i++)
@@ -134,14 +138,16 @@ public class LevelDressUp : LevelBasic
     {
         GameObject objShoot = GameObject.Instantiate(pfPhoto, tfContentPhoto);
         itemPhoto = objShoot.GetComponent<ItemInsPhoto>();
-        itemPhoto.Init(this, PhotoType.Auto);
+        itemPhoto.Init(this, PhotoType.Manual);
+
+/*        itemPhoto.Init(this, PhotoType.Auto);
         itemPhoto.MoveTo(new Vector2(1200F, -800F), 0f);
         yield return new WaitForEndOfFrame();
         itemPhoto.MoveTo(new Vector2(-100F, -80F), 0.5f);
         yield return new WaitForSeconds(0.5F);
         itemPhoto.MoveTo(new Vector2(-280F, 320F), 1f);
         yield return new WaitForSeconds(1F);
-        itemPhoto.ShootExecute();
+        itemPhoto.ShootExecute();*/
         yield break;
     }
 
@@ -155,7 +161,7 @@ public class LevelDressUp : LevelBasic
         yield return new WaitForSeconds(2f);
         itemPhoto.MoveTo(new Vector2(1200F, -800F),0.5f);
         yield return new WaitForSeconds(1f);
-        PublicTool.TransitionIconEffect(TransitionIconType.Cheer);
+        PublicTool.TransitionIconEffect(TransitionIconType.Shape);
         yield return new WaitForSeconds(1f);
         NextLevel();
     }

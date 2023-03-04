@@ -88,6 +88,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnCommonFullClick: {fileID: 0}
   isTaskDoneExtra: 0
+  pfTempCanvas: {fileID: 2373999000127201195, guid: 8a3be1b9f074ec14eb8fe12552037366, type: 3}
+  pfEye: {fileID: 3776093098184591689, guid: 6610c06bfd933d943aa562c5076099ee, type: 3}
   listColDetect:
   - {fileID: 8264233726139505570}
   - {fileID: 6613158321799275601}

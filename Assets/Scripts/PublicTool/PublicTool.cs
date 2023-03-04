@@ -12,6 +12,14 @@ public class PublicTool : MonoBehaviour
         }
     }
 
+    public static float CalculateAngle(Vector2 from,Vector2 to)
+    {
+        float angle;
+        Vector3 cross = Vector3.Cross(from, to);
+        angle = Vector2.Angle(from, to);
+        return cross.z > 0 ? -angle : angle;
+    }
+
     public static Vector2 GetMousePosition2D()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -40,9 +48,18 @@ public class PublicTool : MonoBehaviour
     }
     #endregion
 
+    #region Music
     public static void PlaySound(SoundType soundType,bool needFadeIn = false, bool needStop = false, float stopTime = 0)
     {
-        GameManager.Instance.soundManager.PlaySound(soundType, needFadeIn,needStop, stopTime);
+        if (GameManager.Instance.isSoundOn)
+        {
+            GameManager.Instance.soundManager.PlaySound(soundType, needFadeIn, needStop, stopTime);
+        }
+    }
+
+    public static void StopSound(SoundType soundType)
+    {
+        GameManager.Instance.soundManager.StopSound(soundType);
     }
 
     public static bool CheckSound(SoundType soundType)
@@ -53,12 +70,29 @@ public class PublicTool : MonoBehaviour
 
     public static void PlayMusic(MusicType musicType)
     {
-        GameManager.Instance.soundManager.PlayMusic(musicType);
+        if (GameManager.Instance.isMusicOn)
+        {
+            GameManager.Instance.soundManager.PlayMusic(musicType);
+        }
     }
 
     public static void StopMusic()
     {
         GameManager.Instance.soundManager.StopMusic();
     }
+    #endregion
 
+    #region Tip
+
+    public static void ShowMouseTip(TipType tipType,float time = 0)
+    {
+        GameManager.Instance.uiManager.mouseTipManager.ShowTip(tipType,time);
+    }
+
+
+    public static void HideMouseTip()
+    {
+        GameManager.Instance.uiManager.mouseTipManager.HideTip();
+    }
+    #endregion
 }

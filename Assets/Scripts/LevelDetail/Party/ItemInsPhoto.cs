@@ -22,6 +22,7 @@ public class ItemInsPhoto : MonoBehaviour
     public Image imgPhoto;
     public Image imgBlack;
     public Image imgFrame;
+    public Image imgBan;
 
     private bool isInit = false;
     private bool isShoot = false;
@@ -36,7 +37,6 @@ public class ItemInsPhoto : MonoBehaviour
         btnShoot.onClick.AddListener(delegate ()
         {
             ShootExecute();
-            btnShoot.interactable = false;
         });
 
         switch (photoType)
@@ -71,10 +71,50 @@ public class ItemInsPhoto : MonoBehaviour
 
     void Update()
     {
+        if (!isInit)
+        {
+            return;
+        }
+        UpdateCameraState();
         CheckFollowMouse();
     }
 
     #region BasicFunction
+
+    private bool CheckWhetherCanShoot()
+    {
+        if (!isShoot)
+        {
+            Vector3 mousePosNew = Input.mousePosition;
+            mousePosNew.z = 10;
+            Vector3 screenPos = Camera.main.ScreenToWorldPoint(mousePosNew);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(screenPos, Vector2.zero);
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider != null)
+                {
+                    if (hit.collider.tag == "CanShoot")
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private void UpdateCameraState()
+    {
+        if (!CheckWhetherCanShoot()&&!isShoot)
+        {
+            imgBan.gameObject.SetActive(true);
+        }
+        else
+        {
+            imgBan.gameObject.SetActive(false);
+        }
+    }
+
 
     private void CheckFollowMouse()
     {
@@ -86,13 +126,14 @@ public class ItemInsPhoto : MonoBehaviour
 
     public void ShootExecute()
     {
-        if (!isShoot)
+        if (CheckWhetherCanShoot())
         {
             isShoot = true;
             StartCoroutine(ShootIns());
             parent.AfterShoot();
             BlackMask();
             MoveToCenter();
+            btnShoot.interactable = false;
         }
     }
 
@@ -152,9 +193,12 @@ public class ItemInsPhoto : MonoBehaviour
             case LevelState.FirstParty:
                 this.transform.DOLocalMove(new Vector2(GameGlobal.posFP_photoToInsX, GameGlobal.posFP_photoToInsY), 0.5f);
                 break;
-            case LevelState.SecondParty:
+            case LevelState.DressUp:
                 this.transform.DOLocalMove(new Vector2(GameGlobal.posSI_photoToInsX, GameGlobal.posSI_photoToInsY), 0.5f);
                 break;
+/*            case LevelState.SecondParty:
+                this.transform.DOLocalMove(new Vector2(GameGlobal.posSI_photoToInsX, GameGlobal.posSI_photoToInsY), 0.5f);
+                break;*/
             case LevelState.FakeSuicide:
                 this.transform.DOLocalMove(new Vector2(GameGlobal.posTI_photoToInsX, GameGlobal.posTI_photoToInsY), 0.5f);
                 break;

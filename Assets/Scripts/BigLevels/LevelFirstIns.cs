@@ -50,6 +50,8 @@ public class LevelFirstIns : LevelBasic
             {
                 StartCoroutine(IE_FirstLike());
                 StartCoroutine(IE_FirstLikeNum());
+                btnLike.interactable = false;
+                imgLike.raycastTarget = true;
                 isLike = true;
             }
         });
@@ -61,6 +63,7 @@ public class LevelFirstIns : LevelBasic
         canvasGroupIns.alpha = 0;
         //Init view
         imgLike.DOFade(0.01f, 0);
+        imgLike.raycastTarget = false;
         codeLike.text = 0.ToString();
         numLike = 0;
         scroll.vertical = false;
@@ -91,6 +94,8 @@ public class LevelFirstIns : LevelBasic
         canvasGroupIns.DOFade(1f, 0.5f);
         yield return new WaitForSeconds(1F);
         PublicTool.ClearChildItem(tfContentPhoto);
+
+        PublicTool.ShowMouseTip(TipType.Click);
     }
 
     #endregion
@@ -98,6 +103,8 @@ public class LevelFirstIns : LevelBasic
     #region Like
     public IEnumerator IE_FirstLike()
     {
+        PublicTool.HideMouseTip();
+
         imgLike.DOFade(1f, 0.5f);
         imgLike.transform.DOScale(2f, 0.5f);
         
@@ -111,6 +118,7 @@ public class LevelFirstIns : LevelBasic
         
         GenerateComment();
         yield return new WaitForSeconds(3f);
+
         NextLevel();
     }
 

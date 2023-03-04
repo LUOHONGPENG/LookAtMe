@@ -14,6 +14,7 @@ public enum PostProcessType
 {
     SecondPartyVig,
     ThirdInsBlur,
+    MirrorVig,
     HospitalBlur
 }
 
@@ -23,6 +24,7 @@ public class EffectManager : MonoBehaviour
     public Transform tfPostProcess;
     public GameObject efSPVignette;
     public GameObject efTIBlur;
+    public GameObject efMVignette;
     public GameObject efHBlur;
     [Header("UIEffect")]
     public Transform tfUIEffect;
@@ -68,6 +70,8 @@ public class EffectManager : MonoBehaviour
                 return InitSPVig();
             case PostProcessType.ThirdInsBlur:
                 return InitTIBlur();
+            case PostProcessType.MirrorVig:
+                return InitMVig();
             case PostProcessType.HospitalBlur:
                 return InitHBlur();
         }
@@ -84,6 +88,12 @@ public class EffectManager : MonoBehaviour
     private GameObject InitTIBlur()
     {
         GameObject obj = GameObject.Instantiate(efTIBlur, tfPostProcess);
+        return obj;
+    }
+
+    private GameObject InitMVig()
+    {
+        GameObject obj = GameObject.Instantiate(efMVignette, tfPostProcess);
         return obj;
     }
     private GameObject InitHBlur()

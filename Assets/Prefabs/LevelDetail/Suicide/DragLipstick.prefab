@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7912365535108841470}
   - component: {fileID: 6061754870079284329}
+  - component: {fileID: 1479421792379526799}
   - component: {fileID: 5696235750269552802}
   - component: {fileID: 8242442961487252534}
   m_Layer: 6
   m_Name: DragLipstick
-  m_TagString: Untagged
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,8 +50,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tfDraw: {fileID: 6246750834415265429}
   srItem: {fileID: 5696235750269552802}
+  colHit: {fileID: 8242442961487252534}
+  hoverSprite: {fileID: 1479421792379526799}
   isBeingHeld: 0
   canDrag: 0
+--- !u!114 &1479421792379526799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4656517803535787997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a17bddbcda7d0429c4b163cbe290c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tfTarget: {fileID: 7912365535108841470}
+  colHover: {fileID: 8242442961487252534}
+  isEnabled: 1
 --- !u!212 &5696235750269552802
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
 
 public class LevelMirror : LevelBasic
 {
@@ -16,12 +19,15 @@ public class LevelMirror : LevelBasic
     public GameObject objCup;
     public GameObject objCupHeld;
 
+    private Vignette efVignette;
     private float timerColdDown = 1f;
     
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+
         itemCup.Init(this);
+        InitVigEffect();
         count = 0;
         IfDragCup = false;
         IfMirrorBroken = false ;
@@ -70,14 +76,22 @@ public class LevelMirror : LevelBasic
         srCrack.sprite = breakmirror[count];
         count = count + 1;
         PublicTool.ShakeCamera();
-        if (count == 3)
+
+        switch (count)
         {
-            IfMirrorBroken = true;
-            PublicTool.PlaySound(SoundType.Break2);
-        }
-        else
-        {
-            PublicTool.PlaySound(SoundType.Break1);
+            case 1:
+                ChangeVigEffect(0.15f);
+                PublicTool.PlaySound(SoundType.Break1);
+                break;
+            case 2:
+                ChangeVigEffect(0.25f);
+                PublicTool.PlaySound(SoundType.Break1);
+                break;
+            case 3:
+                IfMirrorBroken = true;
+                ChangeVigEffect(0.32f);
+                PublicTool.PlaySound(SoundType.Break2);
+                break;
         }
     }
 
@@ -115,4 +129,24 @@ public class LevelMirror : LevelBasic
         }
         return false;
     }
+
+    #region PostProcess
+    private void InitVigEffect()
+    {
+        GameObject objVip = PublicTool.PostProcessEffect(PostProcessType.MirrorVig);
+        Volume volume = objVip.GetComponent<Volume>();
+        Vignette tmp;
+        if (volume.profile.TryGet<Vignette>(out tmp))
+        {
+            efVignette = tmp;
+            efVignette.intensity.value = 0;
+        }
+    }
+
+    private void ChangeVigEffect(float value)
+    {
+        efVignette.intensity.value = value;
+    }
+
+    #endregion
 }

@@ -10,8 +10,8 @@ public enum LevelState
     FirstIns,
     Clock,
     ChapterTwo,
-    SecondDebate,
     DressUp,
+    SecondDebate,
     SecondParty,
     SecondIns,
     FakeSuicide,
@@ -19,6 +19,7 @@ public enum LevelState
     Mirror,
     RealSuicide,
     Hospital,
+    Diagnosis,
     End
 }
 
@@ -41,12 +42,12 @@ public partial class LevelManager : MonoBehaviour
         if (isTestMode)
         {
             currentLevelState = testState;
+            LoadLevel();
         }
         else
         {
             currentLevelState = LevelState.FirstDebate;
         }
-        LoadLevel();
     }
     
     public void LoadLevel()

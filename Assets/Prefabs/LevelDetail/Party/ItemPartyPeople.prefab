@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7219374161477109158}
   - component: {fileID: 6274930050874209536}
+  - component: {fileID: 4323767332438685679}
   - component: {fileID: 6901673236975298905}
   - component: {fileID: 2035767864588819890}
   - component: {fileID: 3213391729235077162}
@@ -48,6 +49,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5539657712547745637}
   m_CullTransparentMesh: 1
+--- !u!114 &4323767332438685679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5539657712547745637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5830218e68acb4345bb1d1850695a0f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tfTarget: {fileID: 7219374161477109158}
+  isEnabled: 1
 --- !u!114 &6901673236975298905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +92,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0a9e5b4c66ca2fe4293ecbcd33b91461, type: 3}
   imgPartyPeople: {fileID: 2035767864588819890}
   btnPartyPeople: {fileID: 3213391729235077162}
+  hoverBtnPeople: {fileID: 4323767332438685679}
   isFlip: 0
 --- !u!114 &2035767864588819890
 MonoBehaviour:

@@ -79,6 +79,10 @@ public class LevelFirstParty : LevelBasic
         if (numPeopleFlip >= 4 && !isTaskDoneExtra)
         {
             isTaskDoneExtra = true;
+            foreach(var item in listPartyPeople)
+            {
+                item.hoverBtnPeople.enabled = false;
+            }
             StartCoroutine(IE_FlipGoalDeal());
         }
     }

@@ -8,6 +8,7 @@ using DG.Tweening;
 public class DragThoughts : CommonImageDrag
 {
     public RectTransform rectTransform;
+    public CommonHoverUI hoverController;
    
     [HideInInspector]
     public ThoughtType thoughtType;
@@ -55,12 +56,16 @@ public class DragThoughts : CommonImageDrag
         this.posStart = this.transform.position;
 
         parent.SetCurrentDragging((int)thoughtType);
+
+        hoverController.isEnabled = false;
+
     }
 
     public override void DragDeal(PointerEventData eventData)
     {
         //rectTransform.anchoredPosition += eventData.delta;
         this.transform.position = PublicTool.GetMousePosition2D();
+
     }
 
     public override void EndDragDeal(PointerEventData eventData)
@@ -70,6 +75,9 @@ public class DragThoughts : CommonImageDrag
         this.transform.DOMove(posStart, 0.5f);
 
         parent.ReleaseDragging();
+
+        hoverController.isEnabled = true;
+
     }
 
     #endregion
