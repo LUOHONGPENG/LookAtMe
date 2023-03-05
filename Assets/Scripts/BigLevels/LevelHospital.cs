@@ -22,6 +22,7 @@ public class LevelHospital : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        PublicTool.PlayMusic(MusicType.Hospital);
         GameObject objBlur = PublicTool.PostProcessEffect(PostProcessType.HospitalBlur);
         InitBlur(objBlur);
         InitChor(objBlur);

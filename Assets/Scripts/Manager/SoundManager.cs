@@ -13,7 +13,8 @@ public enum SoundType
     Break1,
     Break2,
     Cheer,
-    Wow
+    Wow,
+    Footstep
 }
 
 public enum MusicType
@@ -21,7 +22,8 @@ public enum MusicType
     Discuss,
     InsHappy,
     InsSad,
-    Party
+    Party,
+    Hospital
 }
 
 
@@ -37,21 +39,19 @@ public class SoundManager : MonoBehaviour
     public AudioSource au_break2;
     public AudioSource au_cheer;
     public AudioSource au_wow;
+    public AudioSource au_footstep;
 
 
     public AudioSource m_discuss;
     public AudioSource m_insHappy;
     public AudioSource m_insSad;
     public AudioSource m_party;
-
+    public AudioSource m_hospital;
 
     private AudioSource au_voicePlaying;
 
-
     private Dictionary<SoundType, float> dic_SoundStartTime = new Dictionary<SoundType, float>();
     private Dictionary<SoundType, AudioSource> dic_SoundType = new Dictionary<SoundType, AudioSource>();
-
-
     public void Init()
     {
         InitTime();
@@ -73,8 +73,7 @@ public class SoundManager : MonoBehaviour
         dic_SoundType.Add(SoundType.Break2, au_break2);
         dic_SoundType.Add(SoundType.Cheer, au_cheer);
         dic_SoundType.Add(SoundType.Wow, au_wow);
-
-
+        dic_SoundType.Add(SoundType.Footstep, au_footstep);
     }
 
     public float GetTime(SoundType soundType)
@@ -169,6 +168,9 @@ public class SoundManager : MonoBehaviour
             case MusicType.Party:
                 tempSound = m_party;
                 break;
+            case MusicType.Hospital:
+                tempSound = m_hospital;
+                break;
             default:
                 tempSound = m_discuss;
                 break;
@@ -181,7 +183,6 @@ public class SoundManager : MonoBehaviour
         tempSound.Play();
         tempSound.DOFade(1f, 1f);
         au_voicePlaying = tempSound;
-
     }
 
     public void StopMusic()
