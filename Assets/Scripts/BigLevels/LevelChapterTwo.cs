@@ -13,7 +13,7 @@ public class LevelChapterTwo : LevelBasic
     private IEnumerator IE_NextLevel()
     {
         yield return new WaitForSeconds(0.5f);
-        PublicTool.TransitionIconEffect(TransitionIconType.Dress);
+        PublicTool.TransitionIconEffect(TransitionIconType.Shape);
         yield return new WaitForSeconds(2f);
         NextLevel();
     }
