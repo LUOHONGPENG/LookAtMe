@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnCommonFullClick: {fileID: 0}
   isTaskDoneExtra: 0
+  aniHospital: {fileID: 5935635358872600064}
 --- !u!1001 &2525331690613794577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -158,6 +159,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df4c4fb4ccbf247459b30467f57cb1b9, type: 3}
+--- !u!95 &5935635358872600064 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8166252234217822481, guid: df4c4fb4ccbf247459b30467f57cb1b9, type: 3}
+  m_PrefabInstance: {fileID: 2525331690613794577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5935635358872600065 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8166252234217822480, guid: df4c4fb4ccbf247459b30467f57cb1b9, type: 3}

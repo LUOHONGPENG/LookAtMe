@@ -7,6 +7,7 @@ using DG.Tweening;
 public class LevelSecondIns : LevelBasic
 {
     public CanvasGroup canvasGroupAll;
+    public Transform tfBg;
     [Header("Photo")]
     public GameObject pfPhoto;
     public Transform tfContentPhoto;
@@ -195,8 +196,14 @@ public class LevelSecondIns : LevelBasic
         imgPicB.gameObject.SetActive(true);
         objGapB.SetActive(true);
 
-        codeLikeOther.text = numLikeOther.ToString();
-        
+
+        int ranNum = Random.Range(20, 40);
+
+        float timerDelta = GameGlobal.timerSI_freeScrollNumGrow / 4F;
+        yield return StartCoroutine(IE_LikeLoop(ranNum, timerDelta / ranNum));
+        yield return StartCoroutine(IE_LikeLoop(5 * ranNum, 2 * timerDelta / (ranNum * 5)));
+        yield return StartCoroutine(IE_LikeLoop(ranNum, timerDelta / ranNum));
+
         canvasGroupAll.blocksRaycasts = true;
         yield return StartCoroutine(IE_EndRound());
     }
@@ -294,7 +301,7 @@ public class LevelSecondIns : LevelBasic
         yield return new WaitForSeconds(1f);
         if (currentRound == LevelRound.FreeScroll)
         {
-
+            yield return StartCoroutine(IE_ScrollBack());
             StartCoroutine(GameManager.Instance.videoManager.InitVideoSad());
             yield return new WaitForSeconds(3.2f);
             PublicTool.TransitionChapter(3);
@@ -308,10 +315,38 @@ public class LevelSecondIns : LevelBasic
         yield break;
     }
 
+    private IEnumerator IE_ScrollBack()
+    {
+        DOTween.To(() => { return rtContent.anchoredPosition; }, v => { rtContent.anchoredPosition = v; }, new Vector2(0, 582f), 1.5f);
+        yield return new WaitForSeconds(1.5f);
+
+        tfBg.DOLocalMove(new Vector2(254f, 598f),0.3f);
+        tfBg.DOScale(3f, 0.3f);
+        yield return new WaitForSeconds(1f);
+
+/*        tfBg.DOLocalMove(new Vector2(448, 1006f), 0.3f);
+        tfBg.DOScale(5f, 0.3f);
+        yield return new WaitForSeconds(1f);*/
+
+        tfBg.DOLocalMove(new Vector2(636f, 1411f), 0.3f);
+        tfBg.DOScale(7f, 0.3f);
+        yield return new WaitForSeconds(1f);
+
+/*        tfBg.DOLocalMove(new Vector2(807f, 1813f), 0.3f);
+        tfBg.DOScale(9f, 0.3f);
+        yield return new WaitForSeconds(1f);*/
+
+        tfBg.DOLocalMove(new Vector2(992f, 2215f), 0.3f);
+        tfBg.DOScale(11f, 0.3f);
+        yield return new WaitForSeconds(2f);
+
+    }
+
+
+
     #endregion
 
     #region Emoji
-
     public IEnumerator IE_ShowEmoji()
     {
         imgEmoji.transform.DOScale(1f, 1f);
