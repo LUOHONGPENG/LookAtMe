@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Video;
 
 public class LevelFirstIns : LevelBasic
 {
@@ -29,6 +30,8 @@ public class LevelFirstIns : LevelBasic
     public Transform tfContentComment;
     public List<Vector2> listPosComment = new List<Vector2>();
 
+    [Header("Video")]
+    public VideoPlayer objVideo;
 
     private bool isLike = false;
     private int numLike = 0;
@@ -37,6 +40,8 @@ public class LevelFirstIns : LevelBasic
     {
         imgBg.DOFade(0, 0);
         base.Init(parent);
+        objVideo.targetCamera = GameManager.Instance.uiCamera;
+        objVideo.gameObject.SetActive(false);
 
         InitView();
 
@@ -119,8 +124,11 @@ public class LevelFirstIns : LevelBasic
         GenerateComment();
         yield return new WaitForSeconds(3f);
 
+        //yield return StartCoroutine(IE_AniVideo());
         NextLevel();
     }
+
+
 
     public IEnumerator IE_FirstLikeNum()
     {

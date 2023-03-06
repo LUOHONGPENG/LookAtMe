@@ -14,6 +14,7 @@ public class GameManager : MonoSingleton<GameManager>
     public SoundManager soundManager;
     public UIManager uiManager;
     public EffectManager effectManager;
+    public VideoManager videoManager;
     public DataManager dataManager;
 
     public bool isSoundOn = true;

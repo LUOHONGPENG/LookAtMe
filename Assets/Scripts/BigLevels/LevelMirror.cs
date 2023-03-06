@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-
+using UnityEngine.Video;
 
 public class LevelMirror : LevelBasic
 {
+
     public SpriteRenderer srCrack;
     public List<Sprite> breakmirror;//list of broken mirror sprite
     public bool IfDragCup; //check if drag the cup while click the mirror
@@ -16,6 +17,10 @@ public class LevelMirror : LevelBasic
     private LevelManager parent;
     public DragCup itemCup;
 
+    public VideoPlayer objVideo;
+
+    public GameObject objMirror;
+    public GameObject objCupParent;
     public GameObject objCup;
     public GameObject objCupHeld;
 
@@ -26,6 +31,13 @@ public class LevelMirror : LevelBasic
     {
         base.Init(parent);
 
+        objMirror.SetActive(false);
+        objCupParent.SetActive(false);
+
+
+        objVideo.targetCamera = Camera.main;
+        objVideo.Play();
+
         itemCup.Init(this);
         InitVigEffect();
         count = 0;
@@ -34,6 +46,19 @@ public class LevelMirror : LevelBasic
 
         objCup.SetActive(true);
         objCupHeld.SetActive(false);
+
+        StartCoroutine(IE_AniFinish());
+
+    }
+
+
+    public IEnumerator IE_AniFinish()
+    {
+
+        yield return new WaitForSeconds(8f);
+        objMirror.SetActive(true);
+        objCupParent.SetActive(true);
+        objVideo.gameObject.SetActive(false);
     }
  
     void Update()

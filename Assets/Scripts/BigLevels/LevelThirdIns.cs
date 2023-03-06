@@ -162,7 +162,7 @@ public class LevelThirdIns : LevelBasic
     {
         for (int i = 0; i < 5; i++)
         {
-            float ranTime = Random.Range(0, 1f);
+            float ranTime = Random.Range(0, 1f) + i * 0.4F;
             GameObject objComment = GameObject.Instantiate(pfComment, tfContentComment);
             objComment.transform.localPosition = listPosComment[i];
             ItemInsComment itemComment = objComment.GetComponent<ItemInsComment>();
