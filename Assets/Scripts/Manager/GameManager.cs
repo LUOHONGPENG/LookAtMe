@@ -30,6 +30,7 @@ public class GameManager : MonoSingleton<GameManager>
         effectManager.Init();
         uiManager.Init();
         levelManager.Init();
+        videoManager.Init();
 
         isMusicOn = true;
         isSoundOn = true;

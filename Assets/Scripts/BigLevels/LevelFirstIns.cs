@@ -124,7 +124,7 @@ public class LevelFirstIns : LevelBasic
         GenerateComment();
         yield return new WaitForSeconds(3f);
 
-        //yield return StartCoroutine(IE_AniVideo());
+        yield return StartCoroutine(GameManager.Instance.videoManager.InitVideoHappy());
         NextLevel();
     }
 

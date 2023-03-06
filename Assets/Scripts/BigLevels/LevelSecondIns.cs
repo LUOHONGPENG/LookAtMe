@@ -294,6 +294,9 @@ public class LevelSecondIns : LevelBasic
         yield return new WaitForSeconds(1f);
         if (currentRound == LevelRound.FreeScroll)
         {
+
+            StartCoroutine(GameManager.Instance.videoManager.InitVideoSad());
+            yield return new WaitForSeconds(3.2f);
             PublicTool.TransitionChapter(3);
             PublicTool.StopMusic();
             yield return new WaitForSeconds(1.5f);
