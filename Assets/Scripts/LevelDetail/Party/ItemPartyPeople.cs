@@ -10,10 +10,14 @@ public class ItemPartyPeople : MonoBehaviour
     public List<Sprite> listSpPeopleLove = new List<Sprite>();
     public List<Sprite> listSpPeopleAngry = new List<Sprite>();
 
-
     public Image imgPartyPeople;
     public Button btnPartyPeople;
     public CommonHoverUI hoverBtnPeople;
+
+    //
+    public Image imgBar;
+    public List<Sprite> listSpBar = new List<Sprite>();
+
     //Data
     public bool isFlip = false;
     private int peopleID = 0;
