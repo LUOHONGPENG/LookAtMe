@@ -25,7 +25,7 @@ public static class GameGlobal
     //SecondIns
     public static float posSI_photoToInsX = 36.8f;
     public static float posSI_photoToInsY = 84.5f;
-    public static int countSI_freeScroll = 2;
+    public static int countSI_freeScroll = 1;
     public static float timerSI_freeScrollNumGrow = 2f;
     public static int constSI_paddingTop = -106;
     public static int constSI_paddingBottom = 150;
