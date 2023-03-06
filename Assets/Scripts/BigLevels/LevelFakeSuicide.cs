@@ -27,6 +27,9 @@ public class LevelFakeSuicide : LevelBasic
     public GameObject pfMask;
     public Transform tfMask;
 
+    public GameObject srStatic;
+
+
     //The timer that check whether all point covered
     private float timerCheckReachAllPoints = 0.2f;
     private bool isDrawDone;
@@ -44,6 +47,7 @@ public class LevelFakeSuicide : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        StartCoroutine(IE_Static());
         //Data about checking drawing points
         isDrawDone = false;
         foreach (ItemColDetect item in listColDetect)
@@ -63,6 +67,15 @@ public class LevelFakeSuicide : LevelBasic
         
         isInit = true;
     }
+
+    public IEnumerator IE_Static()
+    {
+        srStatic.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        srStatic.gameObject.SetActive(false);
+
+    }
+
 
     #region MakingHoleByModifyingTexture
     public void InitHand()
