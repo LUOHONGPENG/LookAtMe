@@ -8,7 +8,9 @@ public class ItemPartyPeople : MonoBehaviour
     //View
     public List<Sprite> listSpPeopleNormal = new List<Sprite>();
     public List<Sprite> listSpPeopleLove = new List<Sprite>();
+    public List<Sprite> listSpPeopleSlient = new List<Sprite>();
     public List<Sprite> listSpPeopleAngry = new List<Sprite>();
+    public List<Vector2> listPosBar = new List<Vector2>();
 
     public Image imgPartyPeople;
     public Button btnPartyPeople;
