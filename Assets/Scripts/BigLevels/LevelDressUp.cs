@@ -7,14 +7,15 @@ using DG.Tweening;
 public enum DressType
 {
     Red,
-    Black,
     Blue,
+    Black,
     Flower,
     None
 }
 public class LevelDressUp : LevelBasic
 {
     public DressType currentType;
+    public Image imgStatic;
     [Header("Dressing")]
     public CanvasGroup canvasGroupDress;
     public GameObject pfDress;
@@ -55,10 +56,19 @@ public class LevelDressUp : LevelBasic
             PublicTool.PlaySound(SoundType.Click);
         });
         isShowButton = false;
+        StartCoroutine(IE_Init());
+    }
+
+    public IEnumerator IE_Init()
+    {
+        imgStatic.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        imgStatic.gameObject.SetActive(false);
         InitCharacter();
         InitDress();
         PublicTool.ShowMouseTip(TipType.Drag, 2f);
     }
+
 
     public void InitCharacter()
     {
@@ -80,8 +90,9 @@ public class LevelDressUp : LevelBasic
             listDragDress.Add(itemDress);
         }
         listDragDress[0].Init(DressType.Red, this);
-        listDragDress[1].Init(DressType.Black, this);
-        listDragDress[2].Init(DressType.Blue, this);
+        listDragDress[1].Init(DressType.Blue, this);
+        listDragDress[2].Init(DressType.Black, this);
+        listDragDress[2].gameObject.SetActive(false);
         listDragDress[3].Init(DressType.Flower, this);
 
     }
@@ -97,6 +108,10 @@ public class LevelDressUp : LevelBasic
         //HideTheClothe
         for(int i = 0; i < 4; i++)
         {
+            if (i == 2)//Black
+            {
+                continue;
+            }
             if(listDragDress[i].dressType == currentType)
             {
                 listDragDress[i].SuddenHide();

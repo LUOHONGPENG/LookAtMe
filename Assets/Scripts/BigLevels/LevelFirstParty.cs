@@ -31,7 +31,7 @@ public class LevelFirstParty : LevelBasic
 
         isTaskDoneExtra = false;
 
-        itemCharacter.Init(DressType.Red);
+        itemCharacter.Init(DressType.Black);
         InitCharacterGroup();
         InitPrefab();
     }

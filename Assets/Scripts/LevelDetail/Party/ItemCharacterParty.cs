@@ -10,7 +10,7 @@ public class ItemCharacterParty : MonoBehaviour
     public List<Sprite> listSpCharacter01 = new List<Sprite>();
     public List<Sprite> listSpCharacter02 = new List<Sprite>();
     private int poseID = 0;
-    private DressType dressType = DressType.Red;
+    private DressType dressType = DressType.Black;
 
     List<List<Sprite>> listPose = new List<List<Sprite>>();
 

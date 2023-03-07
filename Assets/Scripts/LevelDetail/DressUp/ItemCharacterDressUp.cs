@@ -31,10 +31,10 @@ public class ItemCharacterDressUp : CommonImageDragSlot
             case DressType.Red:
                 imgCharacter.sprite = listSpCharacter[1];
                 break;
-            case DressType.Black:
+            case DressType.Blue:
                 imgCharacter.sprite = listSpCharacter[2];
                 break;
-            case DressType.Blue:
+            case DressType.Black:
                 imgCharacter.sprite = listSpCharacter[3];
                 break;
             case DressType.Flower:

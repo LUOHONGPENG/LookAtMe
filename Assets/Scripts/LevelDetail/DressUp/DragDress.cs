@@ -29,10 +29,10 @@ public class DragDress : CommonImageDrag
             case DressType.Red:
                 imgDress.sprite = listSpDress[0];
                 break;
-            case DressType.Black:
+            case DressType.Blue:
                 imgDress.sprite = listSpDress[1];
                 break;
-            case DressType.Blue:
+            case DressType.Black:
                 imgDress.sprite = listSpDress[2];
                 break;
             case DressType.Flower:
