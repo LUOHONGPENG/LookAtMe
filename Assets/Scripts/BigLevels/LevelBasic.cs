@@ -46,6 +46,7 @@ public class LevelBasic : MonoBehaviour
     #region ExtraFunc_Party
     public virtual void FlipPartyPeople(int ID) { }
 
+    public virtual void FlipBackPartyPeople() { }
 
     #endregion
 }

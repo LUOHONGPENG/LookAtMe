@@ -96,6 +96,26 @@ public class LevelSecondParty : LevelBasic
                 listPartyPeople[ID+1].FlipBack();
             }
         }
+
+
+        UpdateCharacterBar(); ;
+    }
+    public override void FlipBackPartyPeople()
+    {
+        UpdateCharacterBar();
+    }
+
+    public void UpdateCharacterBar()
+    {
+        int numPeopleFlip = 0;
+        foreach (ItemPartyPeople people in listPartyPeople)
+        {
+            if (people.isFlip)
+            {
+                numPeopleFlip++;
+            }
+        }
+        itemCharacter.SetBar(numPeopleFlip);
     }
 
     public IEnumerator IE_FlipGoalDeal()

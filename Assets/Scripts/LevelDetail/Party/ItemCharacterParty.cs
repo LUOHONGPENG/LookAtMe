@@ -14,6 +14,10 @@ public class ItemCharacterParty : MonoBehaviour
 
     List<List<Sprite>> listPose = new List<List<Sprite>>();
 
+    [Header("Bar")]
+    public Image imgBar;
+    public List<Sprite> listSpBar = new List<Sprite>();
+
     public void Init(DressType dressType)
     {
         poseID = 0;
@@ -36,6 +40,15 @@ public class ItemCharacterParty : MonoBehaviour
 
         imgCharacter.sprite = listPose[poseID][(int)dressType];
         imgCharacter.SetNativeSize();
+    }
+
+    public void SetBar(int count)
+    {
+        if (count >= 0 && count <= 4)
+        {
+            imgBar.sprite = listSpBar[count];
+            imgBar.SetNativeSize();
+        }
     }
 
 }

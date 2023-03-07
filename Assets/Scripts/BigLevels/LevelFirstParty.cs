@@ -75,6 +75,8 @@ public class LevelFirstParty : LevelBasic
             }
         }
 
+        UpdateCharacterBar();
+
         //check whether 4 
         if (numPeopleFlip >= 4 && !isTaskDoneExtra)
         {
@@ -85,6 +87,24 @@ public class LevelFirstParty : LevelBasic
             }
             StartCoroutine(IE_FlipGoalDeal());
         }
+    }
+
+    public override void FlipBackPartyPeople()
+    {
+        UpdateCharacterBar();
+    }
+
+    public void UpdateCharacterBar()
+    {
+        int numPeopleFlip = 0;
+        foreach (ItemPartyPeople people in listPartyPeople)
+        {
+            if (people.isFlip)
+            {
+                numPeopleFlip++;
+            }
+        }
+        itemCharacter.SetBar(numPeopleFlip);
     }
 
     public IEnumerator IE_FlipGoalDeal()
@@ -99,6 +119,8 @@ public class LevelFirstParty : LevelBasic
         InitShootPhoto();
         yield break;
     }
+
+    
 
     #endregion
 
