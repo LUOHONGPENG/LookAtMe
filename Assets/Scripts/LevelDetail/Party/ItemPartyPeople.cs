@@ -93,7 +93,7 @@ public class ItemPartyPeople : MonoBehaviour
             return;
         }
 
-        if (isFlip && parent!=null && !parent.isTaskDoneExtra)
+        if (parent!=null && !parent.isTaskDoneExtra)
         {
             timerFlip -= Time.deltaTime;
             if (timerFlip <= 0)
@@ -126,7 +126,7 @@ public class ItemPartyPeople : MonoBehaviour
                 timerFlip += timerFlipLimit * 1f;
                 break;
             case PartyPeopleType.Bored:
-                timerFlip += timerFlipLimit * 0.34f;
+                timerFlip += timerFlipLimit * 0.4f;
                 break;
         }
 
@@ -182,6 +182,7 @@ public class ItemPartyPeople : MonoBehaviour
         imgPartyPeople.sprite = listSpPeopleNormal[peopleID];
         imgBar.sprite = listSpBar[0];
         isFlip = false;
+        parent.FlipBackPartyPeople();
     }
     #endregion
 }
