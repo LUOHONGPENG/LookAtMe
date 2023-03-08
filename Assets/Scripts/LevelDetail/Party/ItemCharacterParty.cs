@@ -9,11 +9,13 @@ public class ItemCharacterParty : MonoBehaviour
     public List<Sprite> listSpCharacter00 = new List<Sprite>();
     public List<Sprite> listSpCharacter01 = new List<Sprite>();
     public List<Sprite> listSpCharacter02 = new List<Sprite>();
+    public Animator aniCrown;
     private int poseID = 0;
     private DressType dressType = DressType.Black;
 
-    List<List<Sprite>> listPose = new List<List<Sprite>>();
 
+    List<List<Sprite>> listPose = new List<List<Sprite>>();
+    
     [Header("Bar")]
     public Image imgBar;
     public List<Sprite> listSpBar = new List<Sprite>();
@@ -48,6 +50,10 @@ public class ItemCharacterParty : MonoBehaviour
         {
             imgBar.sprite = listSpBar[count];
             imgBar.SetNativeSize();
+            if(count == 4)
+            {
+                aniCrown.Play("Crown", 0, -1);
+            }
         }
     }
 

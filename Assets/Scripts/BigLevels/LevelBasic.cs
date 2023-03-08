@@ -48,5 +48,8 @@ public class LevelBasic : MonoBehaviour
 
     public virtual void FlipBackPartyPeople() { }
 
+    public virtual void ChangePose() { }
+
+
     #endregion
 }

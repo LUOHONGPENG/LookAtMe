@@ -78,6 +78,7 @@ public class ItemPartyPeople : MonoBehaviour
         btnPartyPeople.onClick.AddListener(delegate ()
         {
             ClickPeople();
+            parent.ChangePose();
         });
 
         isInit = true;

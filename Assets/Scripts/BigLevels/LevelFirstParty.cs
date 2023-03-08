@@ -18,6 +18,7 @@ public class LevelFirstParty : LevelBasic
     [Header("MainCharacter")]
     public Image imgLight;
     public Image imgRibbon;
+    public Animator aniStar;
 
     [Header("Photo")]
     public GameObject pfPhoto;
@@ -61,6 +62,10 @@ public class LevelFirstParty : LevelBasic
     }
 
     #region FlipPeople
+    public override void ChangePose()
+    {
+        itemCharacter.UpdatePose();
+    }
 
     public override void FlipPartyPeople(int ID)
     {
@@ -112,6 +117,7 @@ public class LevelFirstParty : LevelBasic
         PublicTool.PlaySound(SoundType.Wow);
         imgLight.DOFade(1f, GameGlobal.timerFP_light);
         imgRibbon.transform.DOLocalMoveY(100, GameGlobal.timerFP_light);
+        aniStar.Play("Star", 0, -1);
         yield return new WaitForSeconds(GameGlobal.timerFP_light);
 
         yield return new WaitForSeconds(2f);

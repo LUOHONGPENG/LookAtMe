@@ -74,8 +74,9 @@ MonoBehaviour:
   listSpCharacter02:
   - {fileID: 21300000, guid: e9f2ae7b80653a3418466705d9ec559a, type: 3}
   - {fileID: 21300000, guid: 78b0736d3b887e84bbc05562c8159227, type: 3}
-  - {fileID: 21300000, guid: 10dee11fa889fcb4ebb7f24b0ee0e498, type: 3}
+  - {fileID: 21300000, guid: 7031929c0b5ff9145a3d18c486874a4d, type: 3}
   - {fileID: 21300000, guid: 16cbee31f4397484ebcf00fc4d5eaf90, type: 3}
+  aniCrown: {fileID: 2398798933622882284}
   imgBar: {fileID: 2975817624770418562}
   listSpBar:
   - {fileID: 21300000, guid: 900cbedfc0612d244a242d2977ff1ab1, type: 3}
@@ -124,6 +125,7 @@ GameObject:
   - component: {fileID: 7748514379992441867}
   - component: {fileID: 7099773288257934567}
   - component: {fileID: 2975817624770418562}
+  - component: {fileID: 2398798933622882284}
   m_Layer: 6
   m_Name: imgBar
   m_TagString: Untagged
@@ -189,3 +191,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &2398798933622882284
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6640937586029205543}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 810e0feca142ea74da252ec3ea0c4880, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

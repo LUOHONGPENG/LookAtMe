@@ -62,9 +62,13 @@ public class LevelSecondParty : LevelBasic
         }
     }
 
-    public override void FlipPartyPeople(int ID)
+    public override void ChangePose()
     {
         itemCharacter.UpdatePose();
+    }
+
+    public override void FlipPartyPeople(int ID)
+    {
 
         if (!isTriggerDark)
         {
