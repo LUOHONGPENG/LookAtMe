@@ -21,6 +21,7 @@ public enum MusicType
     Discuss,
     InsHappy,
     InsSad,
+    InsSuicide,
     Party,
     Hospital
 }
@@ -49,6 +50,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource m_discuss;
     public AudioSource m_insHappy;
     public AudioSource m_insSad;
+    public AudioSource m_insSuicide;
     public AudioSource m_party;
     public AudioSource m_hospital;
 
@@ -89,6 +91,8 @@ public class SoundManager : MonoBehaviour
         dic_SoundType.Add(SoundType.Wow, au_wow);
 
         dic_MusicVloume.Add(MusicType.Discuss, 0.2f);
+        dic_MusicVloume.Add(MusicType.InsSuicide, 0.06f);
+
 
         dic_ChapterVloume.Add(ChapterMusicType.Chapter1, 0.15f);
         dic_ChapterVloume.Add(ChapterMusicType.Chapter2, 0.05f);
@@ -186,6 +190,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case MusicType.InsSad:
                 tempSound = m_insSad;
+                break;
+            case MusicType.InsSuicide:
+                tempSound = m_insSuicide;
                 break;
             case MusicType.Party:
                 tempSound = m_party;
