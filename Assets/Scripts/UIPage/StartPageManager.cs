@@ -40,9 +40,9 @@ public class StartPageManager : MonoBehaviour
         btnStart.onClick.RemoveAllListeners();
         btnStart.onClick.AddListener(delegate ()
         {
+            PublicTool.PlayChapterMusic(ChapterMusicType.Chapter1);
             PublicTool.PlaySound(SoundType.Click);
             PublicTool.TransitionChapter(1);
-            PublicTool.PlayChapterMusic(ChapterMusicType.Chapter1);
             canvasGroupAll.blocksRaycasts = false;
             StartCoroutine(IE_Close());
             GameManager.Instance.uiManager.ShowMenu();

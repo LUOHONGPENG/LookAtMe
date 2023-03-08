@@ -148,7 +148,7 @@ public class LevelFirstParty : LevelBasic
     {
         canvasGroupParty.DOFade(0, 0.5f);
         yield return new WaitForSeconds(1f);
-        PublicTool.StopMusic();
+        PublicTool.StopMusic(false);
         yield return new WaitForSeconds(1.1f);
         NextLevel();
     }

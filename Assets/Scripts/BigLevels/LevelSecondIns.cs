@@ -306,7 +306,7 @@ public class LevelSecondIns : LevelBasic
             yield return new WaitForSeconds(3.2f);
             PublicTool.TransitionChapter(3);
             PublicTool.PlayChapterMusic(ChapterMusicType.Chapter3);
-            PublicTool.StopMusic();
+            PublicTool.StopMusic(true);
             yield return new WaitForSeconds(1.5f);
             NextLevel();
             yield break;//Similar to return in function

@@ -76,9 +76,9 @@ public class PublicTool : MonoBehaviour
         }
     }
 
-    public static void StopMusic()
+    public static void StopMusic(bool stopChapter)
     {
-        GameManager.Instance.soundManager.StopMusic();
+        GameManager.Instance.soundManager.StopMusic(stopChapter);
     }
 
     public static void PlayChapterMusic(ChapterMusicType musicType)

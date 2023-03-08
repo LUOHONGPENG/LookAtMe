@@ -217,7 +217,7 @@ public partial class LevelSecondDebate : LevelBasic
         {
             yield return new WaitForSeconds(1f);
             PublicTool.TransitionIconEffect(TransitionIconType.Dress);
-            PublicTool.StopMusic();
+            PublicTool.StopMusic(false);
             yield return new WaitForSeconds(1.1f);
             NextLevel();
             yield break;//Similar to return in function

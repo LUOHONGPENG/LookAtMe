@@ -60,7 +60,7 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource au_musicPlaying;
     private AudioSource au_musicChapterPlaying;
-
+    private ChapterMusicType characterMusicType;
 
     private Dictionary<SoundType, float> dic_SoundStartTime = new Dictionary<SoundType, float>();
     private Dictionary<SoundType, AudioSource> dic_SoundType = new Dictionary<SoundType, AudioSource>();
@@ -92,7 +92,6 @@ public class SoundManager : MonoBehaviour
 
         dic_MusicVloume.Add(MusicType.Discuss, 0.2f);
         dic_MusicVloume.Add(MusicType.InsSuicide, 0.06f);
-
 
         dic_ChapterVloume.Add(ChapterMusicType.Chapter1, 0.15f);
         dic_ChapterVloume.Add(ChapterMusicType.Chapter2, 0.05f);
@@ -206,7 +205,7 @@ public class SoundManager : MonoBehaviour
         }
         if (au_musicPlaying != null)
         {
-            StopMusic();
+            StopMusic(true);
         }
         tempSound.volume = 0;
         tempSound.Play();
@@ -218,13 +217,32 @@ public class SoundManager : MonoBehaviour
         }
 
         tempSound.DOFade(goalVolume, 1.5f);
+        //Chpater Music
+        float goalChpaterVolume = 1f;
+        if (dic_ChapterVloume.ContainsKey(characterMusicType))
+        {
+            goalChpaterVolume = dic_ChapterVloume[characterMusicType];
+        }
+        au_musicChapterPlaying.DOFade(goalChpaterVolume * 0.5f, 2f);
+
         au_musicPlaying = tempSound;
     }
 
-    public void StopMusic()
+    public void StopMusic(bool stopChapter)
     {
         if (au_musicPlaying != null)
         {
+            //Chpater Music
+            if (!stopChapter)
+            {
+                float goalChpaterVolume = 1f;
+                if (dic_ChapterVloume.ContainsKey(characterMusicType))
+                {
+                    goalChpaterVolume = dic_ChapterVloume[characterMusicType];
+                }
+                au_musicChapterPlaying.DOFade(goalChpaterVolume, 2f);
+            }
+
             au_musicPlaying.DOFade(0, 1f);
             StartCoroutine(IE_StopMusic(au_musicPlaying));
         }
@@ -266,6 +284,7 @@ public class SoundManager : MonoBehaviour
         tempSound.Play();
 
         float goalVolume = 0.15f;
+        characterMusicType = musicType;
         if (dic_ChapterVloume.ContainsKey(musicType))
         {
             goalVolume = dic_ChapterVloume[musicType];

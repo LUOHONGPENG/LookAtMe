@@ -149,7 +149,7 @@ public class LevelThirdIns : LevelBasic
         InitBlur();
         yield return new WaitForSeconds(5f);
         isInitBlur = false;
-        PublicTool.StopMusic();
+        PublicTool.StopMusic(false);
         yield return new WaitForSeconds(1.1f);
         GameManager.Instance.effectManager.ClearPostProcess();
         NextLevel();

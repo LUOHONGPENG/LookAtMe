@@ -125,7 +125,7 @@ public class LevelSecondParty : LevelBasic
     public IEnumerator IE_FlipGoalDeal()
     {
         InitVigEffect();
-        PublicTool.StopMusic();
+        PublicTool.StopMusic(false);
         PublicTool.PlaySound(SoundType.HeartBeat, true, true, 7f);
         yield return new WaitForSeconds(5f);
         isInitVignette = false;
