@@ -25,6 +25,8 @@ public class LevelClock : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        PublicTool.ShowMouseTip(TipType.Drag, 2f);
+
         itemClock.Init(this);
         vClock = 0;
         this.isInit = true;
@@ -55,6 +57,11 @@ public class LevelClock : LevelBasic
 
     public void UpdateClock()
     {
+        if (vClock > 0.01f)
+        {
+            PublicTool.HideMouseTip();
+        }
+
         float rateSlope = 1f / rateHalfDayValue;
         int countDay = Mathf.FloorToInt(vClock / rateHalfDayValue);
         float rateColor = 0;

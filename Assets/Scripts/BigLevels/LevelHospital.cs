@@ -55,10 +55,12 @@ public class LevelHospital : LevelBasic
 
     public IEnumerator IE_InitDark()
     {
-        imgBlack.DOFade(1, 0);
+        imgBlack.DOFade(1f, 0);
         imgBlack.raycastTarget = true;
+        yield return new WaitForSeconds(0.5f);
+        imgBlack.DOFade(0, 2F);
         yield return new WaitForSeconds(2f);
-        imgBlack.DOFade(0, 0.5F);
+        PublicTool.ShowMouseTip(TipType.Drag, 0.5f);
         imgBlack.raycastTarget = false;
     }
 
@@ -91,6 +93,7 @@ public class LevelHospital : LevelBasic
 
     public IEnumerator IE_OpenEye()
     {
+        PublicTool.HideMouseTip();
         isPostChange = true;
         dragEyeTop.OpenEye();
         dragEyeBottom.OpenEye();

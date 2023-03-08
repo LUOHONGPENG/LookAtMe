@@ -57,6 +57,7 @@ public class LevelSecondIns : LevelBasic
     {
         base.Init(parent);
         PublicTool.PlayMusic(MusicType.InsSad);
+        PublicTool.ShowMouseTip(TipType.Click, 3f);
 
         //Init Alpha
         imgBlack.DOFade(1, 0);
@@ -130,6 +131,7 @@ public class LevelSecondIns : LevelBasic
     #region Action
     private IEnumerator IE_ClickLike()
     {
+        PublicTool.HideMouseTip();
         imgLike.DOFade(1f, 0.5f);
         imgLike.transform.DOScale(2f, 0.5f);
         yield return new WaitForSeconds(0.5f);
@@ -137,6 +139,7 @@ public class LevelSecondIns : LevelBasic
         imgLike.transform.DOScale(1f, 0.5f);
         yield return new WaitForSeconds(0.5f);
         yield return StartCoroutine(IE_EndRound());
+
     }
 
     private void CheckScroll()
@@ -173,6 +176,7 @@ public class LevelSecondIns : LevelBasic
     private IEnumerator IE_FirstScroll()
     {
         canvasGroupAll.blocksRaycasts = false;
+        PublicTool.HideMouseTip();
         layout.padding = new RectOffset(0, 0, 0, GameGlobal.constSI_paddingBottom);
         rtContent.anchoredPosition = Vector2.zero;
         imgRrefresh.sprite = listSpRefresh[1];
@@ -277,6 +281,7 @@ public class LevelSecondIns : LevelBasic
                 scrollRect.vertical = true;
                 isRefreshDone = false;
                 ShowTip();
+                PublicTool.ShowMouseTip(TipType.Drag, 3f);
                 break;
             case LevelRound.SecondScroll:
                 isRefreshDone = false;

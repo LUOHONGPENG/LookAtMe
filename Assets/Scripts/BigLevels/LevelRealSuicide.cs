@@ -26,6 +26,8 @@ public class LevelRealSuicide : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        PublicTool.ShowMouseTip(TipType.Drag, 2f);
+
         //Data about checking drawing points
         isDrawDone = false;
         foreach(ItemColDetect item in listColDetect)
@@ -77,7 +79,8 @@ public class LevelRealSuicide : LevelBasic
                         if (!itemDetect.isTouched)
                         {
                             itemDetect.isTouched = true;
-                            if(coColorEffect == null)
+                            PublicTool.HideMouseTip();
+                            if (coColorEffect == null)
                             {
                                 coColorEffect = StartCoroutine(IE_ColorEffect());
                             }

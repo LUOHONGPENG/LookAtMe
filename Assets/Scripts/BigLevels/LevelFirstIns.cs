@@ -100,7 +100,7 @@ public class LevelFirstIns : LevelBasic
         yield return new WaitForSeconds(1F);
         PublicTool.ClearChildItem(tfContentPhoto);
 
-        PublicTool.ShowMouseTip(TipType.Click);
+        PublicTool.ShowMouseTip(TipType.Click,3f);
     }
 
     #endregion

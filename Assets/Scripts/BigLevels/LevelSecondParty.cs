@@ -36,6 +36,7 @@ public class LevelSecondParty : LevelBasic
     {
         base.Init(parent);
         PublicTool.PlayMusic(MusicType.Party);
+        PublicTool.ShowMouseTip(TipType.Click, 3f);
 
         //Data
         isTriggerDark = false;
@@ -69,7 +70,7 @@ public class LevelSecondParty : LevelBasic
 
     public override void FlipPartyPeople(int ID)
     {
-
+        PublicTool.HideMouseTip();
         if (!isTriggerDark)
         {
             countFilp++;

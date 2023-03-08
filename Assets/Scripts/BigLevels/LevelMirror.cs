@@ -7,7 +7,6 @@ using UnityEngine.Video;
 
 public class LevelMirror : LevelBasic
 {
-
     public SpriteRenderer srCrack;
     public List<Sprite> breakmirror;//list of broken mirror sprite
     public bool IfDragCup; //check if drag the cup while click the mirror
@@ -54,13 +53,13 @@ public class LevelMirror : LevelBasic
 
     public IEnumerator IE_AniFinish()
     {
-
         yield return new WaitForSeconds(8f);
         objMirror.SetActive(true);
         objCupParent.SetActive(true);
         objVideo.gameObject.SetActive(false);
+        PublicTool.ShowMouseTip(TipType.Click, 1f);
     }
- 
+
     void Update()
     {
         if (isReadyNextLevel)
@@ -101,6 +100,7 @@ public class LevelMirror : LevelBasic
         srCrack.sprite = breakmirror[count];
         count = count + 1;
         PublicTool.ShakeCamera();
+        PublicTool.HideMouseTip();
 
         switch (count)
         {

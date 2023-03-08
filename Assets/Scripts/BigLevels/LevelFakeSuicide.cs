@@ -73,7 +73,7 @@ public class LevelFakeSuicide : LevelBasic
         srStatic.gameObject.SetActive(true);
         yield return new WaitForSeconds(3f);
         srStatic.gameObject.SetActive(false);
-
+        PublicTool.ShowMouseTip(TipType.Drag, 1f);
     }
 
 
@@ -193,6 +193,7 @@ public class LevelFakeSuicide : LevelBasic
                         if (!itemDetect.isTouched)
                         {
                             itemDetect.isTouched = true;
+                            PublicTool.HideMouseTip();
                             if (!PublicTool.CheckSound(SoundType.Lipstick))
                             {
                                 PublicTool.PlaySound(SoundType.Lipstick);

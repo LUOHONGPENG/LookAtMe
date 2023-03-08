@@ -29,6 +29,8 @@ public class LevelFirstParty : LevelBasic
     {
         base.Init(parent);
         PublicTool.PlayMusic(MusicType.Party);
+        PublicTool.ShowMouseTip(TipType.Click, 3f);
+
 
         isTaskDoneExtra = false;
 
@@ -65,6 +67,8 @@ public class LevelFirstParty : LevelBasic
     public override void ChangePose()
     {
         itemCharacter.UpdatePose();
+        PublicTool.HideMouseTip();
+
     }
 
     public override void FlipPartyPeople(int ID)

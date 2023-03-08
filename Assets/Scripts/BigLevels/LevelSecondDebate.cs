@@ -64,6 +64,7 @@ public partial class LevelSecondDebate : LevelBasic
     {
         base.Init(parent);
         PublicTool.PlayMusic(MusicType.Discuss);
+        PublicTool.ShowMouseTip(TipType.Drag, 3f);
 
         InitPrefabs();
 
@@ -198,6 +199,7 @@ public partial class LevelSecondDebate : LevelBasic
     public IEnumerator IE_DragGoalFinish()
     {
         canvasGroupAll.blocksRaycasts = false;
+        PublicTool.HideMouseTip();
         myThought.ShowContent(currentType, 0);
         if (currentRound == LevelRound.Round1)
         {

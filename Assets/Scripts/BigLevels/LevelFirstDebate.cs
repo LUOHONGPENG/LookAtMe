@@ -147,7 +147,7 @@ public partial class LevelFirstDebate : LevelBasic
         {
             case LevelRound.Round1:
                 //HideAllComponent
-                PublicTool.ShowMouseTip(TipType.Drag,2f);
+                PublicTool.ShowMouseTip(TipType.Drag,3f);
                 tfGroupMe.DOScale(0, 0);
                 imgDragBox.DOFade(0, 0);
                 for (int i = 0; i < 3; i++)
