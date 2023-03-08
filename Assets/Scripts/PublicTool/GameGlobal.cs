@@ -20,7 +20,7 @@ public static class GameGlobal
     public static float rateClock_oneRound = 0.2f;//the process rate of one round of clock
 
     //SecondParty
-    public static int countSP_fail = 12;
+    public static int countSP_fail = 9;
     public static float timerSP_notice = 2f;//The time that people lose interested in you
 
     //SecondIns

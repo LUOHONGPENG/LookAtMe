@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public enum PartyPeopleType
 {
@@ -34,6 +35,7 @@ public class ItemPartyPeople : MonoBehaviour
 
     //Data
     public bool isFlip = false;
+    private bool isInAni = false;
     private int peopleID = 0;
     private int countFlip = 0;
     private float timerFlip = 0f;
@@ -80,7 +82,7 @@ public class ItemPartyPeople : MonoBehaviour
             ClickPeople();
             parent.ChangePose();
         });
-
+        isInAni = false;
         isInit = true;
     }
 
@@ -108,7 +110,12 @@ public class ItemPartyPeople : MonoBehaviour
 
     private void UpdateBarUI()
     {
-        imgBarFill.fillAmount = timerFlip / timerFlipLimit;
+        if (!isInAni)
+        {
+            imgBarFill.fillAmount = timerFlip / timerFlipLimit;
+
+        }
+
     }
 
     public void ClickPeople()
@@ -123,6 +130,9 @@ public class ItemPartyPeople : MonoBehaviour
                 break;
         }
 
+        StopCoroutine(IE_ani());
+        StartCoroutine(IE_ani());
+
         if (timerFlip >= timerFlipLimit)
         {
             timerFlip = timerFlipLimit;
@@ -136,6 +146,13 @@ public class ItemPartyPeople : MonoBehaviour
         }
     }
 
+    public IEnumerator IE_ani()
+    {
+        isInAni = true;
+        imgBarFill.DOFillAmount(timerFlip / timerFlipLimit, 0.1f);
+        yield return new WaitForSeconds(0.1f);
+        isInAni = false;
+    }
 
 
     public void Flip()
