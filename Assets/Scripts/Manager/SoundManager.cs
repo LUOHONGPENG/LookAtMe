@@ -13,8 +13,7 @@ public enum SoundType
     Break1,
     Break2,
     Cheer,
-    Wow,
-    Footstep
+    Wow
 }
 
 public enum MusicType
@@ -26,6 +25,12 @@ public enum MusicType
     Hospital
 }
 
+public enum ChapterMusicType
+{
+    Chapter1,
+    Chapter2,
+    Chapter3
+}
 
 public class SoundManager : MonoBehaviour
 {
@@ -39,7 +44,6 @@ public class SoundManager : MonoBehaviour
     public AudioSource au_break2;
     public AudioSource au_cheer;
     public AudioSource au_wow;
-    public AudioSource au_footstep;
 
 
     public AudioSource m_discuss;
@@ -48,10 +52,20 @@ public class SoundManager : MonoBehaviour
     public AudioSource m_party;
     public AudioSource m_hospital;
 
-    private AudioSource au_voicePlaying;
+    public AudioSource mc_1;
+    public AudioSource mc_2;
+    public AudioSource mc_3;
+
+    private AudioSource au_musicPlaying;
+    private AudioSource au_musicChapterPlaying;
+
 
     private Dictionary<SoundType, float> dic_SoundStartTime = new Dictionary<SoundType, float>();
     private Dictionary<SoundType, AudioSource> dic_SoundType = new Dictionary<SoundType, AudioSource>();
+    private Dictionary<MusicType, float> dic_MusicVloume = new Dictionary<MusicType, float>();
+    private Dictionary<ChapterMusicType, float> dic_ChapterVloume = new Dictionary<ChapterMusicType, float>();
+
+
     public void Init()
     {
         InitTime();
@@ -73,10 +87,17 @@ public class SoundManager : MonoBehaviour
         dic_SoundType.Add(SoundType.Break2, au_break2);
         dic_SoundType.Add(SoundType.Cheer, au_cheer);
         dic_SoundType.Add(SoundType.Wow, au_wow);
-        dic_SoundType.Add(SoundType.Footstep, au_footstep);
+
+        dic_MusicVloume.Add(MusicType.Discuss, 0.2f);
+
+        dic_ChapterVloume.Add(ChapterMusicType.Chapter1, 0.15f);
+        dic_ChapterVloume.Add(ChapterMusicType.Chapter2, 0.05f);
+        dic_ChapterVloume.Add(ChapterMusicType.Chapter3, 0.15f);
+
     }
 
-    public float GetTime(SoundType soundType)
+    #region Sound
+    public float GetSoundTime(SoundType soundType)
     {
         if (dic_SoundStartTime.ContainsKey(soundType))
         {
@@ -96,7 +117,7 @@ public class SoundManager : MonoBehaviour
             tempSound = dic_SoundType[soundType];
         }
 
-        tempSound.time = GetTime(soundType);
+        tempSound.time = GetSoundTime(soundType);
         //AudioClip play = tempVoice.clip;
         //AudioSource.PlayClipAtPoint(play,transform.position, 10f); ;
         tempSound.Play();
@@ -129,8 +150,6 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-
-
     public bool CheckSoundPlay(SoundType soundType)
     {
         if (dic_SoundType.ContainsKey(soundType))
@@ -150,6 +169,9 @@ public class SoundManager : MonoBehaviour
         sound.Stop();
     }
 
+    #endregion
+
+    #region Music
     public void PlayMusic(MusicType musicType)
     {
         AudioSource tempSound;
@@ -175,29 +197,90 @@ public class SoundManager : MonoBehaviour
                 tempSound = m_discuss;
                 break;
         }
-        if (au_voicePlaying != null)
+        if (au_musicPlaying != null)
         {
-            au_voicePlaying.Stop();
+            StopMusic();
         }
         tempSound.volume = 0;
         tempSound.Play();
-        tempSound.DOFade(1f, 1f);
-        au_voicePlaying = tempSound;
+
+        float goalVolume = 1f;
+        if (dic_MusicVloume.ContainsKey(musicType))
+        {
+            goalVolume = dic_MusicVloume[musicType];
+        }
+
+        tempSound.DOFade(goalVolume, 1.5f);
+        au_musicPlaying = tempSound;
     }
 
     public void StopMusic()
     {
-        if (au_voicePlaying != null)
+        if (au_musicPlaying != null)
         {
-            au_voicePlaying.DOFade(0, 1f);
-            StartCoroutine(IE_StopMusic());
+            au_musicPlaying.DOFade(0, 1f);
+            StartCoroutine(IE_StopMusic(au_musicPlaying));
         }
     }
 
-    private IEnumerator IE_StopMusic()
+    private IEnumerator IE_StopMusic(AudioSource temp)
     {
         yield return new WaitForSeconds(1f);
-        au_voicePlaying.Stop();
-
+        temp.Stop();
     }
+    #endregion
+
+    #region ChapterMusic
+
+    public void PlayChapterMusic(ChapterMusicType musicType)
+    {
+        AudioSource tempSound;
+
+        switch (musicType)
+        {
+            case ChapterMusicType.Chapter1:
+                tempSound = mc_1;
+                break;
+            case ChapterMusicType.Chapter2:
+                tempSound = mc_2;
+                break;
+            case ChapterMusicType.Chapter3:
+                tempSound = mc_3;
+                break;
+            default:
+                tempSound = mc_1;
+                break;
+        }
+        if (au_musicChapterPlaying != null)
+        {
+            StopChapterMusic();
+        }
+        tempSound.volume = 0;
+        tempSound.Play();
+
+        float goalVolume = 0.15f;
+        if (dic_ChapterVloume.ContainsKey(musicType))
+        {
+            goalVolume = dic_ChapterVloume[musicType];
+        }
+        tempSound.DOFade(goalVolume, 2f);
+        au_musicChapterPlaying = tempSound;
+    }
+
+    public void StopChapterMusic()
+    {
+        if (au_musicChapterPlaying != null)
+        {
+            au_musicChapterPlaying.DOFade(0, 1f);
+            StartCoroutine(IE_StopChapterMusic(au_musicChapterPlaying));
+        }
+    }
+
+    private IEnumerator IE_StopChapterMusic(AudioSource temp)
+    {
+        yield return new WaitForSeconds(1f);
+        temp.Stop();
+    }
+    #endregion
+
 }
