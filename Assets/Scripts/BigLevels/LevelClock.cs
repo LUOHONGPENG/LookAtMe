@@ -125,6 +125,7 @@ public class LevelClock : LevelBasic
     {
         yield return new WaitForSeconds(1f);
         PublicTool.TransitionChapter(2);
+        PublicTool.PlayChapterMusic(ChapterMusicType.Chapter2);
         yield return new WaitForSeconds(1f);
         PublicTool.StopMusic();
         yield return new WaitForSeconds(1f);

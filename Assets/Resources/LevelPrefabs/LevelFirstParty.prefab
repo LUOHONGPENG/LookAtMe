@@ -717,6 +717,7 @@ MonoBehaviour:
   itemCharacter: {fileID: 9202978591503295307}
   imgLight: {fileID: 4184134909170726335}
   imgRibbon: {fileID: 6766197565410409680}
+  aniStar: {fileID: 658723633066784689}
   pfPhoto: {fileID: 1316031157892909074, guid: 6e21ce8f4c3c28f47bc10b4e10ea60a5, type: 3}
   tfContentPhoto: {fileID: 1818444104400343625}
 --- !u!222 &246760966377648118

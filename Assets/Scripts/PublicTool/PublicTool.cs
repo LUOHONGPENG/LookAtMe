@@ -80,6 +80,19 @@ public class PublicTool : MonoBehaviour
     {
         GameManager.Instance.soundManager.StopMusic();
     }
+
+    public static void PlayChapterMusic(ChapterMusicType musicType)
+    {
+        if (GameManager.Instance.isMusicOn)
+        {
+            GameManager.Instance.soundManager.PlayChapterMusic(musicType);
+        }
+    }
+
+    public static void StopChapterMusic()
+    {
+        GameManager.Instance.soundManager.StopChapterMusic();
+    }
     #endregion
 
     #region Tip

@@ -48,7 +48,7 @@ public class LevelThirdIns : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
-        PublicTool.PlayMusic(MusicType.InsSad);
+        PublicTool.PlayMusic(MusicType.InsSuicide);
         groupTip.DOFade(0, 0);
 
         //UI Init

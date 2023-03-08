@@ -9,7 +9,7 @@ public static class GameGlobal
     public static float timeFD_roundInterval = 3f;//The time interval between one round end and next round
 
     //FirstParty
-    public static float timerFP_notice = 2f;//The time that people lose interested in you
+    public static float timerFP_notice = 2.2f;//The time that people lose interested in you
     public static float timerFP_light = 0.5f;//The time that the light become bright from none
     public static float scaleFP_photoToInsX = 1;//The X scale of the photo scale down after taking photo(Dont touch it) 
     public static float scaleFP_photoToInsY = 1;//The Y scale of the photo scale down after taking photo(Dont touch it) 
@@ -20,7 +20,8 @@ public static class GameGlobal
     public static float rateClock_oneRound = 0.2f;//the process rate of one round of clock
 
     //SecondParty
-    public static int countSP_fail = 12;
+    public static int countSP_fail = 9;
+    public static float timerSP_notice = 2f;//The time that people lose interested in you
 
     //SecondIns
     public static float posSI_photoToInsX = 36.8f;

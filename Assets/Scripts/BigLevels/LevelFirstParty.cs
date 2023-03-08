@@ -18,6 +18,7 @@ public class LevelFirstParty : LevelBasic
     [Header("MainCharacter")]
     public Image imgLight;
     public Image imgRibbon;
+    public Animator aniStar;
 
     [Header("Photo")]
     public GameObject pfPhoto;
@@ -61,6 +62,10 @@ public class LevelFirstParty : LevelBasic
     }
 
     #region FlipPeople
+    public override void ChangePose()
+    {
+        itemCharacter.UpdatePose();
+    }
 
     public override void FlipPartyPeople(int ID)
     {
@@ -75,6 +80,8 @@ public class LevelFirstParty : LevelBasic
             }
         }
 
+        UpdateCharacterBar();
+
         //check whether 4 
         if (numPeopleFlip >= 4 && !isTaskDoneExtra)
         {
@@ -87,11 +94,30 @@ public class LevelFirstParty : LevelBasic
         }
     }
 
+    public override void FlipBackPartyPeople()
+    {
+        UpdateCharacterBar();
+    }
+
+    public void UpdateCharacterBar()
+    {
+        int numPeopleFlip = 0;
+        foreach (ItemPartyPeople people in listPartyPeople)
+        {
+            if (people.isFlip)
+            {
+                numPeopleFlip++;
+            }
+        }
+        itemCharacter.SetBar(numPeopleFlip);
+    }
+
     public IEnumerator IE_FlipGoalDeal()
     {
         PublicTool.PlaySound(SoundType.Wow);
         imgLight.DOFade(1f, GameGlobal.timerFP_light);
         imgRibbon.transform.DOLocalMoveY(100, GameGlobal.timerFP_light);
+        aniStar.Play("Star", 0, -1);
         yield return new WaitForSeconds(GameGlobal.timerFP_light);
 
         yield return new WaitForSeconds(2f);
@@ -99,6 +125,8 @@ public class LevelFirstParty : LevelBasic
         InitShootPhoto();
         yield break;
     }
+
+    
 
     #endregion
 

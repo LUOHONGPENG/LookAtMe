@@ -305,6 +305,7 @@ public class LevelSecondIns : LevelBasic
             StartCoroutine(GameManager.Instance.videoManager.InitVideoSad());
             yield return new WaitForSeconds(3.2f);
             PublicTool.TransitionChapter(3);
+            PublicTool.PlayChapterMusic(ChapterMusicType.Chapter3);
             PublicTool.StopMusic();
             yield return new WaitForSeconds(1.5f);
             NextLevel();
