@@ -9,7 +9,17 @@ public class LevelDiagnosis : LevelBasic
     {
         base.Init(parent);
 
-        aniHospital.Play("Hospital", 0, -1);
+        aniHospital.Play("Hospital");
+
+        StartCoroutine(IE_Ani());
     }
 
+    public IEnumerator IE_Ani()
+    {
+        yield return new WaitForSeconds(1.9f);
+        GameManager.Instance.effectManager.InitEye();
+
+        yield return new WaitForSeconds(3f);
+        GameManager.Instance.effectManager.InitEye();
+    }
 }

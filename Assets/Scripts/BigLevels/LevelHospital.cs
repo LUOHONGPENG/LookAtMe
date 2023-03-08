@@ -99,6 +99,8 @@ public class LevelHospital : LevelBasic
         yield return new WaitForSeconds(2f);
         isPostChange = false;
         GameManager.Instance.effectManager.ClearPostProcess();
+        GameManager.Instance.effectManager.InitEye();
+        yield return new WaitForSeconds(1f);
         NextLevel();
     }
 

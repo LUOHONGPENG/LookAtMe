@@ -31,6 +31,7 @@ public class EffectManager : MonoBehaviour
     public GameObject pfColor;
     public GameObject pfTransitionIcon;
     public GameObject pfChapter;
+    public GameObject pfCloseEye;
     [Header("Warning")]
     public Transform tfWarning;
     public GameObject pfWarning;
@@ -118,6 +119,13 @@ public class EffectManager : MonoBehaviour
         EffectTransitionIcon effectIcon = obj.GetComponent<EffectTransitionIcon>();
         effectIcon.Init(type);
     }
+
+    public void InitEye()
+    {
+        GameObject obj = GameObject.Instantiate(pfCloseEye, tfUIEffect);
+        EffectEyeClose effectEye = obj.GetComponent<EffectEyeClose>();
+        effectEye.Init();
+    }
     #endregion
 
     #region Warning
@@ -133,9 +141,6 @@ public class EffectManager : MonoBehaviour
     public void InitChapter(int ID)
     {
         StartCoroutine(IE_Chapter(ID));   
-
-
-
     }
 
     private IEnumerator IE_Chapter(int ID)
