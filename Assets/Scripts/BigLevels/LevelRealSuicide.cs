@@ -93,7 +93,7 @@ public class LevelRealSuicide : LevelBasic
 
     private IEnumerator IE_ColorEffect()
     {
-        GameManager.Instance.effectManager.InitColor(EffectColor.EffectColorType.Red);
+        PublicTool.TransitionColor(EffectColor.EffectColorType.Red);
         yield return new WaitForSeconds(0.8f);
         coColorEffect = null;
     }

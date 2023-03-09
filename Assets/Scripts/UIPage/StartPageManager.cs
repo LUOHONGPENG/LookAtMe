@@ -96,8 +96,8 @@ public class StartPageManager : MonoBehaviour
 
     public IEnumerator IE_Close()
     {
-        canvasGroupAll.DOFade(0, 0.5f);
-        yield return new WaitForSeconds(0.5f);
+        canvasGroupAll.DOFade(0, 0.3f);
+        yield return new WaitForSeconds(0.3f);
         GameManager.Instance.levelManager.LoadLevel();
         objPopups.SetActive(false);
     }

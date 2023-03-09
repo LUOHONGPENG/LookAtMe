@@ -150,7 +150,7 @@ public partial class LevelSecondDebate : LevelBasic
                     listGroupFrame[i].DOScale(0, 0);
                     listDragItem[i].transform.DOScale(0, 0);
                 }
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
                 //ShowUpAnimation
                 tfGroupMe.DOScale(1f, GameGlobal.timeFD_commonAni);
                 imgDragBox.DOFade(1f, GameGlobal.timeFD_commonAni);

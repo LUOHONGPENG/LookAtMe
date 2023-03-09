@@ -37,6 +37,11 @@ public class PublicTool : MonoBehaviour
         GameManager.Instance.effectManager.InitTransitionIcon(type);
     }
 
+    public static void TransitionColor(EffectColor.EffectColorType type, float time = 0)
+    {
+        GameManager.Instance.effectManager.InitColor(type,time);
+    }
+
     public static void TransitionChapter(int ID)
     {
         GameManager.Instance.effectManager.InitChapter(ID);

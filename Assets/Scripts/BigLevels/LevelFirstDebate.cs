@@ -24,7 +24,7 @@ public partial class LevelFirstDebate : LevelBasic
 
     public LevelRound currentRound = LevelRound.Round1;
     public CanvasGroup canvasGroupAll;
-
+    public Animator aniDebate;
 
     [Header("People")]
     public GameObject pfPeople;
@@ -74,9 +74,22 @@ public partial class LevelFirstDebate : LevelBasic
 
         isCheer = false;
         currentRound = LevelRound.Round1;
-        StartCoroutine(IE_InitRound());
+        StartCoroutine(IE_Init());
+    }
 
-        PublicTool.PlayMusic(MusicType.Discuss);
+    public IEnumerator IE_Init()
+    {
+        yield return new WaitForSeconds(3f);
+        PublicTool.PlayMusic(MusicType.Discuss);//Play the music
+        aniDebate.Play("Debate");//Play the introductive animation
+        yield return new WaitForSeconds(4f);
+        PublicTool.TransitionColor(EffectColor.EffectColorType.White,0.4f);//Pure Color Transition
+        yield return new WaitForSeconds(0.4f);
+        aniDebate.gameObject.SetActive(false);//Hide the animation page when it is covered by white page
+        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(IE_InitRound());//Init the Level
+        PublicTool.ShowMouseTip(TipType.Drag, 1f);//Show the Tip after 1f
+
     }
 
     //Dynamic
@@ -147,7 +160,6 @@ public partial class LevelFirstDebate : LevelBasic
         {
             case LevelRound.Round1:
                 //HideAllComponent
-                PublicTool.ShowMouseTip(TipType.Drag,3f);
                 tfGroupMe.DOScale(0, 0);
                 imgDragBox.DOFade(0, 0);
                 for (int i = 0; i < 3; i++)
@@ -155,7 +167,7 @@ public partial class LevelFirstDebate : LevelBasic
                     listGroupFrame[i].DOScale(0, 0);
                     listDragItem[i].transform.DOScale(0, 0);
                 }
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
                 //ShowUpAnimation
                 tfGroupMe.DOScale(1f, GameGlobal.timeFD_commonAni);
                 for (int i = 0; i < 3; i++)

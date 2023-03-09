@@ -106,11 +106,11 @@ public class EffectManager : MonoBehaviour
 
     #region UIEffect
 
-    public void InitColor(EffectColor.EffectColorType type)
+    public void InitColor(EffectColor.EffectColorType type,float time =0)
     {
         GameObject obj = GameObject.Instantiate(pfColor, tfUIEffect);
         EffectColor effectColor = obj.GetComponent<EffectColor>();
-        effectColor.Init(type);
+        effectColor.Init(type,time);
     }
 
     public void InitTransitionIcon(TransitionIconType type)
@@ -145,7 +145,7 @@ public class EffectManager : MonoBehaviour
 
     private IEnumerator IE_Chapter(int ID)
     {
-        InitColor(EffectColor.EffectColorType.White);
+        InitColor(EffectColor.EffectColorType.WhiteChapter);
         yield return new WaitForSeconds(0.2F);
         GameObject obj = GameObject.Instantiate(pfChapter, tfUIEffect);
         EffectChapter itemChapter = obj.GetComponent<EffectChapter>();
