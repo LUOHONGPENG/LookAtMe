@@ -25,7 +25,7 @@ public class LevelClock : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
-        PublicTool.ShowMouseTip(TipType.Drag, 2f);
+        PublicTool.ShowMouseTip(TipType.Drag, 0.5f);
 
         itemClock.Init(this);
         vClock = 0;
@@ -130,7 +130,7 @@ public class LevelClock : LevelBasic
 
     private IEnumerator IE_ClockFinish()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         PublicTool.TransitionChapter(2);
         PublicTool.PlayChapterMusic(ChapterMusicType.Chapter2);
         yield return new WaitForSeconds(1f);

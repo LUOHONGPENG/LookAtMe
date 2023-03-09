@@ -60,7 +60,6 @@ public class LevelSecondIns : LevelBasic
         base.Init(parent);
         aniSad.gameObject.SetActive(false);
         PublicTool.PlayMusic(MusicType.InsSad);
-        PublicTool.ShowMouseTip(TipType.Click, 3f);
 
         //Init Alpha
         imgBlack.DOFade(1, 0);
@@ -124,6 +123,7 @@ public class LevelSecondIns : LevelBasic
         itemPhoto.canvasGroupPhoto.DOFade(0, 0.5f);
         yield return new WaitForSeconds(0.5F);
         canvasGroupAll.blocksRaycasts = true;
+        PublicTool.ShowMouseTip(TipType.Click, 0.5f);
         PublicTool.ClearChildItem(tfContentPhoto);
         InitRound();
     }
@@ -284,7 +284,7 @@ public class LevelSecondIns : LevelBasic
                 scrollRect.vertical = true;
                 isRefreshDone = false;
                 ShowTip();
-                PublicTool.ShowMouseTip(TipType.Drag, 3f);
+                PublicTool.ShowMouseTip(TipType.Drag, 1f);
                 break;
             case LevelRound.SecondScroll:
                 isRefreshDone = false;

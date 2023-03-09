@@ -136,7 +136,9 @@ public class LevelMirror : LevelBasic
     public IEnumerator IE_GoToNextLevel()
     {
         isReadyNextLevel = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
+        PublicTool.TransitionColor(EffectColor.EffectColorType.White, 0.5f);
+        yield return new WaitForSeconds(0.6f);
         NextLevel();
     }
 

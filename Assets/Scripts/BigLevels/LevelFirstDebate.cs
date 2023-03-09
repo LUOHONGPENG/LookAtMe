@@ -205,7 +205,7 @@ public partial class LevelFirstDebate : LevelBasic
                     listOtherThought[i].HideAni();
                 }
                 myThought.HideAni();
-                PublicTool.ShowMouseTip(TipType.Drag, 1f);//Show the Tip after 1f
+                PublicTool.ShowMouseTip(TipType.Drag, 0.5f);//Show the Tip after 1f
                 yield return new WaitForSeconds(GameGlobal.timeFD_commonAni);
                 //Clear
                 PublicTool.ClearChildItem(tfContentMyThought);

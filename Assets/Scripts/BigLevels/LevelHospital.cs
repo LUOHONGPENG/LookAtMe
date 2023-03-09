@@ -55,6 +55,7 @@ public class LevelHospital : LevelBasic
 
     public IEnumerator IE_InitDark()
     {
+        imgBlack.gameObject.SetActive(true);
         imgBlack.DOFade(1f, 0);
         imgBlack.raycastTarget = true;
         PublicTool.ShowMouseTip(TipType.Drag, 0.5f);

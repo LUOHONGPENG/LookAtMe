@@ -66,7 +66,7 @@ public class LevelDressUp : LevelBasic
         imgStatic.gameObject.SetActive(false);
         InitCharacter();
         InitDress();
-        PublicTool.ShowMouseTip(TipType.Drag, 3f);
+        PublicTool.ShowMouseTip(TipType.Drag, 2f);
     }
 
 
