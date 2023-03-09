@@ -34,6 +34,8 @@ public class LevelSecondIns : LevelBasic
     public Image imgPicB;
     public GameObject objGapB;
     public Text codeLikeOther;
+
+    public Animator aniSad;
     private int numLikeOther = 0;
     private int numFreeRound = 0;
 
@@ -56,6 +58,7 @@ public class LevelSecondIns : LevelBasic
     public override void Init(LevelManager parent)
     {
         base.Init(parent);
+        aniSad.gameObject.SetActive(false);
         PublicTool.PlayMusic(MusicType.InsSad);
         PublicTool.ShowMouseTip(TipType.Click, 3f);
 
@@ -307,8 +310,12 @@ public class LevelSecondIns : LevelBasic
         if (currentRound == LevelRound.FreeScroll)
         {
             yield return StartCoroutine(IE_ScrollBack());
-            //StartCoroutine(GameManager.Instance.videoManager.InitVideoSad());
-            yield return new WaitForSeconds(3.2f);
+
+            PublicTool.TransitionColor(EffectColor.EffectColorType.White, 0.5f);
+            yield return new WaitForSeconds(0.6f);
+            aniSad.gameObject.SetActive(true);
+            aniSad.Play("Sad");
+            yield return new WaitForSeconds(3.8f);
             PublicTool.TransitionChapter(3);
             PublicTool.PlayChapterMusic(ChapterMusicType.Chapter3);
             PublicTool.StopMusic(true);
