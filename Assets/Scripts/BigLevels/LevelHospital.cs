@@ -57,10 +57,10 @@ public class LevelHospital : LevelBasic
     {
         imgBlack.DOFade(1f, 0);
         imgBlack.raycastTarget = true;
+        PublicTool.ShowMouseTip(TipType.Drag, 0.5f);
         yield return new WaitForSeconds(0.5f);
         imgBlack.DOFade(0, 2F);
         yield return new WaitForSeconds(2f);
-        PublicTool.ShowMouseTip(TipType.Drag, 0.5f);
         imgBlack.raycastTarget = false;
     }
 
