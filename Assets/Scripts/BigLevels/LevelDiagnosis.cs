@@ -21,6 +21,9 @@ public class LevelDiagnosis : LevelBasic
 
         StartCoroutine(IE_Ani());
 
+        countPage = 0;
+        UpdatePage();
+
         btnLeft.onClick.RemoveAllListeners();
         btnLeft.onClick.AddListener(delegate ()
         {
@@ -39,7 +42,6 @@ public class LevelDiagnosis : LevelBasic
     public IEnumerator IE_Ani()
     {
         yield return new WaitForSeconds(2.5f);
-        GameManager.Instance.effectManager.InitEye();
 
         yield return new WaitForSeconds(2.3f);
         GameManager.Instance.effectManager.InitEye();
@@ -47,7 +49,9 @@ public class LevelDiagnosis : LevelBasic
         yield return new WaitForSeconds(3f);
         GameManager.Instance.effectManager.InitEye();
 
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(5f);
+        GameManager.Instance.effectManager.InitEye();
+        yield return new WaitForSeconds(0.5f);
         aniHospital.gameObject.SetActive(false);
     }
 
