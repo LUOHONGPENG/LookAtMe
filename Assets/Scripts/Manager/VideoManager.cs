@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Video;
 public class VideoManager : MonoBehaviour
 {
-    public VideoPlayer objVideoSad;
-
-    public void Init()
+/*    public VideoPlayer objVideoSad;
+*/
+/*    public void Init()
     {
         objVideoSad.gameObject.SetActive(false);
         objVideoSad.targetCamera = GameManager.Instance.mainCamera;
@@ -32,5 +32,5 @@ public class VideoManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         objVideoSad.gameObject.SetActive(false);
         yield break;
-    }
+    }*/
 }

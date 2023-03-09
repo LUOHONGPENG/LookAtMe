@@ -30,8 +30,8 @@ public class LevelFirstIns : LevelBasic
     public Transform tfContentComment;
     public List<Vector2> listPosComment = new List<Vector2>();
 
-    [Header("Video")]
-    public VideoPlayer objVideo;
+    [Header("Animation")]
+    public Animator aniHappy;
 
     private bool isLike = false;
     private int numLike = 0;
@@ -39,9 +39,8 @@ public class LevelFirstIns : LevelBasic
     public override void Init(LevelManager parent)
     {
         imgBg.DOFade(0, 0);
+        aniHappy.gameObject.SetActive(false);
         base.Init(parent);
-        objVideo.targetCamera = GameManager.Instance.uiCamera;
-        objVideo.gameObject.SetActive(false);
 
         InitView();
 
@@ -122,9 +121,14 @@ public class LevelFirstIns : LevelBasic
         yield return new WaitForSeconds(0.5f);
         
         GenerateComment();
-        yield return new WaitForSeconds(3f);
-
-        yield return StartCoroutine(GameManager.Instance.videoManager.InitVideoHappy());
+        yield return new WaitForSeconds(3.8f);
+        PublicTool.TransitionColor(EffectColor.EffectColorType.White, 0.5f);
+        yield return new WaitForSeconds(0.6f);
+        aniHappy.gameObject.SetActive(true);
+        aniHappy.Play("Happy");
+        yield return new WaitForSeconds(2.5f);
+        PublicTool.TransitionColor(EffectColor.EffectColorType.White, 0.5f);
+        yield return new WaitForSeconds(0.6f);
         NextLevel();
     }
 

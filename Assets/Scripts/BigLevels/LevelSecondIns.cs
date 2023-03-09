@@ -307,7 +307,7 @@ public class LevelSecondIns : LevelBasic
         if (currentRound == LevelRound.FreeScroll)
         {
             yield return StartCoroutine(IE_ScrollBack());
-            StartCoroutine(GameManager.Instance.videoManager.InitVideoSad());
+            //StartCoroutine(GameManager.Instance.videoManager.InitVideoSad());
             yield return new WaitForSeconds(3.2f);
             PublicTool.TransitionChapter(3);
             PublicTool.PlayChapterMusic(ChapterMusicType.Chapter3);
