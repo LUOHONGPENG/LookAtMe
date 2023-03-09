@@ -43,7 +43,7 @@ public class LevelDiagnosis : LevelBasic
     {
         yield return new WaitForSeconds(2.5f);
 
-        yield return new WaitForSeconds(2.3f);
+        yield return new WaitForSeconds(2.2f);
         GameManager.Instance.effectManager.InitEye();
 
         yield return new WaitForSeconds(3f);
@@ -51,7 +51,7 @@ public class LevelDiagnosis : LevelBasic
 
         yield return new WaitForSeconds(5f);
         GameManager.Instance.effectManager.InitEye();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         aniHospital.gameObject.SetActive(false);
     }
 
