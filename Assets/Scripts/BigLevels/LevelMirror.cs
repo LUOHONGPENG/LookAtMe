@@ -16,12 +16,12 @@ public class LevelMirror : LevelBasic
     private LevelManager parent;
     public DragCup itemCup;
 
-    public VideoPlayer objVideo;
-
     public GameObject objMirror;
     public GameObject objCupParent;
     public GameObject objCup;
     public GameObject objCupHeld;
+
+    public Animator aniMirror;
 
     private Vignette efVignette;
     private float timerColdDown = 1f;
@@ -33,9 +33,8 @@ public class LevelMirror : LevelBasic
         objMirror.SetActive(false);
         objCupParent.SetActive(false);
 
-
-        objVideo.targetCamera = Camera.main;
-        objVideo.Play();
+        aniMirror.gameObject.SetActive(true);
+        aniMirror.Play("Mirror");
 
         itemCup.Init(this);
         InitVigEffect();
@@ -53,10 +52,12 @@ public class LevelMirror : LevelBasic
 
     public IEnumerator IE_AniFinish()
     {
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(7f);
+        PublicTool.TransitionColor(EffectColor.EffectColorType.White, 1f);
+        yield return new WaitForSeconds(1f);
+        aniMirror.gameObject.SetActive(false);
         objMirror.SetActive(true);
         objCupParent.SetActive(true);
-        objVideo.gameObject.SetActive(false);
         PublicTool.ShowMouseTip(TipType.Click, 1f);
     }
 

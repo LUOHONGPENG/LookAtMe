@@ -152,6 +152,7 @@ public class LevelThirdIns : LevelBasic
         yield return new WaitForSeconds(5f);
         isInitBlur = false;
         PublicTool.StopMusic(false);
+        PublicTool.TransitionColor(EffectColor.EffectColorType.White,1f);
         yield return new WaitForSeconds(1.1f);
         GameManager.Instance.effectManager.ClearPostProcess();
         NextLevel();
