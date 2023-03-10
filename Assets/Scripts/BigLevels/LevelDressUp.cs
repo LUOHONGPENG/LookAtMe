@@ -62,7 +62,7 @@ public class LevelDressUp : LevelBasic
     public IEnumerator IE_Init()
     {
         imgStatic.gameObject.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         imgStatic.gameObject.SetActive(false);
         InitCharacter();
         InitDress();
